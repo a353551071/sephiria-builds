@@ -29,18 +29,19 @@
 #
 # Reference: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
 
-name = "anvilwiki"
+name = "sephiria-builds"
 compatibility_date = "2026-08-11"
 pages_build_output_dir = "dist"
 
 [vars]
 # Site (must include https:// protocol — Astro validates this as a URL)
-SITE_URL = "https://anvilwiki.pages.dev"
+# TODO: 换成实购域名后改这里
+SITE_URL = "https://sephiriabuilds.com"
 # Giscus comments (DEMO — anvilwiki.pages.dev points at PNGTRID/AnvilWiki Discussions)
-PUBLIC_GISCUS_REPO = "PNGTRID/AnvilWiki"
-PUBLIC_GISCUS_REPO_ID = "R_kgDOT1aRPQ"
-PUBLIC_GISCUS_CATEGORY = "Announcements"
-PUBLIC_GISCUS_CATEGORY_ID = "DIC_kwDOT1aRPc4DDODo"
+PUBLIC_GISCUS_REPO = ""
+PUBLIC_GISCUS_REPO_ID = ""
+PUBLIC_GISCUS_CATEGORY = ""
+PUBLIC_GISCUS_CATEGORY_ID = ""
 PUBLIC_GISCUS_MAPPING = "pathname"
 # Sponsor card (empty = disabled, keeps Lighthouse 4×100 out of the box)
 PUBLIC_SPONSOR_URL = ""
