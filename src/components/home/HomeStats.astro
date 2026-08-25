@@ -40,13 +40,29 @@ const cells = [
 ];
 ---
 
-<section class="border-b border-border bg-border" aria-label={stats.label ?? 'By the numbers'}>
-  <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden sm:grid-cols-4">
+<section aria-label={stats.label ?? 'By the numbers'}>
+  <div
+    class="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden sm:grid-cols-4"
+    style="border-block:1px solid hsl(var(--sp-line));background:hsl(var(--sp-line))"
+  >
     {
-      cells.map((cell) => (
-        <div class="bg-background px-4 py-5 text-center">
-          <p class="font-pixel text-lg text-nav md:text-xl">{cell.value}</p>
-          <p class="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+      cells.map((cell, i) => (
+        <div
+          class="px-4 py-5 text-center"
+          style="background:hsl(var(--sp-bg))"
+        >
+          {/* Current-patch cell gets the ice accent — the frost-verified
+              version anchor (secondary color's only homepage home). */}
+          <p
+            class="font-pixel text-lg md:text-xl"
+            style={i === cells.length - 1 ? 'color:hsl(var(--sp-ice))' : 'color:hsl(var(--sp-text))'}
+          >
+            {cell.value}
+          </p>
+          <p
+            class="mt-1.5 text-[10px] uppercase tracking-[0.14em]"
+            style="color:hsl(var(--sp-dim))"
+          >
             {cell.label}
           </p>
         </div>

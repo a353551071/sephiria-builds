@@ -94,7 +94,7 @@
                   "href": { "type": "string", "pattern": "^/" },
                   "displayType": {
                     "type": "string",
-                    "enum": ["badge-list", "steps", "ranked-grid", "labeled-cards", "timeline", "video-grid"],
+                    "enum": ["badge-list", "steps", "ranked-grid", "labeled-cards", "timeline", "video-grid", "build-grid", "weapon-list"],
                     "description": "badge-list (codes) · steps (progression) · ranked-grid (tier lists) · labeled-cards (item cards) · timeline (patch notes) · video-grid (thumbnails that LINK OUT, never embed)"
                   },
                   "highlights": {
