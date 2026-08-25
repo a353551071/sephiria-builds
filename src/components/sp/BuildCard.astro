@@ -1,0 +1,72 @@
+---
+/**
+ * BuildCard — the site's visual core (Phase 1 of Sephiria v2 design system).
+ *
+ * A build presented as a database record: index, tier chip, build type tag,
+ * name, one-line premise, then footer meta (difficulty / patch / view-all).
+ * Geometry: 1px --sp-line border, --sp-panel surface, gold accent underline,
+ * hover lifts + gold outline (taskbarhero micro-interaction, but tokenized).
+ *
+ * Pure presentation — caller passes strings; no data coupling.
+ */
+import { Icon } from 'astro-icon/components';
+import TierBadge from '~/components/mdx/TierBadge.astro';
+import RarityBadge from './RarityBadge.astro';
+
+interface Props {
+  href: string;
+  name: string;
+  type: string; // e.g. "MELEE / CRIT"
+  tier: string; // S | A | B | C | D
+  premise: string;
+  difficulty?: string; // easy | medium | hard
+  patch?: string;
+  index?: string; // "01"
+}
+const { href, name, type, tier, premise, difficulty, patch, index } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group relative block overflow-hidden border border-transparent bg-card p-5 transition duration-200 hover:-translate-y-0.5"
+  style="border-color:hsl(var(--sp-line));background:hsl(var(--sp-panel))"
+>
+  {/* Top row: index + tier chip */}
+  <div class="flex items-center justify-between">
+    <span class="sp-index">{index ?? '–'}</span>
+    <TierBadge tier={tier} size="sm" />
+  </div>
+
+  {/* Type tag + name */}
+  <div class="mt-5">
+    <span class="sp-tag">{type}</span>
+    <h3 class="mt-3 text-xl font-black leading-snug" style="color:hsl(var(--sp-text))">
+      {name}
+    </h3>
+    <p class="mt-2 line-clamp-2 text-sm leading-relaxed" style="color:hsl(var(--sp-muted))">
+      {premise}
+    </p>
+  </div>
+
+  {/* Footer: difficulty / patch / view-all */}
+  <div class="mt-5 flex items-center justify-between border-t pt-3" style="border-color:hsl(var(--sp-line))">
+    <div class="flex items-center gap-2">
+      {difficulty && <RarityBadge tone={difficulty} label={difficulty} />}
+      {patch && <span class="sp-patch">v{patch}</span>}
+    </div>
+    <span
+      class="inline-flex items-center gap-1 font-pixel text-[9px] uppercase tracking-widest transition group-hover:translate-x-0.5"
+      style="color:hsl(var(--sp-gold))"
+    >
+      View
+      <Icon name="lucide:arrow-up-right" class="h-3 w-3" />
+    </span>
+  </div>
+
+  {/* Gold accent underline on hover */}
+  <span
+    aria-hidden="true"
+    class="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"
+    style="background:hsl(var(--sp-gold))"
+  />
+</a>

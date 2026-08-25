@@ -1,0 +1,42 @@
+---
+/**
+ * WeaponList — WEAPON DATABASE module (Sephiria v2 design system, Phase 2).
+ *
+ * Renders the "Weapon Routes" explore module as WeaponCard rows — the dense
+ * database feel. Each highlight carries:
+ *   { label, detail, path, role, rarity, href }
+ * Dispatched from ExploreModules via displayType 'weapon-list'.
+ */
+import WeaponCard from '~/components/sp/WeaponCard.astro';
+import { type Locale } from '~/i18n/routing';
+import { localizePath } from '~/lib/url';
+
+interface Props {
+  highlights: Array<{
+    label: string;
+    detail: string;
+    path?: string;
+    role?: string;
+    rarity?: string;
+    href?: string;
+  }>;
+  locale: Locale;
+  baseHref: string;
+}
+const { highlights, locale, baseHref } = Astro.props;
+---
+
+<div class="border-t" style="border-color:hsl(var(--sp-line))">
+  {
+    highlights.map((h, i) => (
+      <WeaponCard
+        href={localizePath(h.href ?? baseHref, locale)}
+        name={h.label}
+        path={h.path ?? h.detail}
+        role={h.role}
+        rarity={h.rarity}
+        index={String(i + 1).padStart(2, '0')}
+      />
+    ))
+  }
+</div>

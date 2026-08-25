@@ -72,6 +72,53 @@ const wiki = defineCollection({
         })
         .optional(),
       /**
+       * Optional structured build spec — rendered as a scannable spec card
+       * (BuildSpecCard) above the article body. Mirrors the boss card: tier /
+       * type / difficulty in the header row, the weapon-evolution chain, the
+       * item slots (miracle / costume / artifacts), then a stat grid. Values
+       * are strings so authors can express nuance ("~60%").
+       */
+      build: z
+        .object({
+          /** S/A/B/C/D power rating — drives tier colors via lib/tier. */
+          tier: z.enum(['S', 'A', 'B', 'C', 'D']).default('A'),
+          /** Archetype / role label, e.g. "Melee / Crit". */
+          type: z.string().optional(),
+          /** Difficulty: easy / medium / hard. */
+          difficulty: z.enum(['easy', 'medium', 'hard']).optional(),
+          /** Game version the build was verified on ("1.0.24"). */
+          patch: z.string().optional(),
+          /** Weapon evolution chain, earliest → final (linked when href given). */
+          weaponPath: z
+            .array(
+              z.object({
+                name: z.string(),
+                href: z.string().optional(),
+              }),
+            )
+            .default([]),
+          /** Final weapon href (the weapon this build is about, if any). */
+          weaponHref: z.string().optional(),
+          /** Miracle skill equipped. */
+          miracle: z.string().optional(),
+          /** Costume / skin equipped. */
+          costume: z.string().optional(),
+          /** Artifact / trinket slots. */
+          artifacts: z.array(z.string()).default([]),
+          /** Scannable stat lines, e.g. { name: "Crit rate", value: "~60%" }. */
+          stats: z
+            .array(
+              z.object({
+                name: z.string(),
+                value: z.string(),
+              }),
+            )
+            .default([]),
+          /** Where the claims come from — E-E-A-T honesty. */
+          evidence: z.string().optional(),
+        })
+        .optional(),
+      /**
        * Optional related YouTube video IDs (lazy-loaded embeds at the article
        * bottom — zero JS until click). 11-char IDs, not full URLs.
        */

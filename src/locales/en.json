@@ -1,356 +1,413 @@
 {
-  "$schema": "../../docs/home.schema.json",
-  "site": {
-    "name": "Sephiria Builds",
-    "shortName": "Sephiria",
-    "description": "Sephiria builds, weapon tier lists, and beginner guides for the action roguelite by Team Horay. Updated for the 1.0 patch.",
-    "tagline": "Every Sephiria build, weapon and strategy in one place",
-    "legalNotice": "Sephiria Builds is a fan-made community site. Not affiliated with or endorsed by Team Horay."
+ "$schema": "../../docs/home.schema.json",
+ "site": {
+  "name": "Sephiria Builds",
+  "shortName": "Sephiria",
+  "description": "Sephiria builds, weapon tier lists, and beginner guides for the action roguelite by Team Horay. Updated for the 1.0 patch.",
+  "tagline": "Every Sephiria build, weapon and strategy in one place",
+  "legalNotice": "Sephiria Builds is a fan-made community site. Not affiliated with or endorsed by Team Horay."
+ },
+ "nav": {
+  "home": "Home",
+  "guides": "Guides",
+  "toggleTheme": "Toggle theme",
+  "menu": "Menu",
+  "close": "Close",
+  "search": "Search",
+  "language": "Language",
+  "builds": "Builds",
+  "weapons": "Weapons"
+ },
+ "search": {
+  "placeholder": "Search the wiki...",
+  "noResults": "No matches found"
+ },
+ "shared": {
+  "lastUpdated": "Last updated",
+  "publishedOn": "Published",
+  "noArticles": "No articles yet. Check back soon!",
+  "articles": "articles",
+  "defaultListDescription": "Browse every {title} article — walkthroughs, tips, tier lists and up-to-date reference tables, all in one place.",
+  "relatedArticles": "Related Articles",
+  "onThisPage": "On this page",
+  "browseAll": "Browse all",
+  "viewAll": "View all",
+  "commentsHeading": "Comments",
+  "share": "Share",
+  "copyLink": "Copy link",
+  "copied": "Copied!",
+  "consentText": "We use cookies for analytics and ads to keep this site free.",
+  "accept": "Accept",
+  "decline": "Decline",
+  "consentTitle": "Cookies",
+  "bossCard": {
+   "title": "Boss Overview",
+   "hp": "HP",
+   "weakness": "Weakness",
+   "resistant": "Resistant",
+   "location": "Location",
+   "level": "Rec. Level"
   },
-  "nav": {
-    "home": "Home",
-    "guides": "Guides",
-    "toggleTheme": "Toggle theme",
-    "menu": "Menu",
-    "close": "Close",
-    "search": "Search",
-    "language": "Language",
-    "builds": "Builds",
-    "weapons": "Weapons"
+  "buildCard": {
+   "title": "Build Overview",
+   "weapon": "Weapon Path",
+   "miracle": "Miracle",
+   "costume": "Costume",
+   "artifacts": "Artifacts",
+   "evidence": "Evidence",
+   "easy": "Easy",
+   "medium": "Medium",
+   "hard": "Hard"
   },
-  "search": {
-    "placeholder": "Search the wiki...",
-    "noResults": "No matches found"
+  "codesTable": {
+   "active": "Active Codes",
+   "expired": "Expired Codes",
+   "reward": "Reward",
+   "expires": "Expires",
+   "source": "Source",
+   "code": "Code"
   },
-  "shared": {
-    "lastUpdated": "Last updated",
-    "publishedOn": "Published",
-    "noArticles": "No articles yet. Check back soon!",
-    "articles": "articles",
-    "defaultListDescription": "Browse every {title} article — walkthroughs, tips, tier lists and up-to-date reference tables, all in one place.",
-    "relatedArticles": "Related Articles",
-    "onThisPage": "On this page",
-    "browseAll": "Browse all",
-    "viewAll": "View all",
-    "commentsHeading": "Comments",
-    "share": "Share",
-    "copyLink": "Copy link",
-    "copied": "Copied!",
-    "consentText": "We use cookies for analytics and ads to keep this site free.",
-    "accept": "Accept",
-    "decline": "Decline",
-    "consentTitle": "Cookies",
-    "bossCard": {
-      "title": "Boss Overview",
-      "hp": "HP",
-      "weakness": "Weakness",
-      "resistant": "Resistant",
-      "location": "Location",
-      "level": "Rec. Level"
-    },
-    "codesTable": {
-      "active": "Active Codes",
-      "expired": "Expired Codes",
-      "reward": "Reward",
-      "expires": "Expires",
-      "source": "Source",
-      "code": "Code"
-    },
-    "codesFaq": [
-      {
-        "question": "How do I redeem codes?",
-        "answer": "Open the game, click the settings gear in the top-right, paste your code into the Redeem Code field, and confirm. Codes are case-sensitive."
-      },
-      {
-        "question": "Why do codes stop working?",
-        "answer": "Codes expire on a schedule set by the developer (usually monthly or tied to update milestones), and some are one-per-account. This page is re-tested regularly."
-      },
-      {
-        "question": "How often are new codes released?",
-        "answer": "New codes typically arrive with each major game update. Bookmark this page and check back after every patch."
-      },
-      {
-        "question": "Do codes expire?",
-        "answer": "Yes — most codes have an expiry date, shown next to each code. Expired codes move to the expired table below."
-      }
-    ],
-    "possiblyOutdated": "This guide was last checked on",
-    "outdatedNote": "— the game may have changed since. Some details could be out of date.",
-    "prevArticle": "Previous",
-    "nextArticle": "Next",
-    "minuteRead": "min read",
-    "wasThisHelpful": "Was this helpful?",
-    "feedbackThanks": "Thanks for the feedback!",
-    "sponsoredLabel": "Sponsored",
-    "relatedVideos": "Related videos",
-    "gallery": "Gallery",
-    "gameVersion": "Game version",
-    "allTags": "All Tags",
-    "tagsIndexDescription": "Browse all articles by topic.",
-    "articlesCount": "articles",
-    "recentTitle": "Recent Updates",
-    "recentDescription": "The latest articles and updates across the wiki, newest first.",
-    "sponsorTitle": "Support this wiki",
-    "sponsorText": "If these guides helped you, consider supporting the site.",
-    "sponsorButton": "Support us",
-    "notFoundSearchHint": "Try searching the wiki instead.",
-    "notFoundPopular": "Popular pages",
-    "galleryLabels": {
-      "close": "Close",
-      "prev": "Previous image",
-      "next": "Next image"
-    },
-    "quickAnswer": "Quick Answer",
-    "skipToContent": "Skip to content",
-    "tapToCopy": "Tap to copy",
-    "open": "Open",
-    "playVideo": "Play video",
-    "closeAd": "Close ad",
-    "adLabel": "Advertisement",
-    "codesFaqTitle": "Codes FAQ",
-    "toggleTheme": "Toggle theme",
-    "fallbackNotice": "English fallback",
-    "copyQuickAnswer": "Copy quick answer",
-    "feedbackYes": "Yes",
-    "feedbackNo": "No",
-    "breadcrumbAria": "Breadcrumb",
-    "paginationAria": "Article pagination"
+  "codesFaq": [
+   {
+    "question": "How do I redeem codes?",
+    "answer": "Open the game, click the settings gear in the top-right, paste your code into the Redeem Code field, and confirm. Codes are case-sensitive."
+   },
+   {
+    "question": "Why do codes stop working?",
+    "answer": "Codes expire on a schedule set by the developer (usually monthly or tied to update milestones), and some are one-per-account. This page is re-tested regularly."
+   },
+   {
+    "question": "How often are new codes released?",
+    "answer": "New codes typically arrive with each major game update. Bookmark this page and check back after every patch."
+   },
+   {
+    "question": "Do codes expire?",
+    "answer": "Yes — most codes have an expiry date, shown next to each code. Expired codes move to the expired table below."
+   }
+  ],
+  "possiblyOutdated": "This guide was last checked on",
+  "outdatedNote": "— the game may have changed since. Some details could be out of date.",
+  "prevArticle": "Previous",
+  "nextArticle": "Next",
+  "minuteRead": "min read",
+  "wasThisHelpful": "Was this helpful?",
+  "feedbackThanks": "Thanks for the feedback!",
+  "sponsoredLabel": "Sponsored",
+  "relatedVideos": "Related videos",
+  "gallery": "Gallery",
+  "gameVersion": "Game version",
+  "allTags": "All Tags",
+  "tagsIndexDescription": "Browse all articles by topic.",
+  "articlesCount": "articles",
+  "recentTitle": "Recent Updates",
+  "recentDescription": "The latest articles and updates across the wiki, newest first.",
+  "sponsorTitle": "Support this wiki",
+  "sponsorText": "If these guides helped you, consider supporting the site.",
+  "sponsorButton": "Support us",
+  "notFoundSearchHint": "Try searching the wiki instead.",
+  "notFoundPopular": "Popular pages",
+  "galleryLabels": {
+   "close": "Close",
+   "prev": "Previous image",
+   "next": "Next image"
   },
-  "overview": {
-    "builds": {
-      "overviewTitle": "All Builds",
-      "overviewDescription": "Copyable Sephiria builds with weapon paths, Miracles, costumes, artifacts and stat targets."
-    },
-    "weapons": {
-      "overviewTitle": "All Weapons",
-      "overviewDescription": "Sephiria weapon routes, evolution paths and build notes for the 1.0 patch."
-    },
-    "guides": {
-      "overviewTitle": "All Guides",
-      "overviewDescription": "Beginner walkthroughs, weapon rankings and practical strategies for Sephiria."
-    }
+  "quickAnswer": "Quick Answer",
+  "skipToContent": "Skip to content",
+  "tapToCopy": "Tap to copy",
+  "open": "Open",
+  "playVideo": "Play video",
+  "closeAd": "Close ad",
+  "adLabel": "Advertisement",
+  "codesFaqTitle": "Codes FAQ",
+  "toggleTheme": "Toggle theme",
+  "fallbackNotice": "English fallback",
+  "copyQuickAnswer": "Copy quick answer",
+  "feedbackYes": "Yes",
+  "feedbackNo": "No",
+  "breadcrumbAria": "Breadcrumb",
+  "paginationAria": "Article pagination"
+ },
+ "overview": {
+  "builds": {
+   "overviewTitle": "All Builds",
+   "overviewDescription": "Copyable Sephiria builds with weapon paths, Miracles, costumes, artifacts and stat targets."
   },
-  "home": {
-    "meta": {
-      "title": "Sephiria Builds - Best Builds, Weapon Tier Lists & Guides",
-      "description": "Sephiria builds, weapon rankings and beginner guides for the action roguelite by Team Horay. Find the best katana, crit and ice builds for the 1.0 patch."
-    },
-    "hero": {
-      "badge": "Unofficial fan wiki · updated for 1.0.25",
-      "title": "Sephiria Builds",
-      "description": "Best builds, weapon tier lists and strategies for Sephiria — the action roguelite by Team Horay (Dungreed). Updated for the 1.0 release.",
-      "ctaPrimary": "Play Sephiria on Steam",
-      "ctaSecondary": "Browse Weapon Guides",
-      "ctaSecondaryHref": "/guides",
-      "versionChip": "1.0.25"
-    },
-    "stats": {
-      "label": "By the numbers",
-      "patch": "1.0.25",
-      "patchLabel": "Current patch"
-    },
-    "updates": {
-      "title": "Recent Updates"
-    },
-    "start": {
-      "badge": "Start Here",
-      "title": "Build Your First Run",
-      "cards": [
-        {
-          "number": "1",
-          "title": "Beginner Guide",
-          "description": "Learn the four build layers, choose a forgiving first weapon and reach Hard mode.",
-          "icon": "lucide:book-open",
-          "href": "/guides/beginner-guide"
-        },
-        {
-          "number": "2",
-          "title": "Best Builds",
-          "description": "Six community-tested recipes with weapon paths, Miracles, costumes and artifacts.",
-          "icon": "lucide:swords",
-          "href": "/builds/best-builds"
-        },
-        {
-          "number": "3",
-          "title": "Weapon Tier List",
-          "description": "Compare katana crit, greatsword specials, freeze dagger, Minigun and staff routes.",
-          "icon": "lucide:list-ordered",
-          "href": "/guides/weapon-tier-list"
-        },
-        {
-          "number": "4",
-          "title": "Biryuu Katana",
-          "description": "Follow the active crit route from Katana to Cheongwangsak to Biryuu.",
-          "icon": "lucide:axe",
-          "href": "/weapons/katana"
-        }
-      ]
-    },
-    "popular": {
-      "badge": "Featured Now",
-      "title": "Start With These Pages",
-      "quickLinks": [
-        {
-          "label": "Best Sephiria Builds",
-          "href": "/builds/best-builds"
-        },
-        {
-          "label": "Weapon Tier List",
-          "href": "/guides/weapon-tier-list"
-        },
-        {
-          "label": "Beginner Guide",
-          "href": "/guides/beginner-guide"
-        },
-        {
-          "label": "Biryuu Katana Build",
-          "href": "/weapons/katana"
-        }
-      ]
-    },
-    "explore": {
-      "title": "Explore Sephiria Builds",
-      "description": "Build recipes, weapon routes and practical guides for the 1.0 patch.",
-      "modules": [
-        {
-          "order": 1,
-          "name": "Build Recipes",
-          "description": "Copyable setups with weapon paths, Miracles, costumes and core artifacts.",
-          "href": "/builds",
-          "displayType": "labeled-cards",
-          "highlights": [
-            {
-              "label": "Biryuu Katana",
-              "detail": "Active crit melee route"
-            },
-            {
-              "label": "Frozen Smelt",
-              "detail": "Freeze control route"
-            },
-            {
-              "label": "Minigun",
-              "detail": "Ranged lightning route"
-            }
-          ]
-        },
-        {
-          "order": 2,
-          "name": "Weapon Routes",
-          "description": "Follow each weapon family from its first form to its endgame evolution.",
-          "href": "/weapons",
-          "displayType": "ranked-grid",
-          "highlights": [
-            {
-              "label": "S",
-              "detail": "Katana · Greatsword"
-            },
-            {
-              "label": "A",
-              "detail": "Dagger · Crossbow · Staff"
-            },
-            {
-              "label": "B",
-              "detail": "Scythe · Planet retest"
-            }
-          ]
-        },
-        {
-          "order": 3,
-          "name": "Practical Guides",
-          "description": "Start safely, understand stats and choose the right route for your run.",
-          "href": "/guides",
-          "displayType": "steps",
-          "highlights": [
-            {
-              "label": "1",
-              "detail": "Choose a forgiving first weapon"
-            },
-            {
-              "label": "2",
-              "detail": "Match stats to your win condition"
-            },
-            {
-              "label": "3",
-              "detail": "Prioritize special-attack artifacts"
-            },
-            {
-              "label": "4",
-              "detail": "Take a verified recipe into Hard mode"
-            }
-          ]
-        },
-        {
-          "order": 4,
-          "name": "Patch & Evidence",
-          "description": "Every recommendation carries a version and evidence note because builds change.",
-          "href": "/recent",
-          "displayType": "timeline",
-          "highlights": [
-            {
-              "label": "1.0.25",
-              "detail": "Current content target",
-              "badge": "Current"
-            },
-            {
-              "label": "Video",
-              "detail": "Video clear evidence outranks community claims"
-            },
-            {
-              "label": "Patch",
-              "detail": "Re-check interactions after balance changes"
-            }
-          ]
-        }
-      ]
-    },
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "description": "Quick answers about this fan-made Sephiria builds site.",
-      "items": [
-        {
-          "question": "What is Sephiria?",
-          "answer": "Sephiria is an action roguelite by Team Horay, the studio behind Dungreed. You climb a tower, evolve weapons, collect artifacts and build around Miracles, costumes and stats."
-        },
-        {
-          "question": "Is Sephiria Builds official?",
-          "answer": "No. Sephiria Builds is an independent fan-made community site and is not affiliated with or endorsed by Team Horay or Valve."
-        },
-        {
-          "question": "Which build should beginners try first?",
-          "answer": "Start with the Sword and Shield or Greatsword family for a forgiving defense-first run. The tank Katana route is another strong option once you understand the basics."
-        },
-        {
-          "question": "What patch do these guides cover?",
-          "answer": "The initial guides target the 1.0.25-era balance. Always check the game version badge and last-updated date because weapon interactions can change after patches."
-        },
-        {
-          "question": "How are builds ranked?",
-          "answer": "We separate evidence from power: video clears, community clear claims, current tests and legacy retests. There is no universal best weapon; the right route depends on your playstyle."
-        }
-      ]
-    },
-    "closingCta": {
-      "title": "Ready to Climb the Tower?",
-      "description": "Bookmark this wiki and check back for new build tests, weapon routes and patch updates.",
-      "primary": "Open Steam",
-      "secondary": "Browse Builds"
-    }
+  "weapons": {
+   "overviewTitle": "All Weapons",
+   "overviewDescription": "Sephiria weapon routes, evolution paths and build notes for the 1.0 patch."
   },
-  "footer": {
-    "playGame": "Open Sephiria on Steam",
-    "officialDiscord": "Community Discord",
-    "officialYoutube": "YouTube",
-    "officialTwitter": "X / Twitter",
-    "officialReddit": "Reddit",
-    "about": "About",
-    "faq": "FAQ",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "copyright": "Copyright",
-    "copyrightText": "© 2026 Sephiria Builds. Fan-made, not affiliated with Team Horay or Valve.",
-    "assetCredit": "Game artwork and assets are © Team Horay, used for informational purposes. All trademarks belong to their respective owners.",
-    "analyticsNote": "Analytics are cookieless & anonymous.",
-    "community": "Community",
-    "legal": "Legal"
+  "guides": {
+   "overviewTitle": "All Guides",
+   "overviewDescription": "Beginner walkthroughs, weapon rankings and practical strategies for Sephiria."
   }
+ },
+ "home": {
+  "meta": {
+   "title": "Sephiria Builds - Best Builds, Weapon Tier Lists & Guides",
+   "description": "Sephiria builds, weapon rankings and beginner guides for the action roguelite by Team Horay. Find the best katana, crit and ice builds for the 1.0 patch."
+  },
+  "hero": {
+   "badge": "Unofficial fan wiki · updated for 1.0.25",
+   "title": "Sephiria Builds",
+   "description": "Best builds, weapon tier lists and strategies for Sephiria — the action roguelite by Team Horay (Dungreed). Updated for the 1.0 release.",
+   "ctaPrimary": "Play Sephiria on Steam",
+   "ctaSecondary": "Browse Weapon Guides",
+   "ctaSecondaryHref": "/guides",
+   "versionChip": "1.0.25"
+  },
+  "stats": {
+   "label": "By the numbers",
+   "patch": "1.0.25",
+   "patchLabel": "Current patch"
+  },
+  "updates": {
+   "badge": "CHANGELOG",
+   "title": "Recent Updates"
+  },
+  "start": {
+   "badge": "Start Here",
+   "title": "Build Your First Run",
+   "cards": [
+    {
+     "number": "1",
+     "title": "Beginner Guide",
+     "description": "Learn the four build layers, choose a forgiving first weapon and reach Hard mode.",
+     "icon": "lucide:book-open",
+     "href": "/guides/beginner-guide"
+    },
+    {
+     "number": "2",
+     "title": "Best Builds",
+     "description": "Six community-tested recipes with weapon paths, Miracles, costumes and artifacts.",
+     "icon": "lucide:swords",
+     "href": "/builds/best-builds"
+    },
+    {
+     "number": "3",
+     "title": "Weapon Tier List",
+     "description": "Compare katana crit, greatsword specials, freeze dagger, Minigun and staff routes.",
+     "icon": "lucide:list-ordered",
+     "href": "/guides/weapon-tier-list"
+    },
+    {
+     "number": "4",
+     "title": "Biryuu Katana",
+     "description": "Follow the active crit route from Katana to Cheongwangsak to Biryuu.",
+     "icon": "lucide:axe",
+     "href": "/weapons/katana"
+    }
+   ]
+  },
+  "popular": {
+   "badge": "Featured Now",
+   "title": "Start With These Pages",
+   "quickLinks": [
+    {
+     "label": "Best Sephiria Builds",
+     "href": "/builds/best-builds"
+    },
+    {
+     "label": "Weapon Tier List",
+     "href": "/guides/weapon-tier-list"
+    },
+    {
+     "label": "Beginner Guide",
+     "href": "/guides/beginner-guide"
+    },
+    {
+     "label": "Biryuu Katana Build",
+     "href": "/weapons/katana"
+    }
+   ]
+  },
+  "explore": {
+   "badge": "DATABASE",
+   "title": "Explore Sephiria Builds",
+   "description": "Build recipes, weapon routes and practical guides for the 1.0 patch.",
+   "modules": [
+    {
+     "order": 1,
+     "name": "Build Recipes",
+     "description": "Copyable setups with weapon paths, Miracles, costumes and core artifacts.",
+     "href": "/builds",
+     "displayType": "build-grid",
+     "highlights": [
+      {
+       "label": "Biryuu Katana",
+       "detail": "Active crit melee route — attacks count as both normal and final hits.",
+       "tier": "S",
+       "type": "MELEE / CRIT",
+       "difficulty": "hard",
+       "patch": "1.0.25",
+       "href": "/builds/biryuu-katana"
+      },
+      {
+       "label": "Frozen Smelt",
+       "detail": "Freeze control route — screen-wide freeze with Glacier stacking.",
+       "tier": "A",
+       "type": "RANGED / FREEZE",
+       "difficulty": "medium",
+       "patch": "1.0.24",
+       "href": "/builds/frozen-smelt"
+      },
+      {
+       "label": "Minigun",
+       "detail": "Ranged lightning route — sustained DPS with shared preset codes.",
+       "tier": "A",
+       "type": "RANGED / DPS",
+       "difficulty": "medium",
+       "patch": "1.0.25",
+       "href": "/builds/minigun"
+      }
+     ]
+    },
+    {
+     "order": 2,
+     "name": "Weapon Routes",
+     "description": "Follow each weapon family from its first form to its endgame evolution.",
+     "href": "/weapons",
+     "displayType": "weapon-list",
+     "highlights": [
+      {
+       "label": "Katana",
+       "detail": "Crit double-dip line",
+       "path": "Katana → Cheongwangsak → Biryuu",
+       "role": "CRIT",
+       "rarity": "legendary",
+       "href": "/weapons/katana"
+      },
+      {
+       "label": "Greatsword",
+       "detail": "Special-attack monster",
+       "path": "Bone Sword → Creaking Spine",
+       "role": "SPECIAL",
+       "rarity": "epic",
+       "href": "/guides/weapon-tier-list"
+      },
+      {
+       "label": "Dagger",
+       "detail": "Freeze control",
+       "path": "Dagger → Sleeping Frost → Frozen Smelt",
+       "role": "CONTROL",
+       "rarity": "rare",
+       "href": "/guides/weapon-tier-list"
+      },
+      {
+       "label": "Heavy Crossbow",
+       "detail": "Machine-gun DPS",
+       "path": "Heavy Crossbow → Minigun",
+       "role": "DPS",
+       "rarity": "rare",
+       "href": "/guides/weapon-tier-list"
+      },
+      {
+       "label": "Staff",
+       "detail": "Caster / hybrid",
+       "path": "Throwing Spear → Formless Dance",
+       "role": "CASTER",
+       "rarity": "epic",
+       "href": "/guides/weapon-tier-list"
+      }
+     ]
+    },
+    {
+     "order": 3,
+     "name": "Practical Guides",
+     "description": "Start safely, understand stats and choose the right route for your run.",
+     "href": "/guides",
+     "displayType": "steps",
+     "highlights": [
+      {
+       "label": "1",
+       "detail": "Choose a forgiving first weapon"
+      },
+      {
+       "label": "2",
+       "detail": "Match stats to your win condition"
+      },
+      {
+       "label": "3",
+       "detail": "Prioritize special-attack artifacts"
+      },
+      {
+       "label": "4",
+       "detail": "Take a verified recipe into Hard mode"
+      }
+     ]
+    },
+    {
+     "order": 4,
+     "name": "Patch & Evidence",
+     "description": "Every recommendation carries a version and evidence note because builds change.",
+     "href": "/recent",
+     "displayType": "timeline",
+     "highlights": [
+      {
+       "label": "1.0.25",
+       "detail": "Current content target",
+       "badge": "Current"
+      },
+      {
+       "label": "Video",
+       "detail": "Video clear evidence outranks community claims"
+      },
+      {
+       "label": "Patch",
+       "detail": "Re-check interactions after balance changes"
+      }
+     ]
+    }
+   ]
+  },
+  "faq": {
+   "title": "Frequently Asked Questions",
+   "description": "Quick answers about this fan-made Sephiria builds site.",
+   "items": [
+    {
+     "question": "What is Sephiria?",
+     "answer": "Sephiria is an action roguelite by Team Horay, the studio behind Dungreed. You climb a tower, evolve weapons, collect artifacts and build around Miracles, costumes and stats."
+    },
+    {
+     "question": "Is Sephiria Builds official?",
+     "answer": "No. Sephiria Builds is an independent fan-made community site and is not affiliated with or endorsed by Team Horay or Valve."
+    },
+    {
+     "question": "Which build should beginners try first?",
+     "answer": "Start with the Sword and Shield or Greatsword family for a forgiving defense-first run. The tank Katana route is another strong option once you understand the basics."
+    },
+    {
+     "question": "What patch do these guides cover?",
+     "answer": "The initial guides target the 1.0.25-era balance. Always check the game version badge and last-updated date because weapon interactions can change after patches."
+    },
+    {
+     "question": "How are builds ranked?",
+     "answer": "We separate evidence from power: video clears, community clear claims, current tests and legacy retests. There is no universal best weapon; the right route depends on your playstyle."
+    }
+   ]
+  },
+  "closingCta": {
+   "badge": "NEXT RUN",
+   "title": "Ready to Climb the Tower?",
+   "description": "Bookmark this wiki and check back for new build tests, weapon routes and patch updates.",
+   "primary": "Open Steam",
+   "secondary": "Browse Builds"
+  }
+ },
+ "footer": {
+  "playGame": "Open Sephiria on Steam",
+  "officialDiscord": "Community Discord",
+  "officialYoutube": "YouTube",
+  "officialTwitter": "X / Twitter",
+  "officialReddit": "Reddit",
+  "about": "About",
+  "faq": "FAQ",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "copyright": "Copyright",
+  "copyrightText": "© 2026 Sephiria Builds. Fan-made, not affiliated with Team Horay or Valve.",
+  "assetCredit": "Game artwork and assets are © Team Horay, used for informational purposes. All trademarks belong to their respective owners.",
+  "analyticsNote": "Analytics are cookieless & anonymous.",
+  "community": "Community",
+  "legal": "Legal"
+ }
 }

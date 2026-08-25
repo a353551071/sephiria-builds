@@ -1,0 +1,45 @@
+---
+/**
+ * BuildGrid — FEATURED BUILDS module (Sephiria v2 design system, Phase 2).
+ *
+ * Renders the "Build Recipes" explore module as three BuildCard records —
+ * the site's visual core. Each highlight carries the fields BuildCard needs:
+ *   { label, detail, tier, type, difficulty, patch, href }
+ * Dispatched from ExploreModules via displayType 'build-grid'.
+ */
+import BuildCard from '~/components/sp/BuildCard.astro';
+import { type Locale } from '~/i18n/routing';
+import { localizePath } from '~/lib/url';
+
+interface Props {
+  highlights: Array<{
+    label: string;
+    detail: string;
+    tier?: string;
+    type?: string;
+    difficulty?: string;
+    patch?: string;
+    href?: string;
+  }>;
+  locale: Locale;
+  baseHref: string;
+}
+const { highlights, locale, baseHref } = Astro.props;
+---
+
+<div class="grid gap-4 md:grid-cols-3">
+  {
+    highlights.map((h, i) => (
+      <BuildCard
+        href={localizePath(h.href ?? baseHref, locale)}
+        name={h.label}
+        type={h.type ?? 'BUILD'}
+        tier={h.tier ?? 'A'}
+        premise={h.detail}
+        difficulty={h.difficulty}
+        patch={h.patch}
+        index={String(i + 1).padStart(2, '0')}
+      />
+    ))
+  }
+</div>

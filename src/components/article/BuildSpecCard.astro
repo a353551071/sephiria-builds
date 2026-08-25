@@ -1,0 +1,164 @@
+---
+/**
+ * BuildSpecCard — structured build spec card (tier / archetype / difficulty /
+ * weapon evolution chain / miracle / costume / artifacts / stat grid /
+ * evidence), rendered above the article body on build pages.
+ *
+ * Mirrors BossStatCard: frontmatter-driven (`build` object in
+ * content.config.ts), visually uniform across build pages, scannable
+ * key-value data for human readers and AI crawlers. Uses the Sephiria
+ * design tokens (--sp-*) so the card reads as part of the game-database
+ * aesthetic (same panel/chip language as BuildCard).
+ *
+ * Data source: optional `build` frontmatter object (content.config.ts).
+ * Labels come from locale JSON (`shared.buildCard.*`) — no hardcoded copy.
+ */
+import { Icon } from 'astro-icon/components';
+import TierBadge from '~/components/mdx/TierBadge.astro';
+import RarityBadge from '../sp/RarityBadge.astro';
+
+interface WeaponStep {
+  name: string;
+  href?: string;
+}
+interface Stat {
+  name: string;
+  value: string;
+}
+interface BuildSpec {
+  tier?: string;
+  type?: string;
+  difficulty?: string;
+  patch?: string;
+  weaponPath?: WeaponStep[];
+  miracle?: string;
+  costume?: string;
+  artifacts?: string[];
+  stats?: Stat[];
+  evidence?: string;
+}
+interface Props {
+  build: BuildSpec;
+  /** i18n labels from shared.buildCard. */
+  labels: Record<string, string>;
+}
+const { build, labels } = Astro.props;
+
+const slots = [
+  { icon: 'lucide:sparkles', label: labels.miracle ?? 'Miracle', value: build.miracle },
+  { icon: 'lucide:shirt', label: labels.costume ?? 'Costume', value: build.costume },
+  {
+    icon: 'lucide:gem',
+    label: labels.artifacts ?? 'Artifacts',
+    value: build.artifacts?.length ? build.artifacts.join(' · ') : undefined,
+  },
+].filter((s) => s.value);
+---
+
+<aside
+  class="mt-6 overflow-hidden rounded-lg border"
+  style="border-color:hsl(var(--sp-line));background:hsl(var(--sp-panel))"
+>
+  {/* Header: label + patch + tier */}
+  <div
+    class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-3"
+    style="border-color:hsl(var(--sp-line))"
+  >
+    <p class="text-xs font-semibold uppercase tracking-wider" style="color:hsl(var(--sp-text))">
+      {labels.title ?? 'Build Overview'}
+    </p>
+    <div class="flex items-center gap-2">
+      {build.patch && <span class="sp-patch">v{build.patch}</span>}
+      {build.tier && <TierBadge tier={build.tier} size="sm" />}
+    </div>
+  </div>
+
+  <div class="p-4">
+    {/* Archetype + difficulty */}
+    {(build.type || build.difficulty) && (
+      <div class="mb-4 flex flex-wrap items-center gap-2">
+        {build.type && <span class="sp-tag">{build.type}</span>}
+        {build.difficulty && (
+          <RarityBadge tone={build.difficulty} label={(labels[build.difficulty] as string) ?? build.difficulty} />
+        )}
+      </div>
+    )}
+
+    {/* Weapon evolution chain — earliest → final, linked when we have the page */}
+    {build.weaponPath && build.weaponPath.length > 0 && (
+      <div class="mb-4">
+        <p
+          class="text-[11px] font-semibold uppercase tracking-wide"
+          style="color:hsl(var(--sp-muted))"
+        >
+          {labels.weapon ?? 'Weapon Path'}
+        </p>
+        <div class="mt-2 flex flex-wrap items-center gap-1.5">
+          {build.weaponPath.map((w, i) => (
+            <>
+              {i > 0 && (
+                <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" style="color:hsl(var(--sp-muted))" />
+              )}
+              {w.href ? (
+                <a
+                  href={w.href}
+                  class="rounded-sm px-2 py-1 text-xs font-semibold transition hover:underline"
+                  style="color:hsl(var(--sp-gold));background:hsl(var(--sp-gold) / 0.1);border:1px solid hsl(var(--sp-gold) / 0.35)"
+                >
+                  {w.name}
+                </a>
+              ) : (
+                <span
+                  class="rounded-sm px-2 py-1 text-xs font-semibold"
+                  style="color:hsl(var(--sp-text));background:hsl(var(--sp-bg));border:1px solid hsl(var(--sp-line))"
+                >
+                  {w.name}
+                </span>
+              )}
+            </>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Item slots: miracle / costume / artifacts */}
+    {slots.length > 0 && (
+      <dl class="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {slots.map((s) => (
+          <div class="rounded-md p-3" style="background:hsl(var(--sp-bg))">
+            <dt
+              class="flex items-center gap-1 text-[11px] font-medium uppercase tracking-wide"
+              style="color:hsl(var(--sp-muted))"
+            >
+              <Icon name={s.icon} class="h-3 w-3" />
+              {s.label}
+            </dt>
+            <dd class="mt-1 text-sm font-semibold" style="color:hsl(var(--sp-text))">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+
+    {/* Stat grid */}
+    {build.stats && build.stats.length > 0 && (
+      <dl class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        {build.stats.map((s) => (
+          <div class="rounded-md p-3" style="background:hsl(var(--sp-bg))">
+            <dt class="text-[11px] font-medium uppercase tracking-wide" style="color:hsl(var(--sp-muted))">
+              {s.name}
+            </dt>
+            <dd class="mt-1 text-sm font-semibold" style="color:hsl(var(--sp-text))">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+
+    {/* Evidence / verification note — E-E-A-T honesty */}
+    {build.evidence && (
+      <p class="mt-3 text-xs leading-relaxed" style="color:hsl(var(--sp-muted))">
+        <Icon name="lucide:badge-check" class="mr-1 inline h-3 w-3 align-[-1px]" />
+        {labels.evidence ?? 'Evidence'}: {build.evidence}
+      </p>
+    )}
+  </div>
+</aside>

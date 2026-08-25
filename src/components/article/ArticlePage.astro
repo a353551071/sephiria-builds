@@ -21,6 +21,7 @@ import Comments from '~/components/article/Comments.astro';
 import TableOfContents from '~/components/article/TableOfContents.astro';
 import ShareButton from '~/components/article/ShareButton.astro';
 import BossStatCard from '~/components/article/BossStatCard.astro';
+import BuildSpecCard from '~/components/article/BuildSpecCard.astro';
 import CodesTable from '~/components/article/CodesTable.astro';
 import ArticleGallery from '~/components/article/ArticleGallery.astro';
 import BackToTop from '~/components/article/BackToTop.astro';
@@ -287,6 +288,14 @@ const jsonLd = [
       <BossStatCard
         boss={entry.data.boss}
         labels={(shared.bossCard as Record<string, string>) ?? {}}
+      />
+    )}
+
+    {/* Build spec card — structured tier/weapon/items/stats when `build` present */}
+    {entry.data.build && (
+      <BuildSpecCard
+        build={entry.data.build}
+        labels={(shared.buildCard as Record<string, string>) ?? {}}
       />
     )}
 

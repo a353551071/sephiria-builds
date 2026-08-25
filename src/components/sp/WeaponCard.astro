@@ -1,0 +1,56 @@
+---
+/**
+ * WeaponCard — weapon database row (Phase 4 of Sephiria v2 design system).
+ *
+ * Dense list-row record: index, weapon name + evolution path, role tag,
+ * rarity badge, arrow. The "weapon list" visual pattern from the v2 field-
+ * archive direction — data-database feel rather than blog cards.
+ *
+ * Pure presentation; caller passes strings.
+ */
+import { Icon } from 'astro-icon/components';
+import RarityBadge from './RarityBadge.astro';
+
+interface Props {
+  href: string;
+  name: string;
+  /** Evolution path, e.g. "Katana → Cheongwangsak → Biryuu" */
+  path?: string;
+  role?: string;
+  rarity?: string; // common | uncommon | rare | epic | legendary
+  index?: string; // "01"
+}
+const { href, name, path, role, rarity, index } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group grid items-center gap-4 border-b px-4 py-3 transition-colors hover:bg-black/20 md:grid-cols-[3rem_1fr_auto]"
+  style="border-color:hsl(var(--sp-line))"
+>
+  {/* Index */}
+  <span class="sp-index hidden md:inline-flex">{index ?? '–'}</span>
+
+  {/* Name + path */}
+  <span class="min-w-0">
+    <b class="block truncate text-base font-bold" style="color:hsl(var(--sp-text))">
+      {name}
+    </b>
+    {path && (
+      <small class="mt-0.5 block truncate text-xs" style="color:hsl(var(--sp-dim))">
+        {path}
+      </small>
+    )}
+  </span>
+
+  {/* Role + rarity + arrow */}
+  <span class="flex items-center justify-between gap-3 md:justify-end">
+    {role && <span class="sp-tag hidden sm:inline-flex">{role}</span>}
+    {rarity && <RarityBadge tone={rarity} label={rarity} />}
+    <Icon
+      name="lucide:arrow-up-right"
+      class="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+      style="color:hsl(var(--sp-gold))"
+    />
+  </span>
+</a>

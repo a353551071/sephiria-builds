@@ -1,0 +1,35 @@
+---
+/**
+ * RarityBadge — colored chip for weapon rarity OR build difficulty.
+ *
+ * Two scales live under the same token family in globals.css:
+ *   tone = rarity  → --sp-rarity-{common,uncommon,rare,epic,legendary}
+ *   tone = diff    → --sp-diff-{easy,medium,hard}
+ * The chip inherits its hue from the matching --sp-* token via inline style.
+ */
+interface Props {
+  tone: string;
+  label: string;
+}
+const { tone, label } = Astro.props;
+
+// Resolve a token name from the tone label, falling back to muted text.
+const RARITY_TOKENS: Record<string, string> = {
+  common: '--sp-rarity-common',
+  uncommon: '--sp-rarity-uncommon',
+  rare: '--sp-rarity-rare',
+  epic: '--sp-rarity-epic',
+  legendary: '--sp-rarity-legendary',
+  easy: '--sp-diff-easy',
+  medium: '--sp-diff-medium',
+  hard: '--sp-diff-hard',
+};
+const token = RARITY_TOKENS[tone];
+---
+
+<span
+  class="sp-rarity"
+  style={token ? `color:hsl(var(${token}));border-color:hsl(var(${token}) / 0.4)` : undefined}
+>
+  {label}
+</span>
