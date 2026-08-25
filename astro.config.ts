@@ -123,7 +123,7 @@ function buildLastmodMap(noindexPaths: Set<string>, coverage: Map<string, Set<st
   return map;
 }
 
-const siteOrigin = process.env.SITE_URL || 'https://anvilwiki.pages.dev';
+const siteOrigin = process.env.SITE_URL || 'https://sephiriabuilds.xyz';
 
 const noindexPaths = new Set<string>();
 const localeCoverage = new Map<string, Set<string>>();
@@ -168,7 +168,7 @@ function alternatesFor(pagePath: string): Array<{ lang: string; url: string }> |
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://anvilwiki.pages.dev',
+  site: process.env.SITE_URL || 'https://sephiriabuilds.xyz',
   output: 'static',
   trailingSlash: 'never',
   image: {

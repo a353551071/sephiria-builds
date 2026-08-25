@@ -60,7 +60,7 @@ export const site: SiteConfig = {
   shortName: 'Sephiria',
   description:
     'Sephiria builds, weapon tier lists, and beginner guides for the action roguelite by Team Horay. Updated for the 1.0 patch.',
-  domain: 'sephiriabuilds.com',
+  domain: 'sephiriabuilds.xyz',
   tagline: 'Every Sephiria build, weapon and strategy in one place',
   legalNotice:
     'Sephiria Builds is a fan-made community site. Not affiliated with or endorsed by Team Horay.',
