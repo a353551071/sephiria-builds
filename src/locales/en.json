@@ -116,21 +116,17 @@
     "paginationAria": "Article pagination"
   },
   "overview": {
-    "bosses": {
-      "overviewTitle": "All Bosses",
-      "overviewDescription": "Complete strategy guides for every boss in Anvil Quest, including attack patterns, weaknesses, and recommended loadouts."
+    "builds": {
+      "overviewTitle": "All Builds",
+      "overviewDescription": "Copyable Sephiria builds with weapon paths, Miracles, costumes, artifacts and stat targets."
+    },
+    "weapons": {
+      "overviewTitle": "All Weapons",
+      "overviewDescription": "Sephiria weapon routes, evolution paths and build notes for the 1.0 patch."
     },
     "guides": {
       "overviewTitle": "All Guides",
-      "overviewDescription": "In-depth tutorials covering progression, crafting, combat mechanics, and advanced strategies for Anvil Quest."
-    },
-    "items": {
-      "overviewTitle": "All Items",
-      "overviewDescription": "Comprehensive item database with locations, stats, rarity tiers, and crafting recipes."
-    },
-    "codes": {
-      "overviewTitle": "All Codes",
-      "overviewDescription": "Active Anvil Quest codes for free coins, gems, and exclusive items. Verified daily."
+      "overviewDescription": "Beginner walkthroughs, weapon rankings and practical strategies for Sephiria."
     }
   },
   "home": {
@@ -148,48 +144,48 @@
     },
     "start": {
       "badge": "Start Here",
-      "title": "Your Anvil Quest Journey",
+      "title": "Build Your First Run",
       "cards": [
         {
           "number": "1",
           "title": "Beginner Guide",
-          "description": "New to Anvil Quest? Start here with the essential mechanics, controls, and your first hour walkthrough.",
+          "description": "Learn the four build layers, choose a forgiving first weapon and reach Hard mode.",
           "icon": "lucide:book-open",
           "href": "/guides/beginner-guide"
         },
         {
           "number": "2",
-          "title": "Active Codes",
-          "description": "Redeem the latest codes for free coins, gems, and exclusive cosmetic items.",
-          "icon": "lucide:gift",
-          "href": "/codes"
+          "title": "Best Builds",
+          "description": "Six community-tested recipes with weapon paths, Miracles, costumes and artifacts.",
+          "icon": "lucide:swords",
+          "href": "/builds/best-builds"
         },
         {
           "number": "3",
-          "title": "Boss Strategies",
-          "description": "Complete guides for every boss with attack patterns, weaknesses, and recommended loadouts.",
-          "icon": "lucide:swords",
-          "href": "/bosses"
+          "title": "Weapon Tier List",
+          "description": "Compare katana crit, greatsword specials, freeze dagger, Minigun and staff routes.",
+          "icon": "lucide:list-ordered",
+          "href": "/guides/weapon-tier-list"
         },
         {
           "number": "4",
-          "title": "Weapon Tier List",
-          "description": "Ranking every weapon from S to C based on DPS, utility, and synergy.",
-          "icon": "lucide:list-ordered",
-          "href": "/guides/weapon-tier-list"
+          "title": "Biryuu Katana",
+          "description": "Follow the active crit route from Katana to Cheongwangsak to Biryuu.",
+          "icon": "lucide:axe",
+          "href": "/weapons/katana"
         }
       ]
     },
     "popular": {
-      "badge": "Trending Now",
-      "title": "Most Read This Week",
+      "badge": "Featured Now",
+      "title": "Start With These Pages",
       "quickLinks": [
         {
-          "label": "Emberfang Boss Guide",
-          "href": "/bosses/emberfang"
+          "label": "Best Sephiria Builds",
+          "href": "/builds/best-builds"
         },
         {
-          "label": "Best Weapons Tier List",
+          "label": "Weapon Tier List",
           "href": "/guides/weapon-tier-list"
         },
         {
@@ -197,162 +193,101 @@
           "href": "/guides/beginner-guide"
         },
         {
-          "label": "All Active Codes",
-          "href": "/codes"
+          "label": "Biryuu Katana Build",
+          "href": "/weapons/katana"
         }
       ]
     },
     "explore": {
-      "title": "Explore the Wiki",
-      "description": "Everything you need, organized by category. Pick a topic and dive in.",
+      "title": "Explore Sephiria Builds",
+      "description": "Build recipes, weapon routes and practical guides for the 1.0 patch.",
       "modules": [
         {
           "order": 1,
-          "name": "Anvil Quest Codes",
-          "description": "Active codes for free coins, gems, and exclusive items. Updated daily.",
-          "href": "/codes",
-          "displayType": "badge-list",
+          "name": "Build Recipes",
+          "description": "Copyable setups with weapon paths, Miracles, costumes and core artifacts.",
+          "href": "/builds",
+          "displayType": "labeled-cards",
           "highlights": [
             {
-              "label": "FORGE-2026",
-              "detail": "+500 Gold · expires Aug 31",
-              "badge": "Active"
+              "label": "Biryuu Katana",
+              "detail": "Active crit melee route"
             },
             {
-              "label": "EMBERBORN",
-              "detail": "2× XP (30 min) · expires Aug 31",
-              "badge": "Active"
+              "label": "Frozen Smelt",
+              "detail": "Freeze control route"
             },
             {
-              "label": "ASHENKEEP",
-              "detail": "Ashen Keep cosmetic set",
-              "badge": "Active"
+              "label": "Minigun",
+              "detail": "Ranged lightning route"
             }
           ]
         },
         {
           "order": 2,
-          "name": "Boss Strategies",
-          "description": "Complete guides for every boss with attack patterns and weaknesses.",
-          "href": "/bosses",
-          "displayType": "labeled-cards",
+          "name": "Weapon Routes",
+          "description": "Follow each weapon family from its first form to its endgame evolution.",
+          "href": "/weapons",
+          "displayType": "ranked-grid",
           "highlights": [
             {
-              "label": "Emberfang",
-              "detail": "Frost warden, early-game gatekeeper"
+              "label": "S",
+              "detail": "Katana · Greatsword"
             },
             {
-              "label": "Stormcaller",
-              "detail": "Fire titan, mid-game DPS check"
+              "label": "A",
+              "detail": "Dagger · Crossbow · Staff"
             },
             {
-              "label": "Voidking",
-              "detail": "Final boss, requires full prep"
+              "label": "B",
+              "detail": "Scythe · Planet retest"
             }
           ]
         },
         {
           "order": 3,
-          "name": "Progression Guides",
-          "description": "Leveling routes, class builds, and endgame preparation.",
+          "name": "Practical Guides",
+          "description": "Start safely, understand stats and choose the right route for your run.",
           "href": "/guides",
           "displayType": "steps",
           "highlights": [
             {
               "label": "1",
-              "detail": "Pick a starting class"
+              "detail": "Choose a forgiving first weapon"
             },
             {
               "label": "2",
-              "detail": "Clear the tutorial forge"
+              "detail": "Match stats to your win condition"
             },
             {
               "label": "3",
-              "detail": "Unlock the Shattered Isles"
+              "detail": "Prioritize special-attack artifacts"
             },
             {
               "label": "4",
-              "detail": "Defeat your first world boss"
+              "detail": "Take a verified recipe into Hard mode"
             }
           ]
         },
         {
           "order": 4,
-          "name": "Weapon Tier List",
-          "description": "Ranking every weapon from S to C based on DPS, utility, and synergy.",
-          "href": "/guides/weapon-tier-list",
-          "displayType": "ranked-grid",
-          "highlights": [
-            {
-              "label": "S",
-              "detail": "Voidforge Blade, Stormcaller"
-            },
-            {
-              "label": "A",
-              "detail": "Emberclaw, Frostpike"
-            },
-            {
-              "label": "B",
-              "detail": "Ironwood Bow, Mace of Dawn"
-            },
-            {
-              "label": "C",
-              "detail": "Starter weapons"
-            }
-          ]
-        },
-        {
-          "order": 5,
-          "name": "Update History",
-          "description": "Major patches and events, newest first.",
+          "name": "Patch & Evidence",
+          "description": "Every recommendation carries a version and evidence note because builds change.",
           "href": "/recent",
           "displayType": "timeline",
           "highlights": [
             {
-              "label": "v2.5",
-              "detail": "New raid: Shadowforge released",
-              "badge": "Latest"
+              "label": "1.0.25",
+              "detail": "Current content target",
+              "badge": "Current"
             },
             {
-              "label": "v2.4",
-              "detail": "Rebalanced all S-tier weapons"
+              "label": "Video",
+              "detail": "Video clear evidence outranks community claims"
             },
             {
-              "label": "v2.3",
-              "detail": "Added 3 new bosses"
-            },
-            {
-              "label": "v2.2",
-              "detail": "Launched season pass system"
-            }
-          ]
-        },
-        {
-          "order": 6,
-          "name": "Video Guides",
-          "description": "Watch the best Anvil Quest walkthroughs and boss fights.",
-          "href": "/guides",
-          "displayType": "video-grid",
-          "highlights": [
-            {
-              "title": "Beginner Walkthrough",
-              "youtubeId": "dQw4w9WgXcQ",
-              "duration": "12:34"
-            },
-            {
-              "title": "All Bosses Ranked",
-              "youtubeId": "aaaaaaaaaaa",
-              "duration": "18:42"
-            },
-            {
-              "title": "Speedrun Guide",
-              "youtubeId": "bbbbbbbbbbb",
-              "duration": "25:10"
-            },
-            {
-              "title": "Hidden Secrets",
-              "youtubeId": "ccccccccccc",
-              "duration": "9:15"
+              "label": "Patch",
+              "detail": "Re-check interactions after balance changes"
             }
           ]
         }
@@ -360,49 +295,49 @@
     },
     "faq": {
       "title": "Frequently Asked Questions",
-      "description": "Quick answers to the most common questions about Anvil Quest.",
+      "description": "Quick answers about this fan-made Sephiria builds site.",
       "items": [
         {
-          "question": "What is Anvil Quest?",
-          "answer": "Anvil Quest is a fantasy RPG on Roblox where you play as a blacksmith apprentice forging weapons and battling bosses across the Shattered Isles. It launched in January 2026 and has over 12 million visits."
+          "question": "What is Sephiria?",
+          "answer": "Sephiria is an action roguelite by Team Horay, the studio behind Dungreed. You climb a tower, evolve weapons, collect artifacts and build around Miracles, costumes and stats."
         },
         {
-          "question": "Which class should beginners pick in Anvil Quest?",
-          "answer": "Warrior is the most beginner-friendly class thanks to high HP and simple mechanics. Once you understand the game, Rogue offers the highest damage output for experienced players."
+          "question": "Is Sephiria Builds official?",
+          "answer": "No. Sephiria Builds is an independent fan-made community site and is not affiliated with or endorsed by Team Horay or Valve."
         },
         {
-          "question": "How do I redeem codes in Anvil Quest?",
-          "answer": "Open the game, click the settings gear in the top-right, paste your code into the 'Redeem Code' field, and hit confirm. Codes are case-sensitive."
+          "question": "Which build should beginners try first?",
+          "answer": "Start with the Sword and Shield or Greatsword family for a forgiving defense-first run. The tank Katana route is another strong option once you understand the basics."
         },
         {
-          "question": "Is Anvil Quest free to play?",
-          "answer": "Yes, Anvil Quest is completely free on Roblox. There are optional cosmetic microtransactions, but they do not affect gameplay balance."
+          "question": "What patch do these guides cover?",
+          "answer": "The initial guides target the 1.0.25-era balance. Always check the game version badge and last-updated date because weapon interactions can change after patches."
         },
         {
-          "question": "How often does Anvil Quest update?",
-          "answer": "Forge Studios releases major content updates roughly every two weeks, with smaller hotfixes in between. New bosses and codes are typically added with each major patch."
+          "question": "How are builds ranked?",
+          "answer": "We separate evidence from power: video clears, community clear claims, current tests and legacy retests. There is no universal best weapon; the right route depends on your playstyle."
         }
       ]
     },
     "closingCta": {
-      "title": "Ready to Master the Forge?",
-      "description": "Bookmark this wiki and check back daily for new codes, boss guides, and tier list updates.",
-      "primary": "Play Anvil Quest",
-      "secondary": "Join Our Discord"
+      "title": "Ready to Climb the Tower?",
+      "description": "Bookmark this wiki and check back for new build tests, weapon routes and patch updates.",
+      "primary": "Open Steam",
+      "secondary": "Browse Builds"
     }
   },
   "footer": {
-    "playGame": "Play Anvil Quest",
-    "officialDiscord": "Official Discord",
-    "officialYoutube": "Official YouTube",
-    "officialTwitter": "Official Twitter",
-    "officialReddit": "Official Reddit",
+    "playGame": "Open Sephiria on Steam",
+    "officialDiscord": "Community Discord",
+    "officialYoutube": "YouTube",
+    "officialTwitter": "X / Twitter",
+    "officialReddit": "Reddit",
     "about": "About",
     "faq": "FAQ",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "copyright": "Copyright",
-    "copyrightText": "© 2026 Anvil Quest Wiki. Fan-made, not affiliated with Forge Studios.",
+    "copyrightText": "© 2026 Sephiria Builds. Fan-made, not affiliated with Team Horay or Valve.",
     "community": "Community",
     "legal": "Legal"
   }
