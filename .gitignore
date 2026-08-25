@@ -36,3 +36,9 @@ pnpm-debug.log*
 
 # Superpowers
 .superpowers/
+
+# screenshots (visual review artifacts)
+screenshots/
+
+# packaging artifacts
+/sephiria-builds-*.zip

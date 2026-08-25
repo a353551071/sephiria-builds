@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Retro pixel font for labels / badges / counts — the game-native signifier
+   benchmarked from taskbarhero. Self-hosted latin subset of Google Fonts
+   "Press Start 2P": no external request, no render-blocking fetch. */
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('/fonts/PressStart2P-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /**
  * Theme color variables — the ONLY place to change colors when re-theming.
  *
@@ -11,25 +22,28 @@
  */
 @layer base {
   :root {
-    /* Light mode theme color — Anvil orange (forge fire). */
-    --brand: 22 90% 52%;
-    --brand-light: 22 90% 62%;
-    /* Split H/S for derived shades (e.g. darker button backgrounds). */
-    --brand-h: 22;
-    --brand-s: 90%;
-    /* Text-safe shade of the brand: --brand at 52% lightness is only 3.1:1
-       on white (WCAG AA needs 4.5:1 for text). Derived from the H/S splits,
-       so fork themes that only edit --brand/--brand-light stay consistent. */
-    --brand-text: var(--brand-h) var(--brand-s) 40%;
+    /* Light mode theme color — dark gold (benchmarked taskbarhero palette).
+       Gold buttons carry dark ink (see .btn-primary), not white — that is the
+       AA-safe pairing for a 60%-lightness gold. */
+    --brand: 43 62% 60%; /* #d8b45a wiki-gold */
+    --brand-light: 43 62% 70%;
+    /* Split H/S for derived shades (e.g. hover button backgrounds). */
+    --brand-h: 43;
+    --brand-s: 62%;
+    /* Text-safe bronze for links on white (AA ≥ 4.5:1). Kept literal
+       (not derived from the H/S splits) so light and dark can tune
+       saturation independently. */
+    --brand-text: 43 55% 32%;
   }
 
   .dark {
-    /* Dark mode theme color — slightly deeper. */
-    --brand: 22 85% 48%;
-    --brand-light: 22 85% 58%;
-    --brand-h: 22;
-    --brand-s: 85%;
-    --brand-text: var(--brand-h) var(--brand-s) 52%;
+    /* Dark mode theme color — bright gold on dark surfaces (game-native). */
+    --brand: 43 62% 60%;
+    --brand-light: 43 62% 70%;
+    --brand-h: 43;
+    --brand-s: 62%;
+    /* Text-safe gold for links on #11131a (AA ≥ 4.5:1). */
+    --brand-text: 43 70% 68%;
   }
 }
 
@@ -46,13 +60,15 @@
   }
 
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
-    --muted: 217 33% 14%;
-    --muted-foreground: 215 20% 65%;
-    --border: 217 33% 18%;
-    --card: 222 47% 10%;
-    --card-foreground: 210 40% 98%;
+    /* Dark-first surfaces benchmarked from taskbarhero (deep blue-black bg,
+       near-black cards, gray-blue body text, cream headings). */
+    --background: 228 20% 8%; /* #11131a */
+    --foreground: 220 14% 76%; /* #b8bfcc */
+    --muted: 228 16% 12%;
+    --muted-foreground: 220 12% 60%;
+    --border: 222 12% 24%; /* dark gray border */
+    --card: 228 18% 5%; /* #070809 near-black */
+    --card-foreground: 220 14% 76%;
   }
 
   /* AMOLED black (html.dark.black) — pure-black surfaces for OLED phones:
@@ -90,26 +106,25 @@
 
 /* Utility classes referencing the theme token. */
 @layer components {
+  /* Gold buttons carry dark ink (not white) — the AA-safe pairing for a
+     60%-lightness gold: dark text on gold ≈ 10:1 contrast. Applies to both
+     themes since the brand is gold everywhere. */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-    /* Button background needs white text contrast ≥ 4.5:1 (WCAG AA).
-       --brand (52% lightness) gives only 3.1:1, so we darken it
-       to ~40% for button backgrounds. This does NOT change --brand
-       itself — it's a derived value for buttons only. */
-    background-color: hsl(var(--brand-h) var(--brand-s) 40%);
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold text-[#1a1405] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    background-color: hsl(var(--brand));
   }
   .btn-primary:hover {
-    background-color: hsl(var(--brand-h) var(--brand-s) 35%);
+    background-color: hsl(var(--brand-h) var(--brand-s) 56%);
   }
 
   /* Floating pill variant of btn-primary (landing community QR widget) —
-     same AA-safe darkened brand background, rounded + shadowed. */
+     same gold background, rounded + shadowed. */
   .btn-fab {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-    background-color: hsl(var(--brand-h) var(--brand-s) 40%);
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-[#1a1405] shadow-lg transition hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    background-color: hsl(var(--brand));
   }
   .btn-fab:hover {
-    background-color: hsl(var(--brand-h) var(--brand-s) 35%);
+    background-color: hsl(var(--brand-h) var(--brand-s) 56%);
   }
 
   .btn-outline {
@@ -117,7 +132,31 @@
   }
 
   .card {
-    @apply rounded-lg border bg-card text-card-foreground transition hover:border-nav/50 hover:shadow-md;
+    @apply rounded-lg border bg-card text-card-foreground transition;
+  }
+  /* Benchmark micro-interaction: gold outline on hover (taskbarhero). */
+  .card:hover {
+    outline: 2px solid hsl(var(--brand));
+    box-shadow: 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  }
+
+  /* Pixel-utility for labels / badges / counts — the retro DOS signifier.
+     Font shadow keeps pixel edges legible on any background. */
+  .font-pixel {
+    font-family: 'Press Start 2P', ui-monospace, 'SFMono-Regular', monospace;
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* Homepage section eyebrow — replaces the plain uppercase label so every
+     section header carries the pixel-game identity. */
+  .section-badge {
+    font-family: 'Press Start 2P', ui-monospace, 'SFMono-Regular', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: hsl(var(--brand-text));
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 0.45);
   }
 
   /* Unified section vertical rhythm — use on all homepage sections. */
@@ -148,6 +187,49 @@
     object-fit: contain;
     border-radius: 0.5rem;
     background-color: hsl(var(--muted));
+  }
+
+  /* Version-discipline callout — taskbarhero's "No longer obtainable" red band.
+     Marks legacy / unverified content relative to the current patch. Used in
+     MDX as <div class="obsolete-band"><span class="obsolete-tag">…</span>…</div> */
+  .obsolete-band {
+    margin: 1rem 0;
+    border-top: 4px solid hsl(0 70% 42%);
+    border-right: 1px solid hsl(0 70% 42% / 0.4);
+    border-bottom: 1px solid hsl(0 70% 42% / 0.4);
+    border-left: 1px solid hsl(0 70% 42% / 0.4);
+    border-radius: 0.375rem;
+    background: hsl(0 60% 12% / 0.35);
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    color: hsl(var(--foreground));
+  }
+  .obsolete-band .obsolete-tag {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: 'Press Start 2P', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: hsl(0 80% 62%);
+  }
+
+  /* Hero H1: cream in dark (taskbarhero title color), inherits foreground in
+     light. Kept as a scoped class so the giant headline matches article
+     headings instead of the flat gray-blue body tone. */
+  .dark .hero-title {
+    color: #efe4cf;
+  }
+
+  /* Dark-first prose: headings in warm cream (taskbarhero #efe4cf) instead of
+     the flat gray-blue body tone — the signature title color of the game wiki
+     benchmark. Light theme keeps its default headings. */
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose h5 {
+    color: #efe4cf;
   }
 }
 

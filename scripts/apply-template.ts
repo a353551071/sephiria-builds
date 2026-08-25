@@ -713,7 +713,7 @@ async function main() {
   console.log('\n' + '━'.repeat(60));
   console.log('Theme color');
   console.log('━'.repeat(60));
-  const themeHex = await ask(rl, 'Theme color (#rrggbb)', '#f97316');
+  const themeHex = await ask(rl, 'Theme color (#rrggbb)', '#d8b45a');
   const preview = hexToHsl(themeHex);
   console.log(`   → ${themeHex} = HSL(${preview.h}, ${preview.s}%, ${preview.l}%)`);
 

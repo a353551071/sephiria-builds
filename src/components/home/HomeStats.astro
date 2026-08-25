@@ -1,0 +1,56 @@
+---
+/**
+ * HomeStats — the homepage "by the numbers" banner (taskbarhero's four-number
+ * strip: "5 944 items / 6 classes / 120 stages / 16 languages").
+ *
+ * Data-driven: real per-category article counts + the current patch version,
+ * so the numbers stay honest as content grows. Pixel font + gold values echo
+ * the retro game identity of the rest of the site.
+ */
+import { NAVIGATION_CONFIG } from '~/config/navigation';
+import { type Locale } from '~/i18n/routing';
+import { getUi } from '~/i18n/ui';
+import { getEntriesByCategory } from '~/lib/content';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const nav = ui.nav as Record<string, string>;
+const stats = (ui.home?.stats ?? {}) as Record<string, string>;
+
+// Real counts per content category (build order, so cheap).
+const counts = await Promise.all(
+  NAVIGATION_CONFIG.map(async (n) => ({
+    key: n.key,
+    count: (await getEntriesByCategory(n.key, locale)).length,
+  })),
+);
+
+const cells = [
+  ...counts.map((c) => ({
+    value: String(c.count),
+    label: nav[c.key] ?? c.key,
+  })),
+  {
+    value: stats.patch ?? '1.0.25',
+    label: stats.patchLabel ?? 'Current patch',
+  },
+];
+---
+
+<section class="border-b border-border bg-border" aria-label={stats.label ?? 'By the numbers'}>
+  <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden sm:grid-cols-4">
+    {
+      cells.map((cell) => (
+        <div class="bg-background px-4 py-5 text-center">
+          <p class="font-pixel text-lg text-nav md:text-xl">{cell.value}</p>
+          <p class="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+            {cell.label}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

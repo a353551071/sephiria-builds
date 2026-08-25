@@ -252,7 +252,8 @@ const privacyLabel = footerStrings.privacyPolicy ?? 'Privacy Policy';
     <JsonLd data={orgJsonLd} />
     {jsonLd.map((d) => <JsonLd data={d} />)}
 
-    {/* No-FOUC theme init — runs before first paint. */}
+    {/* No-FOUC theme init — runs before first paint. Dark-first default:
+        a game wiki ships dark unless the visitor explicitly stored light. */}
     <script is:inline>
       (() => {
         let stored = null;
@@ -261,8 +262,7 @@ const privacyLabel = footerStrings.privacyPolicy ?? 'Privacy Policy';
         } catch {
           /* storage unavailable */
         }
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (stored === 'dark' || stored === 'black' || (!stored && prefersDark)) {
+        if (stored !== 'light') {
           document.documentElement.classList.add('dark');
           if (stored === 'black') document.documentElement.classList.add('black');
         }

@@ -1,11 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#c2410c"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e1118"/>
+      <stop offset="55%" stop-color="#1d1810"/>
+      <stop offset="100%" stop-color="#352b12"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#g)"/>
-  <text x="600" y="315" font-family="system-ui, sans-serif" font-size="72" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Anvil Quest Wiki</text>
-  <text x="600" y="400" font-family="system-ui, sans-serif" font-size="28" fill="#ffedd5" text-anchor="middle" dominant-baseline="middle">Replace this image at public/images/hero.webp</text>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="14" height="630" fill="#d8b45a"/>
+  <text x="96" y="250" font-family="system-ui, sans-serif" font-size="72" font-weight="bold" fill="#efe4cf">Sephiria Builds</text>
+  <text x="96" y="315" font-family="system-ui, sans-serif" font-size="30" fill="#b8bfcc">Weapon tier lists · Builds · Beginner guides</text>
+  <text x="96" y="362" font-family="system-ui, sans-serif" font-size="22" fill="#d8b45a">Patch 1.0 · Unofficial fan wiki</text>
+  <rect x="690" y="189" width="440" height="252" rx="12" fill="#070809" stroke="#d8b45a" stroke-width="4"/>
 </svg>

@@ -35,7 +35,7 @@ pages_build_output_dir = "dist"
 
 [vars]
 # Site (must include https:// protocol — Astro validates this as a URL)
-# TODO: 换成实购域名后改这里
+# 已购买域名;绑定 Cloudflare Pages 后保持与 site.ts 一致
 SITE_URL = "https://sephiriabuilds.xyz"
 # Giscus comments (DEMO — anvilwiki.pages.dev points at PNGTRID/AnvilWiki Discussions)
 PUBLIC_GISCUS_REPO = ""

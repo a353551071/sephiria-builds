@@ -35,7 +35,7 @@ const open = sharedStrings.open ?? 'Open';
 ---
 {cards.length > 0 && (
   <section class="section border-t border-border">
-    <p class="text-sm font-semibold uppercase tracking-wider text-foreground">{badge}</p>
+    <p class="section-badge">{badge}</p>
     <h2 class="mt-1 text-2xl font-bold tracking-tight md:text-3xl">{title}</h2>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-8">
       {cards.map((card: StartCard) => (
@@ -47,9 +47,7 @@ const open = sharedStrings.open ?? 'Open';
             <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-nav/10 text-nav">
               <Icon name={card.icon} class="h-6 w-6" />
             </span>
-            <span class="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              {card.number}
-            </span>
+            <span class="font-pixel text-[10px] text-nav">{card.number}</span>
           </div>
           <h3 class="mt-4 font-semibold leading-snug">{card.title}</h3>
           <p class="mt-1 line-clamp-2 text-sm text-muted-foreground">{card.description}</p>

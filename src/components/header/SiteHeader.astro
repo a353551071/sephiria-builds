@@ -46,11 +46,13 @@ const samePagePathFor = (loc: Locale) => {
     {/* Logo */}
     <a
       href={localizePath('/', locale)}
-      class="flex items-center gap-2 font-bold text-foreground"
+      class="flex items-center gap-2 text-foreground"
       aria-label={site.name}
     >
-      <Icon name="lucide:hammer" class="h-6 w-6 text-nav" />
-      <span class="hidden sm:inline">{site.shortName}</span>
+      <Icon name="lucide:swords" class="h-6 w-6 text-nav" />
+      <span class="font-pixel hidden text-sm uppercase tracking-wider sm:inline">
+        {site.shortName}
+      </span>
     </a>
 
     {/* Desktop nav */}
@@ -82,10 +84,10 @@ const samePagePathFor = (loc: Locale) => {
         <a
           href="/landing"
           class="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-nav"
-          aria-label="About the AnvilWiki template"
-          title="About the AnvilWiki template"
+          aria-label="About the template"
+          title="About the template"
         >
-          <Icon name="lucide:hammer" class="h-5 w-5" />
+          <Icon name="lucide:swords" class="h-5 w-5" />
         </a>
       )}
       <SearchButton locale={locale} />
@@ -144,8 +146,8 @@ const samePagePathFor = (loc: Locale) => {
               href="/landing"
               class="mt-1 flex items-center gap-2 border-t border-border px-3 py-2 text-sm text-muted-foreground transition hover:bg-muted hover:text-nav"
             >
-              <Icon name="lucide:hammer" class="h-4 w-4" />
-              <span>AnvilWiki Template</span>
+              <Icon name="lucide:swords" class="h-4 w-4" />
+              <span>Template</span>
             </a>
           )}
         </div>

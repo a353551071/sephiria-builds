@@ -1,0 +1,34 @@
+---
+/**
+ * TierBadge — colored S/A/B/C chip matching the homepage TierGrid.
+ * Zero JS; use inside article headings or body text via an explicit MDX
+ * import (no auto-registered component map in this template).
+ *
+ * Usage in MDX:
+ *   import TierBadge from '~/components/mdx/TierBadge.astro';
+ *   ## <TierBadge tier="S" /> S Tier
+ */
+import { TIER_COLORS, TIER_FALLBACK } from '~/lib/tier';
+
+interface Props {
+  tier: string;
+  size?: 'sm' | 'md';
+  label?: string;
+}
+const { tier, size = 'md', label } = Astro.props;
+const chip = TIER_COLORS[tier] ?? TIER_FALLBACK;
+const box = size === 'sm' ? 'h-5 w-5 text-xs' : 'h-7 w-7 text-sm';
+---
+
+<span class="inline-flex items-center gap-1.5 not-prose">
+  <span
+    class:list={[
+      box,
+      'font-pixel inline-flex shrink-0 items-center justify-center rounded-sm',
+      chip,
+    ]}
+  >
+    {tier}
+  </span>
+  {label && <span class="text-sm font-semibold">{label}</span>}
+</span>

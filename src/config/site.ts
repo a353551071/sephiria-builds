@@ -6,13 +6,13 @@
  */
 
 export interface SiteConfig {
-  /** Full site name, used in <title> suffix and Organization JSON-LD. e.g. "Anvil Quest Wiki" */
+  /** Full site name, used in <title> suffix and Organization JSON-LD. e.g. "Sephiria Builds" */
   name: string;
   /** Short name for PWA manifest and mobile logo. e.g. "AQ Wiki" */
   shortName: string;
   /** Site description for Organization JSON-LD and og:site_name. */
   description: string;
-  /** Domain without protocol or trailing slash. e.g. "anvilquestwiki.wiki" */
+  /** Domain without protocol or trailing slash. e.g. "sephiriabuilds.xyz" */
   domain: string;
   /** Hero tagline shown under the site title. */
   tagline: string;

@@ -49,7 +49,9 @@ const groups = await getDynamicNavigation(locale, nav);
               {group.label}
             </span>
             {group.count > 0 && (
-              <span class="text-[10px] text-muted-foreground">{group.count}</span>
+              <span class="font-pixel rounded-sm bg-muted px-1 py-0.5 text-[9px] text-nav">
+                {group.count}
+              </span>
             )}
           </a>
           {group.entries.length > 0 && (

@@ -83,6 +83,13 @@ const jsonLd = [
       <div class="mt-2 flex items-center gap-3">
         {navItem && <Icon name={navItem.icon} class="h-7 w-7 text-nav" />}
         <h1 class="text-3xl font-extrabold tracking-tight">{title}</h1>
+        {/* Result count — taskbarhero-style "5,760 Results" density signal. */}
+        <span
+          class="font-pixel ml-auto rounded-sm border border-nav/40 bg-nav/10 px-2 py-1 text-[10px] uppercase text-nav"
+          aria-label={`${entries.length} ${shared.articles ?? 'articles'}`}
+        >
+          {entries.length} {shared.articles ?? 'articles'}
+        </span>
       </div>
       <p class="mt-2 max-w-2xl text-muted-foreground">{description}</p>
     </header>
@@ -95,10 +102,24 @@ const jsonLd = [
         </div>
       ) : (
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {entries.map((entry) => {
+          {entries.map((entry, index) => {
             const slug = parseEntryId(entry.id)?.slug ?? '';
             return (
-              <a href={detailPath(category, slug, locale)} class="card p-5">
+              <a href={detailPath(category, slug, locale)} class="card flex flex-col p-5">
+                {/* Entity-card top row: index number + version discipline chip. */}
+                <div class="mb-3 flex items-center justify-between">
+                  <span class="font-pixel text-[10px] text-muted-foreground">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {entry.data.gameVersion && (
+                    <span
+                      class="font-pixel rounded-sm border border-nav/40 bg-nav/10 px-1.5 py-0.5 text-[9px] uppercase text-nav"
+                      title={`${shared.gameVersion}: ${entry.data.gameVersion}`}
+                    >
+                      v{entry.data.gameVersion}
+                    </span>
+                  )}
+                </div>
                 {entry.data.image && <ArticleCover src={entry.data.image} />}
                 <h2 class="font-semibold leading-snug">{entry.data.title}</h2>
                 <p class="mt-1 line-clamp-2 text-sm text-muted-foreground">

@@ -25,6 +25,10 @@ const socials = [
 ].filter((s) => s.href);
 
 const legalLinks = ['about', 'faq', 'privacyPolicy', 'termsOfService', 'copyright'];
+
+// Cloudflare Web Analytics is cookieless — only claim that when it's actually
+// the analytics backend (GA/AdSense are consent-gated, so never "cookieless").
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN as string | undefined;
 ---
 
 <footer class="mt-16 border-t border-border bg-muted/30">
@@ -32,9 +36,9 @@ const legalLinks = ['about', 'faq', 'privacyPolicy', 'termsOfService', 'copyrigh
     <div class="grid gap-8 md:grid-cols-3">
       {/* Brand */}
       <div>
-        <div class="flex items-center gap-2 font-bold">
-          <Icon name="lucide:hammer" class="h-6 w-6 text-nav" />
-          <span>{site.name}</span>
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:swords" class="h-6 w-6 text-nav" />
+          <span class="font-pixel text-xs uppercase tracking-wider">{site.name}</span>
         </div>
         <p class="mt-2 text-sm text-muted-foreground">{site.tagline}</p>
       </div>
@@ -88,6 +92,12 @@ const legalLinks = ['about', 'faq', 'privacyPolicy', 'termsOfService', 'copyrigh
 
     <div class="mt-8 border-t border-border pt-6">
       <p class="text-xs text-muted-foreground">{footer.copyrightText ?? site.legalNotice}</p>
+      {footer.assetCredit && (
+        <p class="mt-2 text-xs text-muted-foreground/70">{footer.assetCredit}</p>
+      )}
+      {cfBeaconToken && footer.analyticsNote && (
+        <p class="mt-1 text-xs text-muted-foreground/70">{footer.analyticsNote}</p>
+      )}
     </div>
   </div>
 </footer>

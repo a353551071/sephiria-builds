@@ -1,11 +1,11 @@
 {
   "name": "Sephiria Builds",
   "short_name": "Sephiria",
-  "description": "Complete Anvil Quest wiki with boss guides, codes, and tier lists.",
+  "description": "Sephiria builds, weapon tier lists and beginner guides for the action roguelite by Team Horay. Updated for the 1.0 patch.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#f97316",
+  "background_color": "#11131a",
+  "theme_color": "#d8b45a",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
