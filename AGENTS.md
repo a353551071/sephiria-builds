@@ -1,0 +1,141 @@
+# AGENTS.md
+
+Workspace instructions for ZCode agents working on AnvilWiki.
+
+## Repository Purpose
+
+AnvilWiki is an **open-source (MIT) game wiki site template** built with **Astro 5 + Cloudflare Pages**. It is a static-first Astro setup that deploys to Cloudflare with zero adapters and enjoys free unlimited bandwidth.
+
+Goal: let beginners deploy a game wiki site to Cloudflare Pages for free (unlimited bandwidth) in ~30 minutes, with strong SEO, i18n, and ad-monetization built in.
+
+**Status (as of 2026-08-24)**: v2.0.0 released — 内容经营操作系统（四件，模板仓库零 breaking，fork 常规 merge 零迁移）: ① `auto-content.yml` PR 门控内容管道（workflow_dispatch + 确定性生成器 `import-csv`→`pnpm bulk-new-posts` → **八道门禁前置**（全绿才开 draft PR，GITHUB_TOKEN PR 不自动跑 CI 故验证前置）→ create-pull-request@v8 固定分支幂等；LLM 永不进 CI、secrets 零引用；门禁抽成共享 composite action `.github/actions/gates`（ci.yml 同源复用，tests/workflows.test.ts 钉契约）；ADR-004）② `anvilwiki-ops` 0.1.3→**1.0.0**（多站注册表 `~/.config/anvil-ops/sites.toml`（凭据永不入表）+ `--site`/`--all` + `sites list/add/remove`，`submit` 拒绝 `--all`；AI 引用追踪三通道：CF Web Analytics AI referrals（referrer host 聚合 chatgpt/perplexity/gemini/claude/copilot）+ GSC `AI_OVERVIEWS` 探测（experimental）+ `metrics --import-aio <csv>` 导入 GSC gen-AI 报告；MCP 五工具加可选 `site` 参数 = 1.0 唯一 breaking；测试 60→111；ADR-005）③ `pnpm gen-covers` og:image 封面生成（satori+@resvg/resvg-js+subset-font；**封面标准 800×450→1200×675**（Google Discover 大图 ≥1200px）+ 全站 BaseLayout 补 `max-image-preview:large`；品牌色运行时读 globals.css；CJK 标题按字符子集 Noto Sans CJK（OTF 缓存 `node_modules/.cache/gen-covers/fonts/` 不进 git）+ 内置 OFL Lato（`scripts/fonts/`）；manifest hash 缓存；demo 5 张封面已重生成 1200×675）④ `AffiliateSuggestion` 文末建议位（`src/config/affiliates.ts` 默认空=不渲染；复用 AffiliateLink 卡片 + `shared.sponsoredLabel` i18n en/ja；config 门控非 env）。文档: `docs/content-pipeline.md` + `docs/multi-site.md` 新增并进 docs/README 索引、手册 ai-ops 章双语补多站/管道/AI 引用（章数不变 learn 11/dev 7、提示词 18 不变）、ADR-004/005、staying-up-to-date.md MAJOR 措辞修订（里程碑 major）、roadmap.md 演化表 + v2.0 行、PRD §14.2 消歧旧 v2.0 撞号 + 更新记录补齐、README 中英特性升级 + 修 :226 8-chapter 漂移、CHANGELOG compare 链接补齐 1.15.0–1.19.0。决策记录: `docs/superpowers/specs/2026-08-22-v2.0-content-os-design.md`。Astro 刻意锁 5.x（7 已 GA，5→6→7 迁移留独立小版本，见 roadmap 候选池）。Prior v1.x 历史: 见 CHANGELOG.md 与 docs/roadmap.md 演化主线表。Live demo: anvilwiki.pages.dev (Lighthouse 4×100)。**次日审计加固批（v2.0.1，详见 CHANGELOG [2.0.1]）**:category 改 schema enum 硬门禁（软 404 根除）/check-i18n `--strict-ui` 让第八道门禁真正能红/setup.yml 开 PR 前跑 build 验证/auto-content `add-paths`+`--require-output`（CSV 不再入库、零产出响亮失败）/ci.yml 新增 ops-toolkit job（ops 测试进主 CI）/sitemap hreflang 按真实 MDX 覆盖生成（与页面级声明一致）/ops:MCP 站点解析不再吞错、GSC HTTP 错误带修复指引、audit/submit 走 worker 线程不冻结 stdio、测试 111→125/release-ops tag↔版本守卫。
+
+## Read These First
+
+- **`docs/PRD.md`** — the single source of truth for architecture, data models, module design, and roadmap. **Read before any code change.** 15 chapters + 3 appendices.
+- `README.md` — project pitch + quick start (Chinese + English).
+
+## Intended Tech Stack (verified, as of 2026-08-11)
+
+| Layer       | Choice                                          | Notes                                                                                                                                                                                               |
+| ----------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework   | Astro 5 (`output: 'static'`)                    | Pure static, **no adapter** (unlike Next.js)                                                                                                                                                        |
+| Content     | Content Layer API + `glob()` loader, Zod schema | Defined in `src/content.config.ts`. Base dir is `./src/content/wiki` (subdirectory required to avoid Astro's legacy auto-collection of `src/content/<locale>/` folders).                           |
+| MDX         | `@astrojs/mdx` ^4.3.x                           | **mdx 3.x fails with Astro 5.18** (`./jsx/renderer.js` not in exports). mdx 4.x pairs with astro 5.x; mdx 7.x needs astro 7.x.                                                                      |
+| Styles      | Tailwind CSS 3 + `@astrojs/tailwind`            | Theme via CSS variables mapped in `tailwind.config.mjs` (shadcn-style tokens).                                                                                                                      |
+| Icons       | `astro-icon` + `@iconify-json/lucide`           | Use `lucide:` prefix on every icon name. `reddit` does NOT exist in lucide (use `globe`).                                                                                                           |
+| UI          | **Pure Astro native components (`.astro`)**     | Do NOT introduce React/Vue/Svelte runtime. Use `<details>`/`<dialog>` + minimal vanilla JS for interactivity.                                                                                       |
+| i18n        | Astro built-in (`prefixDefaultLocale: false`)   | English has no `/en` prefix, others prefixed. Spread `[...locales]` into config — Astro's `Locales` type rejects readonly tuples.                                                                   |
+| Sitemap     | `@astrojs/sitemap`                              | Auto-generates hreflang alternates from the i18n config.                                                                                                                                            |
+| Deploy      | Cloudflare Pages                                | `pnpm build` → `dist/`                                                                                                                                                                              |
+| Pkg manager | pnpm 11                                         | **`allowBuilds:` in `pnpm-workspace.yaml`** (NOT `onlyBuiltDependencies` — that's pnpm 10, dead in v11). esbuild + sharp need build approval or `astro build` fails during its pre-build dep check. |
+| Node        | 22 LTS (pnpm 11 requires ≥22.13)                |                                                                                                                                                                                                     |
+
+## Architecture: Code/Config/Content Separation (critical)
+
+This is the core design principle of AnvilWiki. **Respect it in every edit:**
+
+```
+Code layer   (src/pages, src/components, src/lib)          — fork-once, never edit per-game
+Config layer (src/config, src/i18n/routing.ts, globals.css, public/) — edit once per game
+Content layer (src/content, src/locales)                   — fully replace per game
+```
+
+- Changing content must not touch framework code.
+- Changing config must not rewrite framework.
+- Framework layer should have **zero** game-specific strings.
+
+## Engineering Constraints
+
+1. **UI 文案全部走 JSON** (`src/locales/<locale>.json`),组件里不硬编码文字。
+2. **主题色只管 4 个变量 `--brand` / `--brand-light` / `--brand-h` / `--brand-s`**(`:root` 4 行 + `.dark` 4 行,共 8 行;`--brand-text` 由 h/s 自动派生不用手改),组件里所有颜色引用 `var(--brand)`,禁止硬编码 hex/rgba。
+3. **sitemap 扫描实际 MDX 文件**——不从配置数组生成 URL,因为列表页展示的条目可能还没有对应文章。
+4. **分类 key 在 3 个位置保持一致**:`navigation.ts` 的 `NAVIGATION_CONFIG[].key` = `en.json` 的 `nav.<key>` = `src/content/<locale>/<key>/` 目录名。
+5. **语言列表在 3 个位置保持一致**:`routing.ts` 的 `locales` = `src/locales/*.json` 文件 = `src/content/<locale>/` 目录。
+6. **文章正文从 H2 起**——不写 H1,`ArticlePage` 用 frontmatter 的 `title` 渲染 H1。
+7. **og:image / twitter:image 用绝对路径**——`${SITE_URL}/...`,不用相对路径。
+8. **广告 key 走 env 变量**——key 为空时组件不渲染,不硬编码。
+9. **域名走 `SITE_URL` 环境变量**——不在代码里写死域名。`SITE_URL` 必须含 `https://` 协议(Astro 的 `site:` 配置会校验 URL 格式,裸域名构建报错)。
+10. **UI 不用 emoji**——图标用 lucide(`astro-icon` 或 inline SVG)。
+11. **评论组件 env 空值 = 不渲染** — `Comments.astro` 在 `PUBLIC_GISCUS_REPO` / `PUBLIC_GISCUS_REPO_ID` / `PUBLIC_GISCUS_CATEGORY` / `PUBLIC_GISCUS_CATEGORY_ID` 任一为空时 `return null`。与广告组件同模式,默认关闭是模板的开箱契约(保 Lighthouse 4×100)。不要给这些 env 加默认值或硬编码 demo 配置。
+12. **`wrangler.toml` 接管 Cloudflare Pages env** — 当 `wrangler.toml` 存在时,它是 Pages 项目 env 的唯一真相源,dashboard 的 Environment variables UI 被完全忽略([官方文档](https://developers.cloudflare.com/pages/functions/wrangler-configuration/))。所有构建时 env 变量必须在 `wrangler.toml` 的 `[vars]` 段声明。fork 用户须知:要么改 `[vars]` 值,要么删 `wrangler.toml` 让 dashboard 接管。详见 `docs/deployment.md`。
+
+## i18n Fallback Rules
+
+- **文章详情页**:请求的语言版本不存在时,回退到英文(不返回 404)。frontmatter 也回退。
+- **列表页**:不回退——该语言没有文章就显示空状态(`shared.noArticles`)。
+- 这个不对称是有意的:列表追求准确(不展示不存在的内容),详情追求可达(直接 URL 永远能打开)。
+
+## Ads: Google AdSense, 3 Positions
+
+广告系统基于 Google AdSense,3 个广告位(Sticky / Sidebar / InContent)各一个 `<AdSenseSlot position="...">` 组件。`AdSenseSlot` 根据 `position` 读对应的 `PUBLIC_ADSENSE_SLOT_*` 环境变量,渲染 `<ins class="adsbygoogle">` 标签。`PUBLIC_ADSENSE_CLIENT` 或对应 slot ID 为空时组件 `return null` 不渲染(保 Lighthouse 4×100 开箱契约)。AdSense loader 由 `BaseLayout.astro` 在 `<head>` 注入,仅当 `PUBLIC_ADSENSE_CLIENT` 有值时加载。详见 PRD §10。
+
+## Conversational Content Authoring (AI-native page generation)
+
+Fork users drive this template from AI coding agents (ZCode / Claude Code / Codex / Cursor). They should be able to say "write a boss guide from these notes" and get a build-passing MDX page — no scripts required for authoring. Rules for any agent creating content:
+
+1. **Read before writing**: `docs/content-format.md` (field table + body rules), `src/content.config.ts` (Zod schema is the hard gate — invalid frontmatter fails `pnpm build`; `category` is a schema-level `z.enum(CONTENT_TYPES)` since the 2026-08-23 audit fix, a typo'd category fails the build instead of shipping a soft-404), `src/config/navigation.ts`, and one existing article of the same type for structure.
+2. **Hard frontmatter rules**: `description` 40–165 chars; `title` ≤ 80 chars; H1 never in the body (first heading is H2, question-shaped); `summary` is a 40–60 word direct answer (Quick Answer card + AI Overviews candidate; schema cap 400 chars — English at 40–60 words runs 250–350); `tags` reuse existing tag vocabulary (grep `tags:` under `src/content/wiki/`); unverified drafts get `draft: true`; fast-patching games get `gameVersion`.
+3. **Media density**: every article gets a cover (`image`, `src/assets/covers/`, **1200×675** since v2.0 — Google Discover large-preview ≥1200px; generate with `pnpm gen-covers`; codes pages included, share-card identity). Boss guides pair ≥1 video (inline `<Video>` + frontmatter `videos` registration) with 2–4 `gallery` mechanics shots; guides use inline card images (`![alt](/images/articles/…)` — 16:9, `public/images/articles/`; globals.css reserves a 16:9 zero-CLS box for bare markdown `<img>`); tier lists put a card image on headline entries. Demo references: `en/bosses/stormcaller.mdx` (gallery), `en/guides/weapon-tier-list.mdx` (inline), `en/guides/beginner-guide.mdx` (gallery). Full table: `docs/content-format.md` 媒体密度建议.
+4. **Component vocabulary** (import from `~/components/...`): `CodeBlock` (codes), `StatBar` (boss/item stat bars), `Callout` (info/tip/warn/danger), `Accordion` (collapsible detail), `Video` (inline YouTube, register IDs in frontmatter `videos` for JSON-LD), `AffiliateLink` (sponsored, auto `rel`), plus frontmatter-driven `boss` stat card / `codes` (Active+Expired auto-split) / `videos` / `gallery`.
+5. **Verify, don't trust yourself**: after writing, run `pnpm check-content && pnpm build`. Both green = done. Optionally finish with `npx anvilwiki-ops submit --title "..."` (validate → branch → PR, see Ops Toolkit section below). Never fabricate game facts (codes, stats) — ask the user for data; a single fake code destroys site trust.
+6. **Slash-command skills** live in `.agent/skills/` (Agent Skills open standard): `anvil-new-article` (generate a page from any source material), `anvil-batch-articles` (turn a keyword list into a batch of pages — intent classification → `pnpm bulk-new-posts` scaffolding → one unified prompt fills the batch; never fabricate, never reuse boilerplate across the batch), `anvil-update-codes` (apply new/expired codes), `anvil-refresh` (freshness audit). Agents supporting the standard auto-discover them; this section is the zero-install fallback.
+
+## Commands
+
+```bash
+pnpm install
+pnpm dev              # dev server, http://localhost:4321
+pnpm build            # includes Content schema validation — fails on bad frontmatter; postbuild indexes Pagefind search
+pnpm typecheck        # astro check (0 errors expected)
+pnpm lint             # ESLint (eslint-plugin-astro)
+pnpm test             # Vitest — 9 suites (url, seo, tags, i18n-smoke, content-utils, handbook, workflows, covers, affiliates)
+pnpm check-config     # scripts/check-config.ts — nav/locale 3-place consistency
+pnpm new-locale       # scripts/new-locale.ts — scaffold a new language
+pnpm check-sitemap    # scripts/check-sitemap.ts — verify all sitemap URLs return 200
+pnpm check-links      # scripts/check-links.ts — audit dist/ internal links (run after build)
+pnpm check-i18n       # scripts/check-i18n.ts — translation coverage report (--strict-ui gates missing UI keys; article depth stays report-only by design)
+pnpm check-content    # scripts/check-content.ts — content lint (no H1, alt text, link slashes)
+pnpm gen-covers       # scripts/gen-covers.ts — generate 1200×675 og:image covers from titles (brand colors from globals.css; CJK via Noto subset)
+pnpm template-audit   # scripts/template-audit.ts — template health check (code purity / rebrand leftovers / health score)
+pnpm bulk-new-posts   # scripts/bulk-new-posts.ts — batch-create draft MDX from a new-posts.csv keyword list (--dry-run preview)
+pnpm refresh-audit    # scripts/refresh-audit.ts — deterministic freshness report (codes pages >7d, stale categories >90d)
+pnpm apply-template   # interactive template-apply CLI (hex→HSL theme, rewrite config/locales)
+pnpm new-post         # interactive MDX article scaffold
+```
+
+## Ops Toolkit: `tools/anvil-ops/` (anvilwiki-ops)
+
+Standalone npm package (`anvilwiki-ops`, semver 1.0.1 as of v2.0.1, published to npm): ops CLI (`anvil-ops`) + stdio MCP server (`anvil-ops-mcp` / `anvil-ops mcp`) for fork sites — `doctor` / `metrics` / `audit` / `insights` / `submit` map 1:1 to MCP tools (all accept optional `site`); plus `sites list/add/remove` (multi-site registry `~/.config/anvil-ops/sites.toml`, credentials never stored there), `--site <name>`/`--all` flags (submit refuses `--all`), AI referral tracking (CF referrer-host aggregation + GSC `AI_OVERVIEWS` probe + `metrics --import-aio <csv>`). 1.0.0 breaking change: MCP tool schemas gained the optional `site` param. GSC (service-account JSON) + CF Web Analytics (token; site tag read from `wrangler.toml PUBLIC_CF_BEACON_TOKEN`), env-gated (empty = disabled). Writes go through validation (check-content + non-strict check-i18n + build) → branch → PR only, never push main. Spec: `docs/superpowers/specs/2026-08-18-anvil-ops-cli-mcp-design.md`.
+
+```bash
+cd tools/anvil-ops
+pnpm install   # own pnpm-workspace.yaml (allowBuilds) — do NOT remove: without it the root workspace hijacks installs (node_modules stays empty)
+pnpm test      # 125 tests
+pnpm typecheck && pnpm build
+```
+
+The repo root excludes `tools/` from tsconfig + eslint, so root `pnpm typecheck/lint/test/build` are unaffected.
+
+## Decisions to Confirm with User Before Deviating
+
+- Adding any JS framework runtime (React/Vue/Svelte islands) — PRD ADR-002 says no.
+- Switching Cloudflare Pages → Workers — PRD ADR-003 says Pages default.
+- Changing license from MIT.
+- Changing the demo game from the fictional "Anvil Quest".
+
+## Astro 5 Content Layer Gotchas (verified by debugging)
+
+These behaviors are NOT obvious from the docs and cost significant debugging time. They are all real, verified against astro@5.18.2:
+
+1. **`entry.id` includes `.mdx`, but `getEntry()` does NOT want it.** `getCollection()` returns ids like `en/bosses/emberfang.mdx`; `getEntry('wiki', 'en/bosses/emberfang.mdx')` returns `null`; `getEntry('wiki', 'en/bosses/emberfang')` returns the entry. `src/i18n/content.ts` strips the extension in `parseEntryId` and queries without it in `getEntryWithFallback`.
+
+2. **`entry.render()` does NOT exist in Content Layer API.** Use the standalone `render` function: `import { render } from 'astro:content'; const { Content } = await render(entry);`. The old method-based API is gone.
+
+3. **`getStaticPaths()` is compiled to its own module — top-level `const` in the `.astro` file are NOT visible inside it.** Inline all data (arrays, lookup tables) inside the function body. This is why `[locale]/[legal].astro` inlines `legalPages` inside `getStaticPaths` even though an identical const exists outside.
+
+4. **`Astro.params.slug` (not `Astro.props.slug`) is how you read rest params.** `getStaticPaths` returns `{ params: { slug } }`, which surfaces as `Astro.params.slug`. `Astro.props` is for data passed via the `props` field of `getStaticPaths` return.
+
+5. **`src/content/<locale>/` triggers legacy auto-collection.** If MDX files sit directly under `src/content/<locale>/`, Astro 5 auto-generates a collection named after the locale and prints a deprecation warning. The fix: put content under a named collection dir like `src/content/wiki/<locale>/`, with `glob({ base: './src/content/wiki' })`.
+
+6. **`prefixDefaultLocale: false` means `/` is the English homepage.** Do NOT redirect `/` to `/en/`. The English homepage lives at `src/pages/index.astro`; non-default locales live at `src/pages/[locale]/index.astro`. Similarly, English content routes are at `src/pages/[...slug].astro` (no locale segment), other locales at `src/pages/[locale]/[...slug].astro`.
