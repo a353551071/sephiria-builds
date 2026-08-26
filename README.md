@@ -7,6 +7,19 @@ Fan-made community wiki for **Sephiria** — the action roguelite by Team Horay 
 
 > **Disclaimer:** Sephiria Builds is a fan-made community site. Not affiliated with or endorsed by Team Horay.
 
+## Popular pages
+
+- [Best Sephiria builds](https://sephiriabuilds.xyz/builds/best-builds) — six recipes compared with a tier column
+- [Sephiria weapon tier list](https://sephiriabuilds.xyz/guides/weapon-tier-list) — patch 1.0 ranking
+- [Sephiria beginner guide](https://sephiriabuilds.xyz/guides/beginner-guide) — first hours, weapons and upgrades
+- [Biryuu Katana build](https://sephiriabuilds.xyz/builds/biryuu-katana) — the crit-multiplier katana
+- [Creaking Spine build](https://sephiriabuilds.xyz/builds/creaking-spine) — summon-focused spine build
+- [Frozen Smelt build](https://sephiriabuilds.xyz/builds/frozen-smelt) — freeze-and-shred battle build
+- [Minigun build](https://sephiriabuilds.xyz/builds/minigun) — the sustained-DPS gun
+- [Ilonic Bolts build](https://sephiriabuilds.xyz/builds/ilonic-bolts) — homing lightning bolts
+- [Formless Dance build](https://sephiriabuilds.xyz/builds/formless-dance) — evasion-first hybrid
+- [Katana weapon](https://sephiriabuilds.xyz/weapons/katana) — stats, scaling and how it plays
+
 ---
 
 ## Tech stack
