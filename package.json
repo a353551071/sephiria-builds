@@ -53,7 +53,8 @@
     "check-i18n": "tsx scripts/check-i18n.ts",
     "check-links": "tsx scripts/check-links.ts",
     "check-content": "tsx scripts/check-content.ts",
-    "refresh-audit": "tsx scripts/refresh-audit.ts"
+    "refresh-audit": "tsx scripts/refresh-audit.ts",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",
