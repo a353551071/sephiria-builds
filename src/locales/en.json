@@ -147,17 +147,17 @@
    "description": "Sephiria builds, weapon rankings and beginner guides for the action roguelite by Team Horay. Find the best katana, crit and ice builds for the 1.0 patch."
   },
   "hero": {
-   "badge": "Unofficial fan wiki · updated for 1.0.25",
+   "badge": "Unofficial fan wiki · updated for 1.0.30",
    "title": "Sephiria Builds",
    "description": "Best builds, weapon tier lists and strategies for Sephiria — the action roguelite by Team Horay (Dungreed). Updated for the 1.0 release.",
    "ctaPrimary": "Play Sephiria on Steam",
    "ctaSecondary": "Browse Weapon Guides",
    "ctaSecondaryHref": "/guides",
-   "versionChip": "1.0.25"
+   "versionChip": "1.0.30"
   },
   "stats": {
    "label": "By the numbers",
-   "patch": "1.0.25",
+   "patch": "1.0.30",
    "patchLabel": "Current patch"
   },
   "updates": {
@@ -238,7 +238,7 @@
        "tier": "S",
        "type": "MELEE / CRIT",
        "difficulty": "hard",
-       "patch": "1.0.25",
+       "patch": "1.0.30",
        "href": "/builds/biryuu-katana"
       },
       {
@@ -256,7 +256,7 @@
        "tier": "A",
        "type": "RANGED / DPS",
        "difficulty": "medium",
-       "patch": "1.0.25",
+       "patch": "1.0.30",
        "href": "/builds/minigun"
       }
      ]
@@ -343,7 +343,7 @@
      "displayType": "timeline",
      "highlights": [
       {
-       "label": "1.0.25",
+       "label": "1.0.30",
        "detail": "Current content target",
        "badge": "Current"
       },
@@ -377,7 +377,7 @@
     },
     {
      "question": "What patch do these guides cover?",
-     "answer": "The initial guides target the 1.0.25-era balance. Always check the game version badge and last-updated date because weapon interactions can change after patches."
+     "answer": "The initial guides target the 1.0.30-era balance. Always check the game version badge and last-updated date because weapon interactions can change after patches."
     },
     {
      "question": "How are builds ranked?",
