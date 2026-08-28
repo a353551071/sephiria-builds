@@ -252,8 +252,9 @@ const privacyLabel = footerStrings.privacyPolicy ?? 'Privacy Policy';
     <JsonLd data={orgJsonLd} />
     {jsonLd.map((d) => <JsonLd data={d} />)}
 
-    {/* No-FOUC theme init — runs before first paint. Light-first default:
-        readable bright surfaces; visitors who stored dark/black keep them. */}
+    {/* No-FOUC theme init — runs before first paint. Dark-first default
+        (2026-08-28: the game itself is a dark roguelite; the site now opens
+        in the measured in-game palette); visitors who stored light keep it. */}
     <script is:inline>
       (() => {
         let stored = null;
@@ -262,7 +263,7 @@ const privacyLabel = footerStrings.privacyPolicy ?? 'Privacy Policy';
         } catch {
           /* storage unavailable */
         }
-        if (stored === 'dark' || stored === 'black') {
+        if (stored !== 'light') {
           document.documentElement.classList.add('dark');
           if (stored === 'black') document.documentElement.classList.add('black');
         }

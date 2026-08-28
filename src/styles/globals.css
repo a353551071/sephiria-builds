@@ -127,6 +127,10 @@
     --sp-ice: 190 55% 38%;
     --sp-ice-soft: 190 55% 38% / 0.12;
 
+    /* ── Selection: in-game "chosen card" green rim (darkened for light bg) ── */
+    --sp-select: 123 45% 36%;
+    --sp-glow-select: 0 0 14px rgb(60 140 66 / 0.25);
+
     /* ── Status ── */
     --sp-danger: 0 65% 45%;
     --sp-success: 120 45% 38%;
@@ -159,8 +163,10 @@
     --sp-diff-medium: 40 70% 42%;
     --sp-diff-hard: 0 65% 45%;
 
-    /* ── Type / effects ── */
-    --sp-font-display: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* ── Type / effects ──
+       Display switched to a serif RPG stack (2026-08-28 S-level spec:
+       in-game titles use a Mincho-style serif — zero-cost system stack). */
+    --sp-font-display: 'Palatino Linotype', Palatino, Georgia, 'Noto Serif SC', 'Songti SC', serif;
     --sp-font-pixel: 'Press Start 2P', ui-monospace, monospace;
     --sp-radius-card: 0.5rem;
     --sp-shadow-card: 0 8px 24px -12px rgb(0 0 0 / 0.18);
@@ -175,30 +181,36 @@
   }
 
   .dark {
-    /* ── Core surfaces: deep green-black field archive (game identity) ── */
-    --sp-bg: 130 16% 4%; /* #080a09 near-black */
-    --sp-bg-deep: 130 16% 3%;
-    --sp-panel: 130 10% 8%; /* #101310 */
-    --sp-panel-strong: 130 10% 11%;
-    --sp-line: 45 20% 88% / 0.15;
-    --sp-line-strong: 43 55% 60% / 0.55;
-    --sp-text: 45 30% 88%; /* cream #e9e3d6 */
-    --sp-muted: 130 6% 56%;
-    --sp-dim: 130 5% 42%;
+    /* ── Core surfaces: blue-black archive (2026-08-28 S-level calibration).
+       Measured from in-game UI frames: #111113 field / #232227 panel /
+       #34364D raised / #EAF5FB ice-white text — 美化参考板.md §2 + §1.5. ── */
+    --sp-bg: 240 6% 7%; /* #111113 in-game field */
+    --sp-bg-deep: 300 6% 3%; /* #070607 deepest */
+    --sp-panel: 258 8% 14%; /* #232227 panel */
+    --sp-panel-strong: 231 19% 25%; /* #34364D raised */
+    --sp-line: 250 4% 34% / 0.55;
+    --sp-line-strong: 47 30% 41%; /* #877E4A deep-gold ink line */
+    --sp-text: 204 65% 95%; /* #EAF5FB ice white */
+    --sp-muted: 240 10% 69%; /* #A8A8B8 */
+    --sp-dim: 217 15% 55%; /* steel */
 
-    /* ── Accent: gold (identical brand across themes) ── */
-    --sp-gold: 43 62% 60%;
+    /* ── Accent: gold (#C6A65B measured — rarity/reward color) ── */
+    --sp-gold: 42 47% 57%;
     --sp-gold-ink: 43 45% 8%;
-    --sp-gold-soft: 43 62% 60% / 0.14;
+    --sp-gold-soft: 42 47% 57% / 0.14;
 
     /* ── Buttons (gold field + dark ink, identical across themes) ── */
     --sp-btn-bg: 43 62% 60%;
     --sp-btn-text: 43 45% 8%;
-    --sp-btn-hover: 43 62% 56%;
+    --sp-btn-hover: 42 51% 54%; /* #C8A24B hover-warm gold */
 
-    /* ── Secondary: ice ── */
-    --sp-ice: 190 40% 72%;
-    --sp-ice-soft: 190 40% 72% / 0.14;
+    /* ── Secondary: ice (#759AF1 measured — Frost/Electro family) ── */
+    --sp-ice: 227 79% 70%;
+    --sp-ice-soft: 227 79% 70% / 0.14;
+
+    /* ── Selection: in-game "chosen card" green rim + glow (S-level §1.5) ── */
+    --sp-select: 123 41% 62%; /* #7BC47F */
+    --sp-glow-select: 0 0 16px rgb(123 196 127 / 0.35);
 
     /* ── Status ── */
     --sp-danger: 0 60% 56%;
@@ -232,7 +244,7 @@
     --sp-diff-hard: 0 60% 56%;
 
     /* ── Type / effects (dark override) ── */
-    --sp-font-display: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    --sp-font-display: 'Palatino Linotype', Palatino, Georgia, 'Noto Serif SC', 'Songti SC', serif;
     --sp-font-pixel: 'Press Start 2P', ui-monospace, monospace;
     --sp-shadow-card: 0 8px 24px -12px rgb(0 0 0 / 0.55);
     --sp-glow-gold: 0 0 14px rgb(216 180 90 / 0.3);
@@ -317,12 +329,15 @@
     background: hsl(var(--sp-panel-strong));
     border: 1px solid hsl(var(--sp-line));
   }
-  /* Hero backdrop — blueprint grid + gold corner wash + ice radial glow.
-     One composited layer so homepage keeps a single aria-hidden div. */
+  /* Hero backdrop — in-game panel language, redrawn (2026-08-28 S-level):
+     deep vignette base + blueprint grid + diagonal weave (the game's panel
+     texture) + gold corner wash + ice radial glow. Pure CSS, no image assets. */
   .sp-hero-bg {
     background-image:
+      radial-gradient(ellipse 120% 90% at 50% -10%, transparent 40%, hsl(var(--sp-bg-deep) / 0.9) 100%),
       linear-gradient(135deg, hsl(var(--sp-gold-soft)), transparent 45%),
       radial-gradient(ellipse 70% 55% at 82% 18%, hsl(var(--sp-ice-soft)), transparent 62%),
+      repeating-linear-gradient(45deg, hsl(var(--sp-line) / 0.5) 0 1px, transparent 1px 14px),
       var(--sp-texture-grid);
   }
   /* Gold ring — featured frame (hero keyart / premium cards). */

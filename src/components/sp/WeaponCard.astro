@@ -1,10 +1,11 @@
 ---
 /**
- * WeaponCard — weapon database row (Phase 4 of Sephiria v2 design system).
+ * WeaponCard — weapon database row (S-level restyle, 2026-08-28).
  *
- * Dense list-row record: index, weapon name + evolution path, role tag,
- * rarity badge, arrow. The "weapon list" visual pattern from the v2 field-
- * archive direction — data-database feel rather than blog cards.
+ * Visual language measured from in-game frames (美化参考板.md §1.5):
+ * icon frame + serif name + dim path text, hover = the in-game "chosen
+ * card" green rim + glow, gold corner ticks on the trailing edge.
+ * Row geometry kept for tier-list density.
  *
  * Pure presentation; caller passes strings.
  */
@@ -14,26 +15,49 @@ import RarityBadge from './RarityBadge.astro';
 interface Props {
   href: string;
   name: string;
-  /** Evolution path, e.g. "Katana → Cheongwangsak → Biryuu" */
+  /** Evolution path, e.g. "Katana → Cheongwongsak → Biryuu" */
   path?: string;
   role?: string;
   rarity?: string; // common | uncommon | rare | epic | legendary
   index?: string; // "01"
+  /** Glyph shown in the icon frame — a single letter or symbol. */
+  glyph?: string;
 }
-const { href, name, path, role, rarity, index } = Astro.props;
+const { href, name, path, role, rarity, index, glyph } = Astro.props;
+
+const RARITY_TOKENS: Record<string, string> = {
+  common: '--sp-rarity-common',
+  uncommon: '--sp-rarity-uncommon',
+  rare: '--sp-rarity-rare',
+  epic: '--sp-rarity-epic',
+  legendary: '--sp-rarity-legendary',
+};
+const rim = rarity ? `hsl(var(${RARITY_TOKENS[rarity] ?? '--sp-line-strong'}))` : 'hsl(var(--sp-line-strong))';
 ---
 
 <a
   href={href}
-  class="group grid items-center gap-4 border-b px-4 py-3 transition-colors hover:bg-black/20 md:grid-cols-[3rem_1fr_auto]"
+  class="group relative grid items-center gap-4 border-b px-4 py-3 transition-all duration-150 hover:bg-black/10 md:grid-cols-[3rem_3rem_1fr_auto]"
   style="border-color:hsl(var(--sp-line))"
 >
   {/* Index */}
   <span class="sp-index hidden md:inline-flex">{index ?? '–'}</span>
 
+  {/* Icon frame — rarity-rimmed, serif glyph (in-game card structure) */}
+  <span
+    aria-hidden="true"
+    class="hidden h-10 w-10 shrink-0 items-center justify-center border md:inline-flex"
+    style={`border-color:${rim}66;background:hsl(var(--sp-panel));font-family:var(--sp-font-display);font-size:1.05rem;color:${rim}`}
+  >
+    {glyph ?? name.charAt(0)}
+  </span>
+
   {/* Name + path */}
   <span class="min-w-0">
-    <b class="block truncate text-base font-bold" style="color:hsl(var(--sp-text))">
+    <b
+      class="block truncate text-base leading-snug"
+      style="font-family:var(--sp-font-display);font-weight:700;color:hsl(var(--sp-text))"
+    >
       {name}
     </b>
     {path && (
@@ -53,4 +77,11 @@ const { href, name, path, role, rarity, index } = Astro.props;
       style="color:hsl(var(--sp-gold))"
     />
   </span>
+
+  {/* In-game "chosen card" rim: green left rule that lights up on hover */}
+  <span
+    aria-hidden="true"
+    class="absolute inset-y-0 left-0 w-[2px] origin-top scale-y-0 transition-transform duration-150 group-hover:scale-y-100"
+    style="background:hsl(var(--sp-select));box-shadow:var(--sp-glow-select)"
+  />
 </a>
