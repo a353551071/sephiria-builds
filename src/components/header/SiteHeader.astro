@@ -43,13 +43,20 @@ const samePagePathFor = (loc: Locale) => {
 
 <header class="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur">
   <div class="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4">
-    {/* Logo */}
+    {/* Logo — official game logo + site name */}
     <a
       href={localizePath('/', locale)}
       class="flex items-center gap-2 text-foreground"
       aria-label={site.name}
     >
-      <Icon name="lucide:swords" class="h-6 w-6 text-nav" />
+      <img
+        src="/images/brand/sephiria-logo-official.png"
+        alt="Sephiria"
+        width="56"
+        height="20"
+        class="h-5 w-auto"
+        loading="eager"
+      />
       <span class="font-pixel hidden text-sm uppercase tracking-wider sm:inline">
         {site.shortName}
       </span>

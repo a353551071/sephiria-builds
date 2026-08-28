@@ -1,0 +1,136 @@
+---
+/**
+ * ItemCard — artifact / item detail card (new, 2026-08-28).
+ *
+ * Visual language measured from the in-game artifact detail frame
+ * (美化参考板.md §1.5, frame f_022): centered large card, diamond icon
+ * with gradient rim, serif name, gold diamond rarity mark at the top-right,
+ * stat lines as icon+value rows, double gold border with corner ticks.
+ *
+ * Pure presentation; caller passes strings.
+ */
+import RarityBadge from './RarityBadge.astro';
+
+interface Props {
+  name: string;
+  /** Short effect line under the name. */
+  effect?: string;
+  /** Longer flavor / description text. */
+  description?: string;
+  /** Stat rows: [{ label: 'ATK', value: '+12%' }] */
+  stats?: { label: string; value: string }[];
+  rarity?: string; // common | uncommon | rare | epic | legendary
+  /** Glyph inside the diamond icon — a single letter or symbol. */
+  glyph?: string;
+  href?: string;
+  /** Element accent token, e.g. '--sp-ice' / fire via rarity scale. */
+  accentToken?: string;
+}
+const { name, effect, description, stats, rarity, glyph, href, accentToken } = Astro.props;
+
+const accent = accentToken ?? '--sp-gold';
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  {...href ? { href } : {}}
+  class="group relative block max-w-xl border p-6 transition-all duration-200"
+  style="border-color:hsl(var(--sp-gold) / 0.55);background:linear-gradient(160deg,hsl(var(--sp-panel)) 0%,hsl(var(--sp-bg-deep)) 100%)"
+>
+  {/* Inner gold hairline — the in-game double border */}
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-[3px] border"
+    style="border-color:hsl(var(--sp-gold) / 0.28)"
+  ></span>
+
+  {/* Corner ticks — gold L marks, the game's panel decoration */}
+  {
+    [
+      'left-0 top-0 border-l-2 border-t-2',
+      'right-0 top-0 border-r-2 border-t-2',
+      'left-0 bottom-0 border-l-2 border-b-2',
+      'right-0 bottom-0 border-r-2 border-b-2',
+    ].map((pos) => (
+      <span
+        aria-hidden="true"
+        class={`absolute h-3 w-3 transition-colors duration-200 ${pos}`}
+        style="border-color:hsl(var(--sp-gold))"
+      />
+    ))
+  }
+
+  {/* Header: diamond icon + name + rarity mark */}
+  <div class="relative flex items-start gap-4">
+    {/* Diamond icon frame (rotated square, counter-rotated glyph) */}
+    <span
+      aria-hidden="true"
+      class="mt-0.5 inline-flex h-10 w-10 rotate-45 items-center justify-center border"
+      style={`border-color:hsl(var(${accent}) / 0.8);background:hsl(var(${accent}) / 0.12);box-shadow:0 0 10px hsl(var(${accent}) / 0.25)`}
+    >
+      <span
+        class="-rotate-45 text-lg"
+        style="font-family:var(--sp-font-display);color:hsl(var(--sp-text))"
+      >
+        {glyph ?? name.charAt(0)}
+      </span>
+    </span>
+
+    <div class="min-w-0 flex-1">
+      <h3
+        class="text-lg leading-snug"
+        style="font-family:var(--sp-font-display);font-weight:700;color:hsl(var(--sp-text))"
+      >
+        {name}
+      </h3>
+      {effect && (
+        <p class="mt-1 text-xs uppercase tracking-widest" style={`color:hsl(var(${accent}))`}>
+          {effect}
+        </p>
+      )}
+    </div>
+
+    {rarity && <RarityBadge tone={rarity} label={rarity} />}
+  </div>
+
+  {/* Stat rows — icon frame + value, in-game "evidence line" rhythm */}
+  {stats && stats.length > 0 && (
+    <ul class="relative mt-5 space-y-2">
+      {
+        stats.map((s) => (
+          <li class="flex items-baseline gap-3 text-sm">
+            <span
+              class="inline-flex h-5 w-5 shrink-0 items-center justify-center border text-[10px]"
+              style="border-color:hsl(var(--sp-line-strong));color:hsl(var(--sp-gold))"
+            >
+              {s.label.charAt(0)}
+            </span>
+            <b class="font-mono text-xs uppercase tracking-wider" style="color:hsl(var(--sp-muted))">
+              {s.label}
+            </b>
+            <span class="ml-auto font-mono text-sm tabular-nums" style="color:hsl(var(--sp-gold))">
+              {s.value}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  )}
+
+  {/* Description */}
+  {
+    description && (
+      <p class="relative mt-4 text-sm leading-relaxed" style="color:hsl(var(--sp-muted))">
+        {description}
+      </p>
+    )
+  }
+
+  {/* Hover: chosen-card green rim + glow (shared WeaponCard language) */}
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+    style="box-shadow:inset 0 0 0 1px hsl(var(--sp-select) / 0.7),var(--sp-glow-select)"
+  ></span>
+</Tag>

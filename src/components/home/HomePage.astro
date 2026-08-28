@@ -74,6 +74,15 @@ function trendingLabel(link: QuickLink): string {
 >
   {/* ─────────────────────────────── Hero ─────────────────────────────── */}
   <section class="relative overflow-hidden border-b border-border">
+    {/* Official keyart — wide press-kit art as the atmospheric base layer,
+        faded + masked so text contrast survives. Art © Team Horay. */}
+    <img
+      src="/images/brand/sephiria-keyart-wide.png"
+      alt=""
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-45"
+      style="mask-image:linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 55%, transparent 100%);-webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 55%, transparent 100%)"
+    />
     {/* Hero backdrop — blueprint grid + gold wash + ice glow, one composited
         layer (sp-hero-bg) so no image asset is introduced. */}
     <div aria-hidden="true" class="sp-hero-bg pointer-events-none absolute inset-0" />
@@ -82,10 +91,17 @@ function trendingLabel(link: QuickLink): string {
       <div>
         <p class="font-pixel text-[10px] uppercase tracking-[0.18em] text-nav">{hero.badge}</p>
         <h1
-          class="hero-title mt-4 max-w-3xl text-4xl font-black tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+          class="hero-title mt-4 max-w-3xl text-4xl tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+          style="font-family:var(--sp-font-display);font-weight:700"
         >
           {hero.title}
         </h1>
+        {/* Gold title rule — the in-game heading divider language */}
+        <span
+          aria-hidden="true"
+          class="mt-5 block h-[2px] w-24 origin-left"
+          style="background:linear-gradient(90deg,hsl(var(--sp-gold)),hsl(var(--sp-gold) / 0))"
+        ></span>
         <p class="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">{hero.description}</p>
         <div class="mt-8 flex flex-wrap gap-3">
           {
