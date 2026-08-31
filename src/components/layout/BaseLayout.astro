@@ -205,6 +205,21 @@ const privacyLabel = footerStrings.privacyPolicy ?? 'Privacy Policy';
       the visitor accepts. See GDPR note in AGENTS.md. No tracking env vars
       → this block renders nothing → zero JS.
     */}
+    {/*
+      AdSense site verification requires the loader tag visible in the STATIC
+      <head> HTML — Google's crawler does not run consent-gated JS. Rendered
+      only when PUBLIC_ADSENSE_CLIENT is set; ad units stay empty (no slots)
+      so nothing displays and Lighthouse is unaffected until slots are filled.
+      The consent loader below skips re-injecting when this tag exists.
+    */}
+    {adsenseClient && (
+      <script
+        is:inline
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+        crossorigin="anonymous"
+      ></script>
+    )}
     {(gaId || adsenseClient) && (
       <script is:inline define:vars={{ gaId, adsenseClient }}>
         window.__awLoadTrackers = () => {
@@ -222,7 +237,7 @@ const privacyLabel = footerStrings.privacyPolicy ?? 'Privacy Policy';
             gtag('js', new Date());
             gtag('config', gaId);
           }
-          if (adsenseClient) {
+          if (adsenseClient && !document.querySelector('script[src*="adsbygoogle"]')) {
             const s = document.createElement('script');
             s.async = true;
             s.crossOrigin = 'anonymous';
