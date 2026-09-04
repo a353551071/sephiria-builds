@@ -245,17 +245,22 @@ export function imageObjectJsonLd(opts: { url: string; caption?: string; alt?: s
  * VideoObject JSON-LD — one per embedded YouTube video on an article page.
  * Eligible for Google Video search results. `uploadDate` is required by
  * Google; the article's publish date is the best available signal.
+ * `description` is also required by Google (GSC flags its absence as a
+ * video structured data issue); frontmatter stores bare video IDs, so the
+ * article's meta description is the best per-page signal.
  */
 export function videoObjectJsonLd(opts: {
   videoId: string;
   title: string;
+  description: string;
   uploadDate: Date;
 }) {
-  const { videoId, title, uploadDate } = opts;
+  const { videoId, title, description, uploadDate } = opts;
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: title,
+    description,
     thumbnailUrl: [`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`],
     uploadDate: uploadDate.toISOString(),
     embedUrl: `https://www.youtube.com/embed/${videoId}`,
