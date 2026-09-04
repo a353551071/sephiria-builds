@@ -31,6 +31,7 @@ const KNOWN_LABELS: Record<string, string> = {
   en: 'English',
   ja: '日本語',
   zh: '中文',
+  'zh-Hant': '繁體中文',
   ko: '한국어',
   es: 'Español',
   pt: 'Português',
@@ -73,11 +74,15 @@ async function main() {
     arg || (await rl.question('New locale code (e.g. zh, ko, es): '))
   )
     .trim()
-    .toLowerCase();
+    .toLowerCase()
+    // BCP-47 文字子标签规范化:zh-hant → zh-Hant(Astro 路由与文件系统大小写敏感)。
+    .replace(/^([a-z]{2,3})-([a-z]{4})$/, (_m, lang: string, script: string) =>
+      lang + '-' + script[0].toUpperCase() + script.slice(1)
+    );
   rl.close();
 
-  if (!/^[a-z]{2,3}$/.test(locale)) {
-    console.error(`❌ "${locale}" doesn't look like a locale code (2-3 letters).`);
+  if (!/^[a-z]{2,3}(-[A-Z][a-z]{3})?$/.test(locale)) {
+    console.error(`❌ "${locale}" doesn't look like a locale code (2-3 letters, optional script subtag like zh-Hant).`);
     process.exit(1);
   }
 
