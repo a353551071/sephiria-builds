@@ -198,7 +198,17 @@ export default defineConfig({
       // Alternates are built per-URL in `serialize` from real MDX coverage.
       // noindex articles stay out of the sitemap (self-contradictory signal
       // otherwise — the page asks not to be indexed while the sitemap submits it).
-      filter: (url) => !noindexPaths.has(decodeURIComponent(new URL(url).pathname)),
+      // Tag pages are noindexed aggregators (thin, near-duplicate content that
+      // diluted crawl budget on a small site) — exclude them too, across all
+      // locale prefixes (/tags, /zh/tags, …). For a path of N segments the
+      // tags segment sits at index 0 (en, no prefix) or 1 (locale-prefixed).
+      filter: (url) => {
+        const pathname = decodeURIComponent(new URL(url).pathname);
+        if (noindexPaths.has(pathname)) return false;
+        const segments = pathname.split('/').filter(Boolean);
+        if (segments[0] === 'tags' || segments[1] === 'tags') return false;
+        return true;
+      },
       // Inject <lastmod> from article frontmatter (see buildLastmodMap) and
       // hreflang alternates that mirror the page-level truth (see alternatesFor).
       serialize(item) {
