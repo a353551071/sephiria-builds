@@ -1,0 +1,66 @@
+---
+title: 'Sephiria 棍攻略 - 追蹤施法與全部進化 (1.0.30)'
+description: 'Sephiria 棍(Staff)攻略:追蹤施法的 Ilonica 線與閃避流 Formless Dance,外加元素與長矛兩大分支全部 7 個二階 → 16 個三階進化。'
+category: 'weapons'
+image: '../../../../assets/screenshots/en/ss04.png'
+date: 2026-08-27
+lastModified: 2026-08-28
+gameVersion: '1.0.30'
+tags: ['staff', 'caster', 'elemental', 'builds']
+summary: '棍(Staff)是 Sephiria 的施法家族,也是分支最多的一族——每條分支就是一種元素或一種混合形態。兩條實測路線:追蹤元素的 Ilonica 線(Flourish Staff → Ilonica''s Spirit Staff,宣稱通關 50 層),與閃避施法的 Formless Dance(Javelin → Formless Dance)。本攻略列出 7 個二階 → 16 個三階進化,並整理元素三重奏、長矛線與 Grimoire 施法者。'
+gallery:
+  - image: '../../../../assets/screenshots/en/ss10.png'
+    caption: '神器升級面板——施法流派靠神器協同運轉'
+    alt: '神器升級面板'
+  - image: '../../../../assets/art/gif-combat-3.png'
+    caption: '爬塔戰鬥——這座塔越爬越熱鬧'
+    alt: '高塔攀爬'
+---
+
+> *改版核檢 2026-08-27——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到棍(Staff)家族。以下進化配方與效果均為當前版本。*
+
+棍(Staff)是 Sephiria 的施法家族——也是分支最多的一族。近戰武器各有單一定位,棍卻分裂成元素、長矛與混合形態,所以「對的棍」完全取決於你想施放什麼。1.0 版有兩條路線經過實戰驗證,本頁都有完整收錄。
+
+## 為什麼棍是施法武器
+
+全族的核心把戲是**傷害類型轉換**:好幾條分支把武器攻擊傷害轉成單一元素,讓一整輪的資源可以集中堆一種元素,而不是到處撒。三把元素棍是最乾淨的示範——Staff of Embers(火)、Staff of Rime(冰)、Staff of Storms(雷)各自犧牲面板武器攻擊傷害,換取吃對應元素成長。
+
+兩條經過驗證的終局路線:
+
+- **Ilonica——追蹤施法者。** Flourish Staff → **Ilonica's Spirit Staff** 把普通攻擊變成 **Bolt Barrage**:免費施放隨機 Bolt 法術,而且全部自動追蹤。這是全遊戲最不用手的輸出——[Ilonica Bolts 流派](/zh-Hant/builds/ilonic-bolts)用它打出 50 層宣稱,Ember / Glacier / Magitech 各攤 4–6。
+- **Formless Dance——閃避近戰施法者。** Javelin → **Formless Dance** 讓普通攻擊自動追蹤且有機率射兩次,機率隨每點閃避成長。[Formless Dance 流派](/zh-Hant/builds/formless-dance)是玻璃忍者路線(Duelist Miracle、Bloodstone Earrings,觀測閃避上限約 76%)。
+
+## 進化樹
+
+以下名稱與效果皆由 [Kean's Sephiria Compendium](https://docs.google.com/spreadsheets/d/1uFp8Z8ANdgCSt_7EHbjGyQ9Rob9Z8EJOnom8elWcVMg/edit) 社群整理(已與遊戲交叉核對),對應 1.0.30 現狀:
+
+| 二階 | 效果 | 三階 | 效果 |
+|---|---|---|---|
+| **Flourish Staff** | 普通攻擊變為 Flower Staff:旋轉攻擊,63% 物理傷害,移動不受阻;衝刺攻擊禁用 | Staff of Great Might | 普通攻擊傷害 +30%;攻擊時護盾 = 5% DEF(每 20 秒刷新) |
+| | | **Ilonica's Spirit Staff** | Grimoire 禁用;普通攻擊變為 Bolt Barrage(隨機 Bolt 法術,0 MP);Bolt 吃普通攻擊傷害成長 |
+| **Divine Iron Staff** | 武器攻擊時獲得 Extend Staff:近戰範圍 +4%、終結普通攻擊傷害 +10%,持續 4 秒(最多 5 層) | Weight of the Sea | 成功格擋後獲得 Heavy Staff:普通攻擊直接從最後一段連段起手(8–10 秒) |
+| | | Ringless Staff | 暴擊率低於 30% 時,全傷害 +20% |
+| | | Scale of the Astral Sea | 成功格擋後,下一次普通攻擊改用 Crystal Explosion:以最高元素造成 300% 混沌傷害 |
+| **Georoid Spear** | 普通攻擊變為 Spear Thrust(快速 5 段,約 +30% DPS);衝刺攻擊變為 Spear Attack(300% 物理) | Ruadhslea Spear | 攻速 +10%;每點衝刺計數使武器攻擊傷害 +5% |
+| | | Fuarsca Spear | 衝刺攻擊在突刺期間格擋;每消耗 1 點衝刺計數 +30% 衝刺攻擊傷害(上限 6) |
+| **Staff of Embers** | 武器攻擊傷害 −15%;改吃火焰傷害成長 | Fiaola's Judgement Staff | 灼燒時,每 0.5 秒在 5 格內生成 Ring of Fire:40% 火焰傷害,持續 10 秒 |
+| | | Solis Braca | 特殊 = Solar Spear Forging:三把 Solar Blade → 450% 火焰傷害的矛;回收時 +1 把 Solar Blade |
+| **Staff of Rime** | 武器攻擊傷害 −15%;改吃冰霜傷害成長 | Oracle's Staff | 每第 3 次武器攻擊命中,朝攻擊方向啟動 Voluspa |
+| | | Malaspina | 武器攻擊 30% 機率附加凍傷;冰霜傷害 +5 |
+| **Staff of Storms** | 武器攻擊傷害 −15%;改吃閃電傷害成長 | Viduka | Electro Chakram 傷害 +20%;環繞半徑跟隨游標距離 |
+| | | Nephorhax | 衝刺攻擊擲出全部 Cloud Bottles(每瓶 40% 閃電傷害);70% 機率觸發 Storm Cloud |
+| **Javelin** | 普通攻擊變為 Throwing Spear(遠程,貫穿一次);武器傷害 +10% | Sacred Jar | 普通攻擊額外吃同伴傷害成長 |
+| | | **Formless Dance** | 普通攻擊自動追蹤且有機率射兩次;每點閃避 +1% 機率 |
+| | | Successor | Grimoire 傷害 +30% |
+
+> **命名說明:**社群流派頁使用遊戲內顯示名——**Flame Staff → Elemental Fusion Staff Ilonica**(見 [Ilonica Bolts](/zh-Hant/builds/ilonic-bolts))與 **Throwing Spear → Formless Dance**(見 [Formless Dance](/zh-Hant/builds/formless-dance))。Kean 的表格把同兩條線記作 **Flourish Staff → Ilonica's Spirit Staff** 與 **Javelin → Formless Dance**(Javelin 的效果明寫「普通攻擊變為 Throwing Spear」,所以這一組是確認的)。"Flame Staff" 與 "Flourish Staff"——兩個來源對 Ilonica 母棍的顯示名說法不一;請視為同一分支。
+
+## 該玩哪條路線?
+
+- **追蹤施法(實測 A 級):** **Flourish Staff → Ilonica's Spirit Staff**——三元素追蹤 Bolt,全遊戲最省手的裸輸出。需要 Elementalist Miracle 與 Ember / Glacier / Magitech 各 4–6 的均衡配置;完整配方見 [Ilonica Bolts 流派](/zh-Hant/builds/ilonic-bolts)。
+- **閃避近戰施法(B 級,操作難):** **Javelin → Formless Dance**——近距離追蹤攻擊,靠閃避數值當坦克。留意約 76% 的觀測閃避上限;[Formless Dance 流派](/zh-Hant/builds/formless-dance)有提醒別過度投資。
+- **元素轉換:** Staff of Embers → Fiaola's / Solis Braca(火)、Staff of Rime → Malaspina(冰)、Staff of Storms → Viduka / Nephorhax(雷)——你這輪已經在堆哪種元素,就選哪條。
+- **長矛線:** Georoid Spear → Ruadhslea / Fuarsca——靠衝刺計數穿梭的近戰施法者。
+- **格擋增幅:** Divine Iron Staff → Weight of the Sea / Scale of the Astral Sea——格擋餵養下一次揮擊;適合搭配重格擋的 Miracle 配置。
+
+至於這一族對上其他五族的強度,見[武器強度排行](/zh-Hant/guides/weapon-tier-list)——棍排在 A 級,位居太刀與大劍之後。

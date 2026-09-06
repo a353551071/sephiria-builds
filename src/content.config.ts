@@ -20,7 +20,19 @@ import { CONTENT_TYPES } from './config/navigation';
  * absolute og:image URL, read `.src` and prefix with `siteUrl`.
  */
 const wiki = defineCollection({
-  loader: glob({ pattern: '**/*.mdx', base: './src/content/wiki' }),
+  loader: glob({
+    pattern: '**/*.mdx',
+    base: './src/content/wiki',
+    /**
+     * Preserve the on-disk path casing in entry ids. The default generateId
+     * slugifies every path segment, which lowercases BCP-47 locale dirs like
+     * `zh-Hant/` to `zh-hant/` — the id then never matches routing's
+     * `zh-Hant` (isLocale/getEntry/parseEntryId all miss) and the whole
+     * locale silently falls back to English while the files sit in the
+     * collection. en/ is all-lowercase and unaffected either way.
+     */
+    generateId: ({ entry }) => entry.replace(/\.mdx$/, ''),
+  }),
   schema: ({ image }) =>
     z.object({
       title: z.string().max(80),

@@ -37,6 +37,7 @@ export const OG_LOCALE_MAP: Record<string, string> = {
   en: 'en_US',
   ja: 'ja_JP',
   zh: 'zh_CN',
+  'zh-Hant': 'zh_TW',
 };
 
 /** Whether the given locale is the default (English, no URL prefix). */
