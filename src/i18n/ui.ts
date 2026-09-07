@@ -10,11 +10,13 @@
  */
 
 import en from '~/locales/en.json';
+import zhHant from '~/locales/zh-Hant.json';
 
 import { defaultLocale, type Locale } from './routing';
 
 const messages: Record<Locale, Record<string, unknown>> = {
   en: en as Record<string, unknown>,
+  'zh-Hant': zhHant as Record<string, unknown>,
 };
 
 /**

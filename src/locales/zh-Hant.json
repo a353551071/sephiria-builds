@@ -1,0 +1,414 @@
+{
+  "$schema": "../../docs/home.schema.json",
+  "site": {
+    "name": "Sephiria Builds",
+    "shortName": "Sephiria",
+    "description": "Sephiria(賽菲莉婭)的流派配置、武器強度排行與新手攻略——Team Horay 動作 Roguelite 的繁中粉絲維基,已更新至 1.0 版。",
+    "tagline": "賽菲莉婭全部流派、武器與攻略,一站收齊",
+    "legalNotice": "Sephiria Builds 為粉絲自製社群網站,與 Team Horay 無隸屬或背書關係。"
+  },
+  "nav": {
+    "home": "首頁",
+    "guides": "攻略",
+    "toggleTheme": "切換主題",
+    "menu": "選單",
+    "close": "關閉",
+    "search": "搜尋",
+    "language": "語言",
+    "builds": "流派",
+    "weapons": "武器"
+  },
+  "search": {
+    "placeholder": "搜尋維基……",
+    "noResults": "沒有符合的結果"
+  },
+  "shared": {
+    "lastUpdated": "最後更新",
+    "publishedOn": "發布於",
+    "noArticles": "這個分類還沒有文章,敬請期待!",
+    "articles": "篇文章",
+    "defaultListDescription": "瀏覽{title}的全部文章——完整攻略、技巧、強度排行與最新對照表,一站收齊。",
+    "relatedArticles": "相關文章",
+    "onThisPage": "本頁目錄",
+    "browseAll": "瀏覽全部",
+    "viewAll": "查看全部",
+    "commentsHeading": "留言",
+    "share": "分享",
+    "copyLink": "複製連結",
+    "copied": "已複製!",
+    "consentText": "我們使用 Cookie 進行流量分析與廣告投放,以維持本站免費營運。",
+    "accept": "接受",
+    "decline": "拒絕",
+    "consentTitle": "Cookie",
+    "bossCard": {
+      "title": "Boss 總覽",
+      "hp": "HP",
+      "weakness": "弱點",
+      "resistant": "抗性",
+      "location": "出現位置",
+      "level": "建議等級"
+    },
+    "buildCard": {
+      "title": "流派總覽",
+      "weapon": "武器路線",
+      "miracle": "Miracle",
+      "costume": "服裝",
+      "artifacts": "神器",
+      "evidence": "證據等級",
+      "easy": "簡單",
+      "medium": "中等",
+      "hard": "困難"
+    },
+    "codesTable": {
+      "active": "可用代碼",
+      "expired": "已過期代碼",
+      "reward": "獎勵",
+      "expires": "到期日",
+      "source": "來源",
+      "code": "代碼"
+    },
+    "codesFaq": [
+      {
+        "question": "代碼要怎麼兌換?",
+        "answer": "開啟遊戲,點右上角的設定齒輪,把代碼貼進 Redeem Code 欄位後確認。代碼有區分大小寫。"
+      },
+      {
+        "question": "為什麼代碼會失效?",
+        "answer": "代碼會按開發者設定的節奏過期(通常每月一次或綁定更新里程碑),部分代碼每帳號限用一次。本頁會定期重新實測。"
+      },
+      {
+        "question": "新代碼多久發一次?",
+        "answer": "新代碼通常伴隨每次大型遊戲更新推出。把本頁加進書籤,每次改版後回來看看。"
+      },
+      {
+        "question": "代碼會過期嗎?",
+        "answer": "會——多數代碼都有期限,標註在代碼旁邊。過期代碼會移到下方的過期表格。"
+      }
+    ],
+    "possiblyOutdated": "本攻略最後核檢於",
+    "outdatedNote": "——遊戲其後可能已有變動,部分細節或已過時。",
+    "prevArticle": "上一篇",
+    "nextArticle": "下一篇",
+    "minuteRead": "分鐘閱讀",
+    "wasThisHelpful": "這篇文章有幫助嗎?",
+    "feedbackThanks": "感謝你的回饋!",
+    "sponsoredLabel": "贊助內容",
+    "relatedVideos": "相關影片",
+    "gallery": "圖庫",
+    "gameVersion": "遊戲版本",
+    "allTags": "全部標籤",
+    "tagsIndexDescription": "按主題瀏覽全部文章。",
+    "articlesCount": "篇文章",
+    "recentTitle": "最新更新",
+    "recentDescription": "維基內最新的文章與更新,由新到舊排列。",
+    "sponsorTitle": "支持本站",
+    "sponsorText": "如果這些攻略對你有幫助,歡迎支持本站。",
+    "sponsorButton": "支持我們",
+    "notFoundSearchHint": "試試改用維基搜尋。",
+    "notFoundPopular": "熱門頁面",
+    "galleryLabels": {
+      "close": "關閉",
+      "prev": "上一張圖",
+      "next": "下一張圖"
+    },
+    "quickAnswer": "快速答案",
+    "skipToContent": "跳到主要內容",
+    "tapToCopy": "點擊複製",
+    "open": "開啟",
+    "playVideo": "播放影片",
+    "closeAd": "關閉廣告",
+    "adLabel": "廣告",
+    "codesFaqTitle": "代碼常見問題",
+    "toggleTheme": "切換主題",
+    "fallbackNotice": "英文原文(此頁尚未翻譯)",
+    "copyQuickAnswer": "複製快速答案",
+    "feedbackYes": "是",
+    "feedbackNo": "否",
+    "breadcrumbAria": "麵包屑導覽",
+    "paginationAria": "文章分頁"
+  },
+  "overview": {
+    "builds": {
+      "overviewTitle": "全部流派",
+      "overviewDescription": "可直接照抄的 Sephiria(賽菲莉婭)流派配置:武器路線、Miracle、服裝、神器與屬性目標。"
+    },
+    "weapons": {
+      "overviewTitle": "全部武器",
+      "overviewDescription": "Sephiria(賽菲莉婭)各武器 1.0 版的進化路線、分支走向與流派筆記。"
+    },
+    "guides": {
+      "overviewTitle": "全部攻略",
+      "overviewDescription": "Sephiria(賽菲莉婭)新手攻略、武器強度排行與實戰策略。"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "Sephiria Builds - 最佳流派、武器強度排行與攻略(賽菲莉婭)",
+      "description": "Sephiria(賽菲莉婭)流派配置、武器強度排行與新手攻略——Team Horay 動作 Roguelite 的繁中維基。1.0 版最強太刀暴擊、冰凍流派一次看懂。"
+    },
+    "hero": {
+      "badge": "非官方粉絲維基 · 已更新至 1.0.30",
+      "title": "Sephiria Builds",
+      "description": "賽菲莉婭(Sephiria)——Team Horay(《Dungreed》開發團隊)的動作 Roguelite——最佳流派、武器強度排行與實戰攻略,已針對 1.0 正式版更新。",
+      "ctaPrimary": "在 Steam 玩 Sephiria",
+      "ctaSecondary": "瀏覽武器攻略",
+      "ctaSecondaryHref": "/guides",
+      "versionChip": "1.0.30",
+      "videoId": "UoZlF7aehDw"
+    },
+    "stats": {
+      "label": "數據速覽",
+      "patch": "1.0.30",
+      "patchLabel": "當前版本"
+    },
+    "updates": {
+      "badge": "CHANGELOG",
+      "title": "最新更新"
+    },
+    "start": {
+      "badge": "從這裡開始",
+      "title": "打造你的第一套流派",
+      "cards": [
+        {
+          "number": "1",
+          "title": "新手攻略",
+          "description": "認識流派的四層構成,選一把容錯高的起步武器,順利打進困難模式。",
+          "icon": "lucide:book-open",
+          "href": "/guides/beginner-guide"
+        },
+        {
+          "number": "2",
+          "title": "最佳流派",
+          "description": "六套經社群實測的配方,含武器路線、Miracle、服裝與神器。",
+          "icon": "lucide:swords",
+          "href": "/builds/best-builds"
+        },
+        {
+          "number": "3",
+          "title": "武器強度排行",
+          "description": "比較太刀暴擊、大劍特殊攻擊、冰凍匕首、迷你機槍(Minigun)與棍(Staff)等路線。",
+          "icon": "lucide:list-ordered",
+          "href": "/guides/weapon-tier-list"
+        },
+        {
+          "number": "4",
+          "title": "Biryuu 太刀",
+          "description": "照著暴擊主動路線走:太刀 → Cheongwangsak → Biryuu。",
+          "icon": "lucide:axe",
+          "href": "/weapons/katana"
+        }
+      ]
+    },
+    "popular": {
+      "badge": "現正精選",
+      "title": "從這些頁面開始",
+      "quickLinks": [
+        {
+          "label": "最佳流派(Best Builds)",
+          "href": "/builds/best-builds"
+        },
+        {
+          "label": "武器強度排行",
+          "href": "/guides/weapon-tier-list"
+        },
+        {
+          "label": "新手攻略",
+          "href": "/guides/beginner-guide"
+        },
+        {
+          "label": "Biryuu 太刀流派",
+          "href": "/weapons/katana"
+        }
+      ]
+    },
+    "explore": {
+      "badge": "資料庫",
+      "title": "探索 Sephiria 流派",
+      "description": "1.0 版的流派配方、武器路線與實用攻略。",
+      "modules": [
+        {
+          "order": 1,
+          "name": "流派配方",
+          "description": "可直接照抄的配置:武器路線、Miracle、服裝與核心神器。",
+          "href": "/builds",
+          "displayType": "build-grid",
+          "highlights": [
+            {
+              "label": "Biryuu 太刀",
+              "detail": "暴擊主動近戰路線——每下攻擊同時算普通攻擊與終結打擊。",
+              "tier": "S",
+              "type": "近戰 / 暴擊",
+              "difficulty": "hard",
+              "patch": "1.0.30",
+              "href": "/builds/biryuu-katana"
+            },
+            {
+              "label": "Frozen Smelt",
+              "detail": "冰凍控制路線——靠 Glacier 疊層凍住全畫面。",
+              "tier": "A",
+              "type": "遠程 / 冰凍",
+              "difficulty": "medium",
+              "patch": "1.0.24",
+              "href": "/builds/frozen-smelt"
+            },
+            {
+              "label": "迷你機槍(Minigun)",
+              "detail": "遠程閃電路線——共享預設代碼的持續輸出。",
+              "tier": "A",
+              "type": "遠程 / 輸出",
+              "difficulty": "medium",
+              "patch": "1.0.30",
+              "href": "/builds/minigun"
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "name": "武器路線",
+          "description": "追每族武器從初形到終局進化的完整路線。",
+          "href": "/weapons",
+          "displayType": "weapon-list",
+          "highlights": [
+            {
+              "label": "太刀",
+              "detail": "暴擊雙吃路線",
+              "path": "太刀 → Cheongwangsak → Biryuu",
+              "role": "暴擊",
+              "rarity": "legendary",
+              "href": "/weapons/katana"
+            },
+            {
+              "label": "大劍",
+              "detail": "特殊攻擊特化",
+              "path": "Bone Sword → Creaking Spine",
+              "role": "特殊攻擊",
+              "rarity": "epic",
+              "href": "/guides/weapon-tier-list"
+            },
+            {
+              "label": "匕首",
+              "detail": "冰凍控制",
+              "path": "匕首 → Sleeping Frost → Frozen Smelt",
+              "role": "控制",
+              "rarity": "rare",
+              "href": "/guides/weapon-tier-list"
+            },
+            {
+              "label": "重弩",
+              "detail": "機槍式輸出",
+              "path": "重弩 → Minigun",
+              "role": "輸出",
+              "rarity": "rare",
+              "href": "/guides/weapon-tier-list"
+            },
+            {
+              "label": "棍(Staff)",
+              "detail": "施法 / 混合",
+              "path": "Throwing Spear → Formless Dance",
+              "role": "施法",
+              "rarity": "epic",
+              "href": "/guides/weapon-tier-list"
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "name": "實用攻略",
+          "description": "安全起步、讀懂屬性、為每一輪選對路線。",
+          "href": "/guides",
+          "displayType": "steps",
+          "highlights": [
+            {
+              "label": "1",
+              "detail": "選一把容錯高的起步武器"
+            },
+            {
+              "label": "2",
+              "detail": "讓屬性配得上你的勝利條件"
+            },
+            {
+              "label": "3",
+              "detail": "優先拿特殊攻擊類神器"
+            },
+            {
+              "label": "4",
+              "detail": "帶一套實測配方進困難模式"
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "name": "版本與證據",
+          "description": "每條推薦都標版本號與證據注記——流派會隨改版變動。",
+          "href": "/recent",
+          "displayType": "timeline",
+          "highlights": [
+            {
+              "label": "1.0.30",
+              "detail": "當前內容基準",
+              "badge": "當前"
+            },
+            {
+              "label": "影片",
+              "detail": "實測通關影片的效力高於社群宣稱"
+            },
+            {
+              "label": "改版",
+              "detail": "平衡改動後重新核檢交互效果"
+            }
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "常見問題",
+      "description": "關於這個粉絲自製 Sephiria 流派站的常見問題。",
+      "items": [
+        {
+          "question": "Sephiria 是什麼遊戲?",
+          "answer": "Sephiria(賽菲莉婭)是 Team Horay——做出《Dungreed》的工作室——旗下的動作 Roguelite。你操作兔子爬上一座滿是惡魔的高塔,進化武器、收集神器,並圍繞 Miracle、服裝與屬性打造流派。"
+        },
+        {
+          "question": "Sephiria Builds 是官方網站嗎?",
+          "answer": "不是。Sephiria Builds 是獨立的粉絲自製社群網站,與 Team Horay 或 Valve 無隸屬或背書關係。"
+        },
+        {
+          "question": "新手應該先玩哪套流派?",
+          "answer": "從劍盾或大劍家族起步——防禦優先、容錯高。理解基本盤之後,坦克太刀路線是另一個好選擇。"
+        },
+        {
+          "question": "這些攻略對應哪個版本?",
+          "answer": "首批攻略以 1.0.30 版本的平衡為基準。請務必留意遊戲版本徽章與最後更新日期——改版後武器的交互效果可能變動。"
+        },
+        {
+          "question": "流派強度是怎麼排的?",
+          "answer": "我們把證據與強度分開評:實測通關影片、社群通關宣稱、當前實測與舊版複檢。沒有萬能的最強武器,合適的路線取決於你的打法。"
+        }
+      ]
+    },
+    "closingCta": {
+      "badge": "下一輪",
+      "title": "準備好爬塔了嗎?",
+      "description": "把本維基加入書籤,隨時回來看新的流派實測、武器路線與改版更新。",
+      "primary": "開啟 Steam",
+      "secondary": "瀏覽流派"
+    }
+  },
+  "footer": {
+    "playGame": "在 Steam 開啟 Sephiria",
+    "officialDiscord": "社群 Discord",
+    "officialYoutube": "YouTube",
+    "officialTwitter": "X / Twitter",
+    "officialReddit": "Reddit",
+    "about": "關於",
+    "faq": "常見問題",
+    "privacyPolicy": "隱私權政策",
+    "termsOfService": "服務條款",
+    "copyright": "版權聲明",
+    "copyrightText": "© 2026 Sephiria Builds. 粉絲自製,與 Team Horay 或 Valve 無隸屬關係。",
+    "assetCredit": "遊戲美術與素材版權為 Team Horay 所有,僅作資訊性使用。所有商標屬各自持有者。",
+    "analyticsNote": "流量分析不含 Cookie、完全匿名。",
+    "community": "社群",
+    "legal": "法律資訊"
+  }
+}
