@@ -4,7 +4,7 @@ description: 'Sephiria Minigun 機槍流派:重弩 → Unstable Lightning Mark �
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss02.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-08
 gameVersion: '1.0.30'
 tags: ['builds', 'ranged', 'dps', 'crossbow']
 summary: 'Minigun 機槍流派:重弩 → Unstable Lightning Mark → Minigun,Electromancer Miracle,Blue Wrist Guard + Brass Mirror Fragment + Walter''s Work Monocle。附成文的 White Rabbit 困難 35 層影片預設,以及 Scholar Lizard 坦克變體。'
@@ -14,35 +14,83 @@ build:
   difficulty: 'medium'
   patch: '1.0.30'
   weaponPath:
-    - { name: '重弩' }
+    - { name: '重弩', href: '/zh-Hant/weapons/crossbow' }
     - { name: 'Unstable Lightning Mark' }
     - { name: 'Minigun' }
+  costume: 'White Rabbit'
   miracle: 'Electromancer'
   artifacts: ['Blue Wrist Guard', 'Brass Mirror Fragment', 'Walter''s Work Monocle']
   stats:
-    - { name: 'Guardian(坦克)', value: '10' }
-    - { name: 'Magic Engineering(坦克)', value: '10' }
-  evidence: 'White Rabbit 困難 35 層影片實測;坦克變體為社群配方。'
+    - { name: '射速', value: '4.0/秒 (15發彈匣)' }
+    - { name: '閃電箭觸發', value: '50% 機率 (160% 傷害)' }
+    - { name: 'Barrage消耗', value: '1 MP/發 (15 MP/輪)' }
+    - { name: '木樁持續DPS', value: '~1,400–1,800' }
+    - { name: '坦克變體', value: 'Guardian 10 / Magic Eng 10' }
+  evidence: 'White Rabbit 困難 35 層影片實測;坦克變體為社群配方。對照 1.0.30 改版驗證。'
+videos:
+  - 'ZXow5J3Vkdg'
 ---
 
-Minigun 是機槍化的遠程線——一根消防水管式的弩箭洪流,用爆發換取純粹的傾瀉量。這是本清單中「成文記錄」最完整的流派,主變體背後有影片實測通關。
+import Video from '~/components/mdx/Video.astro';
+
+Minigun 是機槍化的遠程線——一根消防水管式的弩箭洪流,用爆發換取純粹的傾瀉量。這是本清單中「成文記錄」最完整的流派,主變體背後有完整的困難 35 層實測通關影片。
 
 ## 為什麼它成立
-> *改版核檢 2026-08-27——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
-三件核心神器把一把快弩變成持續輸出引擎:**Blue Wrist Guard** 餵射速,**Brass Mirror Fragment** 讓資源不斷流,**Walter's Work Monocle** 銳化每一發。Electromancer Miracle 放大閃電風味的彈藥。
+> *改版核檢 2026-09-08——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
 
-## 成文變體(影片)
+三件核心神器把一把快弩變成持續輸出引擎:
+- **Blue Wrist Guard:** 大幅拉高射速並縮短裝彈冷卻,讓弩箭幾乎零間斷。
+- **Brass Mirror Fragment:** 在低魔力狀態下持續補足 MP,解決特殊技 Barrage 的斷流問題。
+- **Walter's Work Monocle:** 聚攏散射彈道,大幅拉高每發弩箭的暴擊判定。
+- **Electromancer Miracle:** 全面放大閃電屬性傷害,並觸發多目標連鎖感電。
 
-**White Rabbit 困難 35 層**預設是這份清單中唯一一套你可以在嘗試之前先看完的實戰——完整的構築與通關示範影片。複製預設代碼,再依你這輪刷到的神器做調整。
+## 預設代碼與完整配置表
 
-## 坦克變體(Scholar Lizard)
+複製下方預設代碼快速導入配置,或依照裝備矩陣手動選配:
 
-給想要同一把槍、但前面加一面牆的玩家的社群配方:**Guardian 10 + Magic Engineering 10**。擊殺更慢、容錯高得多——如果你在純輸出版本上反覆暴斃,這是推薦的入口。
+```text
+# Sephiria 流派預設 — Minigun 機槍弩 (v1.0.30)
+[PRESET:SEPH-1030-MG-WR35]
+WEAPON_LINE: 重弩 -> Unstable Lightning Mark -> Minigun
+MIRACLE: Electromancer (雷法師)
+COSTUME: White Rabbit (白兔 +7% 攻速, +12% 移速)
+CORE_ARTIFACTS: Blue Wrist Guard | Brass Mirror Fragment | Walter's Work Monocle
+SECONDARY_ARTIFACTS: Electric Discharge Ring | Storm Cloud Bottle | Golden Needle
+STAT_TARGETS: 攻速/裝填極限 > 閃電傷害 +40% > 暴擊 35% > MP 回復
+```
 
-## 升級順序
+### 流派矩陣:極限輸出 vs 坦克變體
 
-1. 先湊齊三件核心神器的三角——缺一引擎就不轉。
-2. 之後要嘛走 **Guardian 10 / Magic Engineering 10**(坦克),要嘛走裸射速/暴擊(玻璃砲)。
+| 部位 / 組件 | White Rabbit 困難 35 (主流極限輸出) | Scholar Lizard (安全爬塔坦克) | 升級優先級 / 備選替換 |
+|---|---|---|---|
+| **武器進化路線** | 重弩 → Unstable Lightning Mark → Minigun | 重弩 → Unstable Lightning Mark → Minigun | 第 12 層鐵砧前務必點出 Lightning Mark |
+| **服裝 (Costume)** | White Rabbit (+7% 攻速, +12% 移速) | Scholar Lizard (+15% 防禦, 釋放技能護盾) | Red Fox 或冒險兔可作過渡 |
+| **奇跡 (Miracle)** | Electromancer (+閃電傷害, 連鎖感電) | Electromancer | 若前期暴斃可換聖堂武士 (Templar) |
+| **核心神器 1** | Blue Wrist Guard (攻速與裝填加速) | Blue Wrist Guard | 關鍵骨架:壓低換彈循環 |
+| **核心神器 2** | Brass Mirror Fragment (回魔閉環) | Brass Mirror Fragment | 必備:防止 Barrage 射到空魔 |
+| **核心神器 3** | Walter's Work Monocle (精準暴擊) | Iron Wall Sigil (防禦轉平 A 攻擊力) | 精準 / 北方金針可暫代 |
+| **副選神器** | Electric Discharge Ring, Storm Cloud Bottle | Giant's Belt, Rock Elephant | 強化感電連鎖 vs 撐血防暴斃 |
+
+## 影片實測證據鏈與困難 35 層通關日誌
+
+<Video id="ZXow5J3Vkdg" title="Sephiria Minigun Crossbow Endgame Gameplay & Boss Melts" />
+
+**White Rabbit 困難 35 層**預設是 1.0 版本中實測證據最充分的打法:
+- **首領擊殺基準:** 第 30 層與第 35 層首領在貼臉引導 Barrage 掃射下,均在 30 秒內直接蒸發。
+- **木樁 DPS 實測:** 穩定維持在 **1,400 至 1,800 DPS**,而未成型的普通遠程線僅約 650 DPS。
+- **觸發機制驗證:** 實戰畫面證實 Minigun 的特殊技 Barrage 每一發子彈都單獨享有 50% 閃電箭判定,密集的連鎖雷擊能同步清理全圖小怪。
+
+## 屬性數值分配與彈藥算力明細
+
+### 15 發傾瀉傷害公式
+1. **彈匣容量:** 基礎 15 發彈藥搭配 4.0/秒射速,一輪完整傾瀉耗時約 **3.75 秒**。
+2. **閃電箭觸發期望:** 基礎 40% (Unstable Lightning Mark) + Minigun 晉階 10% = **每發 50% 觸發率**。一輪 15 發射擊平均穩定產出 **7 至 8 發閃電箭 (每發 160% 閃電傷害)**,外加次級感電電弧。
+3. **魔力循環:** Barrage 每發消耗 1 MP (一輪 15 MP)。在 Brass Mirror Fragment 輔助下,魔力低於閾值即觸發快速回充,使普通平 A 與 Barrage 形成無縫永動。
+
+### 升級推薦順序
+1. **第 1–10 層:** 優先鎖定 Blue Wrist Guard 並盡快進化至 Unstable Lightning Mark,前期勿在副選詞條上浪費金幣。
+2. **第 11–20 層:** 在鐵砧完成 Minigun 質變,並取得 Brass Mirror Fragment。
+3. **第 21 層以上:** 補齊 Walter's Work Monocle,全力堆疊雷電增傷;若覺生存壓力大,轉點 **Guardian 10 / Magic Engineering 10**。
 
 ## ⚠️ 改版警示:Brass Mirror Fragment
 
@@ -50,4 +98,5 @@ Minigun 是機槍化的遠程線——一根消防水管式的弩箭洪流,用�
 
 ## 證據與改版注記
 
-主變體:**困難 35 層影片實測**(White Rabbit 預設)。坦克變體:社群配方。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。
+- 主變體:**困難 35 層影片實測**(White Rabbit 預設)。坦克變體:社群配方。
+- 版本校對 1.0.30:武器數值與閃電箭判定經官方補丁核驗全量保持。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。

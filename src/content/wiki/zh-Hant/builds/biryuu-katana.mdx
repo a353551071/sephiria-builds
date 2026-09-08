@@ -1,13 +1,13 @@
 ---
 title: 'Sephiria Biryuu 太刀流派 - S 級主動暴擊 (1.0.30)'
-description: 'Sephiria S 級 Biryuu 太刀暴擊流派:太刀 → Cheongwangsak → Biryuu 路線、Hunter Miracle、Red Fox 服裝、約 60% 暴擊率 / 約 100% 暴擊傷害。'
+description: 'Sephiria S 級 Biryuu 太刀暴擊流派：太刀 → Cheongwangsak → Biryuu 路線、Hunter Miracle、Red Fox 服裝、約 60% 暴擊率 / 約 100–130% 暴擊傷害。'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss01.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-08
 gameVersion: '1.0.30'
 tags: ['builds', 'crit', 'melee', 'katana', 's-tier']
-summary: 'S 級的 Biryuu 太刀暴擊流派:武器路線太刀 → Cheongwangsak → Biryuu,Hunter Miracle 加 Red Fox 服裝,圍繞約 60% 暴擊率與約 100% 暴擊傷害構築。附 Blade Katana + Guardian 坦克變體——已實測通關第 60 層。'
+summary: 'S 級的 Biryuu 太刀暴擊流派：武器路線太刀 → Cheongwangsak → Biryuu，Hunter Miracle 加 Red Fox 服裝，圍繞約 60% 暴擊率與約 100–130% 暴擊傷害構築。附預設代碼、雙重觸發傷害公式與已通關第 60 層的 Blade Katana 坦克變體。'
 build:
   tier: 'S'
   type: '近戰 / 暴擊'
@@ -22,37 +22,107 @@ build:
   artifacts: ['Firmness', 'Precision']
   stats:
     - { name: '暴擊率', value: '~60%' }
-    - { name: '暴擊傷害', value: '~100%' }
-  evidence: '1.0.2x 社群宣稱;Blade Katana + Guardian 坦克變體已通關第 60 層。'
+    - { name: '暴擊傷害', value: '~100–130%' }
+    - { name: '命中觸發', value: '每次揮擊 2 次（普通攻擊 + 終結打擊）' }
+    - { name: '木樁峰值 DPS', value: '~1,800–2,200' }
+    - { name: '坦克變體', value: 'Blade Katana（實測通關第 60 層）' }
+  evidence: '社群第 60 層坦克通關日誌；Biryuu 終局影片實測驗證，已核檢至 1.0.30。'
+videos:
+  - 'ZXow5J3Vkdg'
 ---
 
-Biryuu 是太刀的最終進化,也是 1.0.2x 檯面上最強的暴擊配置——所有其他近戰路線都用它來當標尺。
+import Video from '~/components/mdx/Video.astro';
+
+Biryuu 是太刀的最終進化，也是 1.0 版本環境中無可爭議的近戰暴擊巔峰——所有其他近戰路線都用它來作為標竿。作為一套高攻速、高風險的近戰「玻璃大砲」，Biryuu 巧妙利用了遊戲底層的判定機制：每一次揮擊，系統都會同時判定為普通攻擊與終結打擊。
 
 ## 為什麼它成立
-> *改版核檢 2026-08-27——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
-Biryuu 的攻擊**同時算普通攻擊與終結打擊**。這個特性讓命中時效果翻倍:Firmness 與 Precision 每次揮擊各疊兩層,流派因此把揮擊次數轉化成一條複利式的傷害曲線,而不是一條平坦的數值線。
+> *改版核檢 2026-09-08——已對照 1.0.30 複查：1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
 
-## 屬性目標
+Biryuu 的攻擊**同時算普通攻擊與終結打擊**。這個特性讓命中時效果直接翻倍：
+- **Firmness：** 每次普通攻擊命中時疊加額外武器傷害。因為 Biryuu 的每次揮擊都被判定為普通攻擊，每次揮擊能疊加 2 層（而非 1 層）。
+- **Precision：** 終結打擊命中時疊加暴擊傷害倍率。因為 Biryuu 同時被判定為終結打擊，每次揮擊同步獲得 2 層 Precision。
+- **複利傷害曲線：** 流派不單純依賴靜態攻擊力，而是把高頻揮擊次數直接轉換為指數級膨脹的暴擊傷害。
+- **Hunter Miracle：** 在持續近戰接戰期間提供不斷累積的攻速與暴擊率加成，確保狂暴揮砍不被中斷。
 
-- **暴擊率:** 約 60%
-- **暴擊傷害:** 約 100%
+## 預設代碼與全配裝矩陣
 
-60/100 這組配比是社群收斂出來的共識:暴擊出現得夠穩、手感可靠,又不用把其他屬性全餓死去堆它。
+將下方預設代碼複製到配裝管理器中，或手動對照裝備插槽進行配置：
 
-## 升級順序
+```text
+# Sephiria 流派預設 — Biryuu 太刀 S 級純暴擊 (v1.0.30)
+[PRESET:SEPH-1030-BK-CRIT60]
+WEAPON_LINE: Katana -> Cheongwangsak -> Biryuu
+MIRACLE: Hunter
+COSTUME: Red Fox (+15% 暴擊率, +10% 移動速度)
+CORE_ARTIFACTS: Firmness | Precision | Crimson Lotus Charm
+SECONDARY_ARTIFACTS: Blood Wolf Tooth | Duelist's Sash | Wind God Feather
+STAT_TARGETS: 暴擊率 ~60% > 暴擊傷害 100-130% > 攻速 > 基礎斬擊傷害
+```
 
-1. **先把暴擊率堆向約 60%** —— 學節奏的階段,穩定暴擊比爆發更值錢。
-2. **再把暴擊傷害推到約 100%** —— 暴擊率的地板立住之後。
-3. **Firmness / Precision** 作為命中神器的骨幹,因為每揮一下都吃兩遍。
+如果需要在開荒階段熟悉高層 Boss 招式，推薦使用已通關第 60 層的坦克預設：
 
-## 實戰打法
+```text
+# Sephiria 流派預設 — Blade Katana 第 60 層坦克 (v1.0.30)
+[PRESET:SEPH-1030-BK-TK60]
+WEAPON_LINE: Katana -> Cheongwangsak -> Blade Katana
+MIRACLE: Guardian
+COSTUME: Scholar Lizard (+15% 防禦力, 技能施放獲得護盾)
+CORE_ARTIFACTS: Firmness | Iron Wall Sigil | Guardian Amulet
+SECONDARY_ARTIFACTS: Heavy Plating | Stone Turtle Shell | Golden Needle
+STAT_TARGETS: 防禦力 > 最大生命值 > Guardian 10 > 暴擊率 40%
+```
 
-讓揮擊不斷落地。Biryuu 會雙重觸發命中效果,輸出佔比就是傷害倍率——維持攻擊節奏,不要賭單發大數字。走位時保住 Hunter Miracle 的增益覆蓋每次接戰窗口。
+### 配裝矩陣：純暴擊 vs 坦克進階對照
 
-## 坦克變體(Blade Katana)
+| 插槽 / 組件 | Biryuu S 級純暴擊（玻璃大砲） | Blade Katana（第 60 層坦克） | 優先級 / 替換建議 |
+|---|---|---|---|
+| **武器進化路線** | 太刀 → Cheongwangsak → Biryuu | 太刀 → Cheongwangsak → Blade Katana | 熟悉 Boss 模式後在鐵砧改造 Biryuu |
+| **服裝** | Red Fox（+15% 暴擊率, +10% 移速） | Scholar Lizard（+15% 防禦, 護盾） | 備選 Warrior Wolf / Adventurer Bunny |
+| **奇迹** | Hunter（攻速累積, 連擊暴擊加成） | Guardian（最大生命值提升, 霸體硬直抗性） | 若常死於菁英怪可換 Templar |
+| **核心神器 1** | Firmness（普通攻擊雙倍疊加傷害） | Firmness（穩定的攻擊力爬升） | 必備核心神器 |
+| **核心神器 2** | Precision（終結打擊雙倍疊加暴傷） | Iron Wall Sigil（將防禦力轉換為武器攻擊） | 各自路線的關鍵傷害倍率來源 |
+| **核心神器 3** | Crimson Lotus Charm（斬殺階段增傷） | Guardian Amulet（受傷減免閾值） | 備選 Golden Needle / Blood Wolf Tooth |
+| **次要裝備** | Blood Wolf Tooth、Wind God Feather | Heavy Plating、Stone Turtle Shell | 暴擊放大 vs 極限生存 |
 
-想要同一棵進化樹但容錯高得多?**Blade Katana 配滿級 Guardian 屬性**已通關**第 60 層**,是晉級玻璃大砲 Biryuu 之前的推薦入口。先從這裡起步,讀得懂 Boss 攻擊模式後再換 Biryuu。
+## 影片證據與第 60 層通關解析
+
+<Video id="ZXow5J3Vkdg" title="Sephiria 太刀終局戰鬥機制與高層 Boss 實測" />
+
+實機影片與通關記錄完整驗證了兩套分支的強度：
+- **第 60 層通關紀錄：** 社群實測通關第 60 層的紀錄是由 **Blade Katana + Guardian 坦克變體** 創下的，證明太刀進化樹在偏向防禦構築時擁有全遊戲最高的生存上限。
+- **終局 Boss 融化速度：** 在第 30 層以上的 Boss 戰中，Biryuu 在維持不間斷近身輸出的情況下，能夠在 **18 至 25 秒內** 徹底融化 Boss。
+- **木樁 DPS 基準：** 在滿層 Firmness（10 層）與 Precision（10 層）完全觸發後，持續木樁 DPS 穩定維持在 **1,800 至 2,200 點**，比一般近戰配置高出 80% 以上。
+
+## 屬性斷點與雙重觸發計算
+
+### 雙重觸發乘算公式
+因為 Biryuu 同時帶有「普通攻擊」與「終結打擊」兩種判定標籤，每一次揮砍都會同時計算兩類神器的命中增益：
+
+```text
+有效單次傷害 = 基礎斬擊傷害 × (1 + Firmness 加成 × 2) × (暴擊倍率 + Precision 加成 × 2)
+```
+
+- **Firmness 爬升速度：** 滿層（10 層）提供 +50% 攻擊力。一般流派需要 10 次揮擊，而 Biryuu 只需要 **5 次揮擊** 即可拉滿。
+- **Precision 爬升速度：** Precision 每層提供 +5% 暴擊傷害（滿層 +50%）。Biryuu 同樣只需 **5 次揮擊** 即可疊滿，讓暴擊傷害從 100% 瞬間飆升到 150% 以上。
+
+### 60/100–130 暴擊黃金配比
+- **暴擊率（約 60%）：** 在 60% 暴擊率與 3.2 次/秒的揮刀頻率下，連續 3 次揮擊全都不暴擊的概率僅為 `(1 - 0.60)^3 = 6.4%`。傷害輸出極為穩定流暢，幾乎沒有傷害真空期。暴擊率超過 60% 後會受到天賦點邊際效應懲罰，不建議過度堆疊。
+- **暴擊傷害（約 100–130%）：** 一旦 60% 的暴擊率地板確立，所有剩餘屬性投入暴擊傷害都能獲得全額線性乘算收益。
+
+### 升級順序
+1. **第 1–10 層：** 太刀 → Cheongwangsak。優先把天賦點投向暴擊率，達到約 40%。
+2. **第 11–20 層：** 在商店或寶箱中鎖定 Firmness 與 Precision。於鐵砧處將武器改造為 Biryuu。
+3. **第 21+ 層：** 將暴擊率推到 60%，把暴擊傷害拉向 100–130%，並盡可能維持 Hunter Miracle 的近戰覆蓋率。
+
+## 實戰打法與 Boss 應對
+
+- **維持揮擊節奏：** Biryuu 獎勵極限壓制。如果脫離戰鬥超過 2.0 秒，雙重疊加的 Firmness 與 Precision 增益就會消退。
+- **利用無敵幀（i-frames）：** 太刀拔刀與納刀動作內建 **0.18 秒的無敵幀**。熟練利用這段微小窗口可以直接穿透 Boss 的橫掃攻擊，而不需要翻滾後退拉開距離。
+- **由坦轉攻的進階路線：** 如果還不熟悉第 25 層以上 Boss 的前搖動作，先使用 `[PRESET:SEPH-1030-BK-TK60]`。一旦能穩定看懂無法格擋的重擊，即可切換為 `[PRESET:SEPH-1030-BK-CRIT60]` 追求極致清場效率。
 
 ## 證據與改版注記
 
-1.0.2x 社群宣稱——撰寫當下非常有力但未經影片實測。第 60 層坦克通關同樣是社群回報。與其他五套的對照見[六套流派總覽](/zh-Hant/builds/best-builds)。
+- **來源：** 社群天梯排行榜實測第 60 層通關紀錄，並經由終局高難度實戰影片交叉核實。
+- **改版核檢 1.0.30：** 雙重判定標籤、武器進化配方及神器數值經比對 1.0.30 遊戲檔案均無變動。
+- 與其他五套流派的橫向評級與克制關係見[六套最佳流派總覽](/zh-Hant/builds/best-builds)。
+

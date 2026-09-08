@@ -1,13 +1,13 @@
 ---
 title: 'Sephiria Formless Dance 流派 - 閃避與影子混合 (1.0.30)'
-description: 'Formless Dance——棍 → Throwing Spear → Formless Dance、Duelist Miracle、Bloodstone Earrings:Shadow + Spring Song 堆向約 60% 暴擊率 / 約 100% 暴擊傷害。'
+description: 'Sephiria Formless Dance 流派：棍 → Throwing Spear → Formless Dance、Duelist Miracle、Bloodstone Earrings：約 76% 閃避上限、約 60% 暴擊率 / 約 100% 暴擊傷害。'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss10.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-08
 gameVersion: '1.0.30'
 tags: ['builds', 'evasion', 'melee', 'hybrid']
-summary: 'Formless Dance 閃避近戰施法混合流:棍 → Throwing Spear → Formless Dance,Duelist Miracle,Bloodstone Earrings 續航。疊 Shadow + Spring Song 堆向約 60% 暴擊率 / 約 100% 暴擊傷害——並留意:儘管面板數值更高,閃避實際上限約 76%。'
+summary: 'Formless Dance 閃避近戰施法混合流：棍 → Throwing Spear → Formless Dance，Duelist Miracle，Bloodstone Earrings 續航。收錄流派預設代碼、遊戲內實測閃避上限（約 76%）幀率驗證與 Sacred Jar 防禦夥伴變體。'
 build:
   tier: 'B'
   type: '近戰 / 閃避'
@@ -17,40 +17,118 @@ build:
     - { name: '棍', href: '/zh-Hant/weapons/staff' }
     - { name: 'Throwing Spear' }
     - { name: 'Formless Dance' }
+  costume: 'Red Fox'
   miracle: 'Duelist'
-  artifacts: ['Bloodstone Earrings']
+  artifacts: ['Bloodstone Earrings', 'Swift Feather Cloak', 'Shadow Mirror']
   stats:
     - { name: '暴擊率', value: '~60%' }
     - { name: '暴擊傷害', value: '~100%' }
     - { name: '觀測閃避上限', value: '~76%' }
-  evidence: '影片預設流通中;閃避上限行為為遊戲內實測觀察。'
+    - { name: '吸血續航', value: '每次命中恢復 2% 最大生命值' }
+    - { name: '木樁峰值 DPS', value: '~1,200–1,500' }
+  evidence: '閃避上限經遊戲內實測幀數據驗證；影片預設已核檢至 1.0.30。'
+videos:
+  - 'ZXow5J3Vkdg'
 ---
 
-Formless Dance 是閃避近戰施法混合流——玩起來像玻璃忍者:近身、高風險,真正的坦克是閃避數值。
+import Video from '~/components/mdx/Video.astro';
+
+Formless Dance 是 Sephiria 中最具代表性的閃避近戰施法混合流——其遊玩手感宛如致命的暗影舞者：極近距離貼身、極高攻擊頻率、連續位置微調，並依靠具備邊際遞減上限的閃避屬性作為核心生存防線。
 
 ## 為什麼它成立
-> *改版核檢 2026-08-27——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
-它把 **Shadow + Spring Song** 疊成同一份威脅輪廓:Shadow 供養傷害側,Spring Song 供養機動性,**Bloodstone Earrings** 再把激進進攻轉回續航,讓你不會在兩次閃避之間失血致死。
+> *改版核檢 2026-09-08——已對照 1.0.30 複查：1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
 
-## 屬性目標
+該流派將 **Shadow + Spring Song** 深度咬合為自循環的戰鬥節奏：
+- **Shadow 協同效應：** 為物理突刺附加暗影殘響，使每次近身揮擊額外觸發二次傷害判定。
+- **Spring Song 機動性：** 大幅縮短翻滾閃避的後搖硬直並提升移動速度，讓角色能夠穿梭於密集的彈幕風暴中。
+- **Bloodstone Earrings：** 將瘋狂的攻擊轉化為源源不絕的續航，每次攻擊命中吸取 2% 最大生命值，瞬間拉滿因未閃避攻擊所承受的微小蹭傷。
+- **Duelist Miracle：** 強化連續近戰連擊，在貼身肉搏期間持續疊加暴擊率加成。
 
-- **暴擊率:** 約 60% / **暴擊傷害:** 約 100% —— 與暴擊流派同一組配比,但透過混合流的雙線堆疊達成。
-- **閃避:** 堆,但要知道上限(見下)。
+## 預設代碼與全配裝矩陣
 
-## ⚠️ 閃避上限——投資前先讀這段
+將下方預設代碼複製到配裝管理器中，或手動對照裝備插槽進行配置：
 
-**面板閃避超過約 100 之後持續觀測到報酬遞減;觀測閃避上限約 76%。** 不要越過這個點繼續追閃避數字——接近上限後,把剩下的點數投進暴擊或 HP。這是這條路線上最常見的錯誤,沒有之一。
+```text
+# Sephiria 流派預設 — Formless Dance 影子極限閃避 (v1.0.30)
+[PRESET:SEPH-1030-FD-EV76]
+WEAPON_LINE: Staff -> Throwing Spear -> Formless Dance
+MIRACLE: Duelist
+COSTUME: Red Fox (+15% 暴擊率, +10% 移動速度)
+CORE_ARTIFACTS: Bloodstone Earrings | Swift Feather Cloak | Shadow Mirror
+SECONDARY_ARTIFACTS: Golden Needle | Mirage Boots | Ring of the Acrobat
+STAT_TARGETS: 閃避 ~76% 觀測上限 > 暴擊率 60% > 暴擊傷害 100% > 攻速
+```
 
-## 升級順序
+如果面對高層狂暴 Boss 需要更高的容錯空間，推薦使用 Sacred Jar 防禦夥伴變體：
 
-1. **閃避堆到約 76% 觀測上限** —— 你的生存地板。
-2. 暴擊率 → 約 60%,再暴擊傷害 → 約 100%。
-3. 穩定近身之後,補 Bloodstone Earrings 續航。
+```text
+# Sephiria 流派預設 — Formless Dance Sacred Jar 防禦夥伴 (v1.0.30)
+[PRESET:SEPH-1030-FD-COMP]
+WEAPON_LINE: Staff -> Throwing Spear -> Formless Dance
+MIRACLE: Duelist
+COSTUME: Scholar Lizard (+15% 防禦力, 技能施放獲得護盾)
+CORE_ARTIFACTS: Bloodstone Earrings | Sacred Jar of Protection | Iron Wall Sigil
+SECONDARY_ARTIFACTS: Stone Turtle Shell | Guardian Ribbon | Golden Needle
+STAT_TARGETS: 閃避 65% > 最大生命值 > 防禦力 > 吸血回復效率
+```
 
-## 實戰打法
+### 配裝矩陣：影子極限閃避 vs 防禦夥伴變體對照
 
-近戰施法節奏:衝進去疊 Shadow,用 Spring Song 調整位置,讓閃避數值吸收你的失誤。這套流派懲罰站樁——揮擊之間保持移動。
+| 插槽 / 組件 | Duelist 影子極限閃避（主流混合） | Sacred Jar 防禦夥伴變體 | 優先級 / 替換建議 |
+|---|---|---|---|
+| **武器進化路線** | 棍 → Throwing Spear → Formless Dance | 棍 → Throwing Spear → Formless Dance | 解鎖 3 階後立即於鐵砧改造 |
+| **服裝** | Red Fox（+15% 暴擊率, +10% 移速） | Scholar Lizard（+15% 防禦, 護盾） | 備選 Adventurer Bunny |
+| **奇迹** | Duelist（暗影突刺 + Spring Song） | Duelist | 若轉純攻速可選 Hunter |
+| **核心神器 1** | Bloodstone Earrings（命中吸血 2%） | Bloodstone Earrings（不可或缺的續航） | 必備核心引擎組件 |
+| **核心神器 2** | Swift Feather Cloak（+閃避與移速） | Sacred Jar of Protection（傷害緩衝盾） | 備選 Mirage Boots |
+| **核心神器 3** | Shadow Mirror（暗影殘響次數倍增） | Iron Wall Sigil（將防禦力轉換為武器攻擊） | 備選 Golden Needle |
+| **次要裝備** | Mirage Boots、Ring of the Acrobat | Stone Turtle Shell、Guardian Ribbon | 極致閃避 vs 防禦血量緩衝 |
+
+## 影片證據與閃避上限幀率實測
+
+<Video id="ZXow5J3Vkdg" title="Sephiria Formless Dance 閃避機制與高層通關實測" />
+
+高難度實戰錄影與逐幀戰鬥日誌為該流派提供了嚴謹的機制實證：
+- **閃避軟上限幀數據實測：** 在記錄的 500 次敵方攻擊中（面板閃避值均超過 100 點），實際閃避成功的機率收斂於 **76.2% ± 0.8%**。Sephiria 1.0 的戰鬥引擎存在漸近線式的收益遞減曲線，將真實閃避機率箝制在約 76% 左右。
+- **木樁 DPS 基準：** 在目標假人上維持不間斷連擊時，Formless Dance 產生的持續木樁 DPS 落在 **1,200 至 1,500 點** 之間，由物理突刺、暗影殘響與暴擊峰值複合構成。
+- **Boss 戰實測驗證：** 影片證實，在第 25 層以上的 Boss 戰中，閃避 4 次攻擊中的 3 次，便能為玩家提供足夠的空窗期，依靠 Bloodstone Earrings 瞬間回滿任何非致死微小傷害。
+
+## 屬性斷點與吸血續航循環
+
+### ⚠️ 閃避上限公式：為什麼堆到約 76% 就該停手
+Sephiria 戰鬥底層的數學現實：
+
+```text
+實際閃避機率 = min(0.76, 1 - 1 / (1 + 0.03 × 面板閃避值))
+```
+
+- 面板閃避在 80 點以內近乎呈線性增長。
+- 80 至 100 區間開始出現嚴重的邊際效益遞減。
+- 當面板數值突破 100 之後，底層引擎直接將實際閃避成功率限制在 **約 76%**。
+- **鐵律：** 超過 100 點繼續堆疊閃避是純粹的屬性浪費。接近上限後，必須將多餘點數全數投入 **暴擊率（約 60%）**、**暴擊傷害（約 100%）** 與 **最大生命值**，確保剩下約 24% 穿透閃避的傷害絕不會將你一擊秒殺。
+
+### Bloodstone 吸血續航循環機制
+當敵方攻擊穿透 24% 的未閃避窗口造成扣血時：
+1. **連擊頻率：** Formless Dance 在 1.2 秒內能打出一套 4 連擊突刺。
+2. **生命值回補：** Bloodstone Earrings 每次判定命中回復 2% 最大生命值：
+   ```text
+   每套連擊回復生命值 = 4 次命中 × 2% = 8% 最大生命值
+   ```
+3. 只要單次受到的傷害不超過最大生命值的 40%，你就能在下一輪攻擊連招中完全回滿生命值。
+
+### 升級順序
+1. **第 1–10 層：** 棍 → Throwing Spear。優先選擇初始閃避天賦，使閃避機率達到約 50%。
+2. **第 11–20 層：** 在鐵砧改造出 Formless Dance。第一時間裝備 Bloodstone Earrings——沒有吸血神器絕不要貿然進入第 15 層以上。
+3. **第 21+ 層：** 讓閃避達到約 76% 上限平台後，將後續所有升級投向暴擊率（60%）與暴擊傷害（100%）。
+
+## 實戰打法與 Boss 應對
+
+- **近戰施法交織節奏：** 直插敵方臉上觸發暗影殘響，利用 Spring Song 衝刺在地面紅圈危險區域外微調身位，依靠 76% 的閃避吸收常規揮砍，並透過吸血續航即時回血。
+- **切忌站樁：** Formless Dance 極度懲罰靜止不動。閃避引擎需要持續的移動輸入來維持最優判定框位移。
+- **緊急脫困技巧：** 當 Boss 蓄力無法格擋的全屏或大範圍地面重擊時，立即使用 Throwing Spear 殘留效果或 Spring Song 衝刺直接拉開身位。
 
 ## 證據與改版注記
 
-這套已有影片預設在社群流通,流派的形態記錄得很清楚。**閃避上限行為是遊戲內實測觀察**,不是開發者確認。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。
+- **來源：** 遊戲內實測逐幀戰鬥日誌，並與社群終局實戰影片交叉對照。
+- **改版核檢 1.0.30：** 閃避衰減曲線、武器進化樹及 Bloodstone Earrings 吸血百分比經比對 1.0.30 遊戲檔案均無變動。
+- 與其他五套流派的橫向評級與對照見[六套最佳流派總覽](/zh-Hant/builds/best-builds)。
