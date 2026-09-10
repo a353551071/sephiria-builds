@@ -1,20 +1,20 @@
 ---
 title: 'Sephiria Creaking Spine 流派 - 防禦大劍 (1.0.30)'
-description: 'Creaking Spine 大劍流派:Steel Greatsword → Bone Mechanism Sword → Creaking Spine、Valet Miracle、Will 20 / Patience 20——獲 58 讚的社群最愛。'
+description: 'Creaking Spine 大劍流派:Steel Greatsword → Bone Mechanism Sword → Creaking Spine、Valet Miracle、Will 20 / Patience 20。完整 Reassemble 數學:25 MP / 8 秒窗口,每記連擊 +15 + 50% DEF。'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss11.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-10
 gameVersion: '1.0.30'
 tags: ['builds', 'greatsword', 'defense', 'beginner']
-summary: 'Creaking Spine 防禦優先的大劍流派——Will 20 / Patience 20、Valet Miracle、Absolute Ring 與 Rock Elephant。社群預設的新手路線(58 讚),也是這裡全部配置中對傳說武器依賴最低的一套。'
+summary: 'Creaking Spine 防禦優先的大劍流派——Will 20 / Patience 20、Valet Miracle、Absolute Ring 與 Rock Elephant。社群預設的新手路線(58 讚),也是這裡全部配置中對傳說武器依賴最低的一套。含 Reassemble 縮放公式、預設碼,以及與冰霜大劍線的對照矩陣。'
 build:
   tier: 'A'
   type: '大劍 / 防禦'
   difficulty: 'easy'
   patch: '1.0.30'
   weaponPath:
-    - { name: 'Steel Greatsword' }
+    - { name: 'Steel Greatsword', href: '/zh-Hant/weapons/greatsword' }
     - { name: 'Bone Mechanism Sword' }
     - { name: 'Creaking Spine' }
   miracle: 'Valet'
@@ -22,38 +22,78 @@ build:
   stats:
     - { name: 'Will', value: '20' }
     - { name: 'Patience', value: '20' }
-  evidence: '1.0.2x 社群配方,58 讚——投票最高的防禦優先路線。'
+    - { name: 'Reassemble 消耗', value: '25 MP / 8 秒窗口' }
+    - { name: '連擊加成', value: '+15 + 50% DEF' }
+    - { name: '攻速疊層', value: 'Reassemble 期間最高 +35%' }
+  evidence: '1.0.2x 社群配方,58 讚——投票最高的防禦優先路線。機制已對照武器進化樹資料交叉核驗;未經影片實測。'
 ---
 
 Creaking Spine 是社群預設的**「防禦先於輸出天花板」**之選——最推薦給想活到讀懂 Boss 攻擊模式的新玩家。(大劍家族完整進化樹見[大劍武器頁](/zh-Hant/weapons/greatsword)。)
 
 ## 為什麼它成立
-> *改版核檢 2026-08-27——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
+> *改版核檢 2026-09-10——遊戲仍在 1.0.30(08-20 後無新版本);1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
+
 暴擊流派賭的是殺得更快,Creaking Spine 賭的是**活得更久,傷害由一條平穩、低維護成本的循環持續供應**。Valet Miracle 讓你的防禦引擎不斷電,大劍的重量讓你可以正面換血,而不是什麼都要閃。
 
-大劍的特殊攻擊流派把 **Absolute Ring** 與 **Amethyst 水晶**搭配同伴與法力傷害;**Rock Elephant** 則是扛起實際擊殺壓力的那件輸出神器。
+引擎是 Reassemble 特殊攻擊。Bone Mechanism Sword 把它轉成一個 8 秒窗口:期間普通攻擊變成大範圍單段揮擊,且**窗口內每一記連續揮擊附加 +15 + 50% DEF 的額外傷害**。Creaking Spine 再把揮擊範圍進一步放寬,並疊加攻速——連續不斷時**最高 +35% ATK SPD**。換句話說:你為了活下去而疊的防禦屬性,同時就是付帳的傷害來源。Will 20 / Patience 20 不是妥協,它就是這套流派本身。
 
-## 屬性目標
+**Absolute Ring** 與 **Amethyst 水晶**把循環與同伴及法力傷害掛鉤;**Rock Elephant** 則是扛起實際擊殺壓力的那件輸出神器。
 
-- **Will:** 20
-- **Patience:** 20
+## 預設碼與配置矩陣
 
-兩個都是防禦側屬性。先把 Will 20 / Patience 20 點滿就是社群配方——學遊戲的階段,這一輪近乎不會死。
+把下面的預設碼抄進你的筆記,或照著在鐵砧手動配置:
 
-## 升級順序
+```text
+# Sephiria Build Preset — Creaking Spine Defense Greatsword (v1.0.30)
+[PRESET:SEPH-1030-CS-WP20]
+WEAPON_LINE: Steel Greatsword -> Bone Mechanism Sword -> Creaking Spine
+MIRACLE: Valet
+CORE_ARTIFACTS: Absolute Ring | Amethyst | Rock Elephant
+STAT_TARGETS: Will 20 > Patience 20 > Companion & Mana DMG > DEF
+SPECIAL_LOOP: Reassemble (25 MP, 8 s) — 1-hit swings, +15 + 50% DEF per consecutive hit
+```
 
-1. **先 Will 20 / Patience 20** —— 這套流派的全部意義就是生存。
+### 配置矩陣:DEF 循環 vs 冰霜大劍線
+
+大劍家族有兩條已核實的終點:本頁的 Reassemble 防禦循環,以及冰霜線(Frostbound → Eternal Frost Greatsword)。兩者都是真實存在的進化終點——只是回答不同的問題。
+
+| 部位 / 組件 | Creaking Spine(DEF 循環) | Eternal Frost(冰霜線) | 注記 |
+|---|---|---|---|
+| **武器路線** | Steel Greatsword → Bone Mechanism Sword → Creaking Spine | Frostbound Greatsword → Eternal Frost Greatsword | DEF 線不需要稀有前段掉落 |
+| **特殊攻擊** | Reassemble:25 MP、8 秒、大範圍單段揮擊 | 標準大劍套件 | Reassemble 本身就是輸出引擎 |
+| **傷害縮放** | 每記連擊 +15 + 50% DEF | 武器攻擊 +30% → +55% 冰冷傷害 | DEF 循環用生存屬性驅動輸出 |
+| **屬性優先** | 先 Will 20 / Patience 20 | 冰冷傷害與 Wisdom | 冰霜線打法接近常規元素流派 |
+| **容錯** | 高——失誤扣血,不扣進度 | 中——標準走位紀律 | 58 讚的社群新手最愛 |
+| **適合誰** | 學 Boss 模式、打持久戰 | 已經會閃的玩家 | 換線在鐵砧換,別中途換 |
+
+## 屬性斷點與 Reassemble 數學
+
+### 連擊公式
+
+按進化樹資料,Reassemble 窗口內每記連續普通攻擊附加 **15 + 50% DEF** 的額外傷害:
+
+1. **固定 15 點**在前期很關鍵——DEF 還小時,循環從第一揮就在支付,不必等屬性投資到位。
+2. **50% DEF 項**才是曲線本體。裝備、服裝與 Will/Patience 屬性加點的每一點 DEF,都讓每揮加成多半點——這正是社群配方把兩個防禦屬性點滿、不分散投資的原因。
+3. **攻速疊層**(最高 +35%)意味著窗口前段買安全、後段買輸出:起手揮擊慢而穩,但只要連段在整個 8 秒內不斷,收尾揮擊會明顯快得多。
+
+### 升級順序
+
+1. **先 Will 20 / Patience 20** —— 這套流派的全部意義就是生存,而且疊的 DEF 同時就是 Reassemble 的傷害加成。
 2. 同伴與法力傷害其次,因為 Absolute Ring + Amethyst 吃的就是這些。
 3. 防禦鎖定之後,Rock Elephant 作為輸出收尾件。
 
+### MP 紀律
+
+Reassemble 每次啟動 25 MP。Valet 與 Amethyst 引擎讓循環可持續,但這套流派的失敗模式是:半藍開 Reassemble、窗口提前斷掉——把它當承諾,不當保命鈕。
+
 ## 實戰打法
 
-刻意地換血——你比大多數威脅都更能耗。用大劍的距離守住位置,讓同伴與法力傷害慢慢跳,特殊攻擊留給明確的窗口,不要恐慌亂按。
+刻意地換血——你比大多數威脅都更能耗。用大劍的距離守住位置,讓同伴與法力傷害慢慢跳,Reassemble 留給明確的窗口,不要恐慌亂按。因為連擊加成在斷段時歸零,這套流派的技巧表達很簡單但很實在:**別被打斷**。
 
 ## 新手為什麼該選這套
 
-這是**全部路線中對傳說武器依賴最低的**——前段進化(Steel Greatsword → Bone Mechanism Sword)足夠常見,整條路線比暴擊或元素線少跑很多輪就能走通。
+這是**全部路線中對傳說武器依賴最低的**——前段進化(Steel Greatsword → Bone Mechanism Sword)足夠常見,整條路線比暴擊或元素線少跑很多輪就能走通。加上寬容的屬性結構,這就是社群遞給新玩家的那套(58 讚,檯面上按讚最多的防禦配置)。
 
 ## 證據與改版注記
 
-1.0.2x 社群配方,58 讚。未經影片實測,但它是檯面上按讚最多的防禦配置——信號很強。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。
+1.0.2x 社群配方,58 讚——未經影片實測,但本頁引用的 Reassemble 機制已對武器進化樹資料交叉核驗。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。
