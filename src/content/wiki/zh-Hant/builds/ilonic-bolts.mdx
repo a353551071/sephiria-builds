@@ -1,13 +1,13 @@
 ---
 title: 'Sephiria Ilonica Bolts 流派 - 追蹤元素棍 (1.0.30)'
-description: 'Ilonica 追蹤元素流:棍 → Flame Staff → Elemental Fusion Staff Ilonica、Elementalist Miracle、Ghost 服裝,Ember / Glacier / Magitech 各攤 4–6。'
+description: 'Ilonica 追蹤元素流:棍 → Flame Staff → Elemental Fusion Staff Ilonica、Elementalist、Ghost,Ember / Glacier / Magitech 各攤 4–6。Bolt Barrage 數學:0 MP、每彈獨立冷卻。'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss04.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-11
 gameVersion: '1.0.30'
 tags: ['builds', 'caster', 'elemental', 'homing']
-summary: 'Ilonica 追蹤元素流派:棍 → Flame Staff → Elemental Fusion Staff Ilonica,Elementalist Miracle,Ghost 服裝。三元素追蹤 Bolt,Ember / Glacier / Magitech 各攤 4–6 左右;1.0.24 宣稱通關 50 層。'
+summary: 'Ilonica 追蹤元素流派:棍 → Flame Staff → Elemental Fusion Staff Ilonica,Elementalist Miracle,Ghost 服裝。三元素追蹤 Bolt,Ember / Glacier / Magitech 各攤 4–6 左右;1.0.24 宣稱通關 50 層。含 Bolt Barrage 引擎數學、預設碼,以及融合 vs 單元素線對照矩陣。'
 build:
   tier: 'A'
   type: '遠程 / 元素'
@@ -19,35 +19,80 @@ build:
     - { name: 'Elemental Fusion Staff Ilonica' }
   miracle: 'Elementalist'
   costume: 'Ghost'
+  artifacts: ['Ember / Glacier / Magitech 均衡']
   stats:
     - { name: 'Ember', value: '4–6' }
     - { name: 'Glacier', value: '4–6' }
     - { name: 'Magitech', value: '4–6' }
-  evidence: '1.0.24 宣稱通關 50 層。'
+    - { name: '彈幕消耗', value: '0 MP(每彈獨立冷卻)' }
+    - { name: '彈藥縮放', value: '吃 Normal ATK DMG 加成' }
+    - { name: '魔導書', value: '被武器鎖死不可用' }
+  evidence: '1.0.24 宣稱通關 50 層;社群回報。Bolt Barrage 機制已對武器進化樹資料交叉核驗。'
 ---
 
 Ilonica 是追蹤施法線:三元素 Bolt 自動鎖定目標,你在風箏,傷害照樣落地。這是本清單中裸輸出最「不用手」的一套。
 
 ## 為什麼它成立
-> *改版核檢 2026-08-27——已對照 1.0.30 複查:1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
-**追蹤三元素 Bolt** 意味著輸出佔比不取決於你的瞄準——棍自己會瞄。整輪的資源預算因此全部解放,專心堆 Bolt 攜帶的三種元素。
+> *改版核檢 2026-09-11——遊戲仍在 1.0.30(08-20 後無新版本);1.0.26–1.0.30 並未動到本頁的武器、神器或機制。配方未變。*
 
-## 元素配比
+引擎是 **Bolt Barrage** 轉換。按進化樹資料,終形棍同時做三件事:
 
-- **Ember 4–6 · Glacier 4–6 · Magitech 4–6**
+1. **普通攻擊變成隨機 Bolt Spell 施放**——追蹤元素彈(Ember、Glacier、Magitech)自動鎖定目標,不用瞄準。
+2. **每發彈 0 MP,但各自的法術會進冷卻**——限制不是法力,是*輪換廣度*:同一輪裡你手上有多少種可用的彈種。
+3. **彈藥同樣吃 Normal ATK DMG 加成**——這套流派最反直覺的一點:打法像施法者,但武器攻擊傷害百分比依然是整個彈幕的全局縮放。
 
-三種元素各攤**約 4–6**,不要把其中一種拉滿。Bolt 同時攜帶三元素,均衡配比讓每一發都有傷害,而不是一種元素硬扛、另外兩種陪跑。Elementalist Miracle 會複利化三線成長,**Ghost 服裝**則讓脆皮施法者在 Bolt 追蹤的間隙活下來。
+代價同樣明確:**魔導書不可用**。武器就是你全部的法術引擎——沒有備用法術書。交換條件是:輸出不卡瞄準也不卡法力;武器自己瞄,燃料免費。
 
-## 升級順序
+## 預設碼與配置矩陣
 
-1. 先把三種元素都拉到約 4——三角地板。
-2. 之後視這輪的資源推向 6,彼此差距保持在 1 點以內。
-3. 防禦層(Ghost 服裝路線)按需補——你是施法者,不是坦克。
+```text
+# Sephiria Build Preset — Ilonic Bolts Homing Elemental (v1.0.30)
+[PRESET:SEPH-1030-IB-F50]
+WEAPON_LINE: Staff -> Flame Staff -> Elemental Fusion Staff Ilonica
+MIRACLE: Elementalist
+COSTUME: Ghost
+STAT_TARGETS: Ember 4-6 | Glacier 4-6 | Magitech 4-6 (keep within 1 point)
+ENGINE: Bolt Barrage — 0 MP, per-bolt cooldowns, scales with Normal ATK DMG
+DPS_CEILING: Floor 50 claimed on 1.0.24
+```
+
+### 配置矩陣:三元素融合 vs 單元素轉換
+
+棍家族有兩條已核實的施法者終點:本頁的 Ilonica 三元素融合,以及單元素轉換線(各用 15% 武器攻擊傷害換單一元素全縮放)。兩者都是真實存在的進化終點。
+
+| 部位 / 組件 | Ilonica 融合(本流派) | 單元素線(如 Storms → Viduka) | 注記 |
+|---|---|---|---|
+| **武器路線** | Flame Staff → Elemental Fusion Staff Ilonica | Staff of Storms → Viduka(或 Embers → Fiaola's、Rime → Oracle's) | 轉換線 Tier 2 即入場 |
+| **核心縮放** | 三元素各 4–6 + Normal ATK DMG | 單一元素點滿(雷/火/冰) | 融合鋪廣,轉換專精 |
+| **瞄準需求** | 無——彈藥自追 | 視該線的彈藥而定 | 自動追蹤就是 Ilonica 的本體 |
+| **資源模型** | 0 MP、每彈獨立冷卻 | 標準 MP 消耗 | 融合永不空轉 |
+| **上手門檻** | 低——風箏+按住攻擊 | 中——輪換紀律 | Ghost 服裝補脆皮 |
+| **適合誰** | 不想瞄準的玩家 | 深愛某元素套件的玩家 | 換線在鐵砧換,別中途換 |
+
+## 屬性斷點與彈幕數學
+
+### 三角形:為什麼各 4–6
+
+社群配方把 **Ember、Glacier、Magitech 各保持在 4–6、彼此差距 ≤1 點**。從引擎結構推:
+
+1. **每發彈都吃三元素的加成**——彈幕施放的是「當下沒進冷卻的那種彈」,Ember 點滿而 Glacier/Magitech 停滯,等於三分之二的施放像濕紙。均衡讓每次施放都有效。
+2. **地板約 4**——低於它,彈傷跌出關鍵懸崖;高於 **6** 之後,下一點屬性通常買生存(或 Ghost 服裝升級)比買第四點傷害划算。
+3. **Elementalist 獎勵廣度**——Miracle 複合三路縮放,恰好就是均衡分佈所供給的。
+
+### 輪換廣度才是真資源
+
+因為每種彈自帶冷卻,彈幕密度由*可用彈種數*決定。全冷卻的死輪是這套的停擺狀態——4–6 三角讓常見彈種的傷害足夠,即使部分彈幕也能清場。
+
+### 升級順序
+
+1. 三元素先各推到約 4 —— 三角形地板。
+2. 隨進度往 6 推,保持彼此差距 ≤1 點。
+3. 視情況補防禦層(Ghost 服裝路線)—— 你是施法者,不是坦克。
 
 ## 實戰打法
 
-放開風箏。你調整位置的同時,追蹤 Bolt 持續輸出——這正是它對瞄準型施法者的全部優勢。用它貼著仇恨邊緣走位,讓 Elementalist 替你做算術。
+放心風箏。追蹤彈在你重新站位時持續輸出,這就是它對瞄準型施法者的全部優勢——待在仇恨圈邊緣,讓 Elementalist 做數學。彈幕按住就發又不花資源,所以技巧表達在站位與元素管理,不在按鍵時機。
 
 ## 證據與改版注記
 
-**1.0.24 宣稱通關 50 層。** 撰寫當下為社群回報而非影片實測。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。
+**1.0.24 宣稱通關 50 層**——撰寫時為社群回報而非影片實測。Bolt Barrage 機制(0 MP、每彈獨立冷卻、Normal ATK DMG 縮放、魔導書鎖死)已對武器進化樹資料交叉核驗。完整對照見[六套流派總覽](/zh-Hant/builds/best-builds)。

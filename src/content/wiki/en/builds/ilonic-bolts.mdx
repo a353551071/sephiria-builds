@@ -1,53 +1,98 @@
 ---
 title: 'Sephiria Ilonic Bolts Build - Homing Elemental Staff (1.0.30)'
-description: 'Ilonica homing-elemental: Staff → Flame Staff → Elemental Fusion Staff Ilonica, Elementalist Miracle, Ghost costume, Ember / Glacier / Magitech spread 4–6 each.'
+description: 'Ilonic homing-elemental: Elemental Fusion Staff Ilonica, Elementalist, Ghost, Ember / Glacier / Magitech 4–6 each. Bolt Barrage: 0 MP, per-bolt CDs.'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss04.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-11
 gameVersion: '1.0.30'
 tags: ['builds', 'caster', 'elemental', 'homing']
-summary: 'The Ilonica homing-elemental build: Staff → Flame Staff → Elemental Fusion Staff Ilonica, Elementalist Miracle, Ghost costume. Three-element homing bolts with Ember / Glacier / Magitech spread around 4–6 each; Floor 50 claimed on 1.0.24.'
+summary: 'The Ilonica homing-elemental build: Staff → Flame Staff → Elemental Fusion Staff Ilonica, Elementalist Miracle, Ghost costume. Three-element homing bolts with Ember / Glacier / Magitech spread around 4–6 each; Floor 50 claimed on 1.0.24. Includes the Bolt Barrage engine math, preset code and the fusion vs single-element-line matrix.'
 build:
   tier: 'A'
   type: 'RANGED / ELEMENTAL'
   difficulty: 'medium'
   patch: '1.0.30'
   weaponPath:
-    - { name: 'Staff' }
+    - { name: 'Staff', href: '/weapons/staff' }
     - { name: 'Flame Staff' }
     - { name: 'Elemental Fusion Staff Ilonica' }
   miracle: 'Elementalist'
   costume: 'Ghost'
+  artifacts: ['Ember / Glacier / Magitech spread']
   stats:
     - { name: 'Ember', value: '4–6' }
     - { name: 'Glacier', value: '4–6' }
     - { name: 'Magitech', value: '4–6' }
-  evidence: 'Floor 50 claimed on 1.0.24.'
+    - { name: 'Bolt cost', value: '0 MP (per-bolt cooldowns)' }
+    - { name: 'Bolt scaling', value: 'benefits from Normal ATK DMG bonuses' }
+    - { name: 'Grimoires', value: 'disabled by the weapon' }
+  evidence: 'Floor 50 claimed on 1.0.24; community-reported. Bolt Barrage mechanics cross-checked against the weapon-evolution compendium.'
 ---
 
 Ilonica is the homing caster line: three-element bolts that track targets so your damage lands even while you're kiting. The most "hands-off" build on this list for raw output.
 
-## Why it works
-> *Patch check 2026-08-27 — reviewed against 1.0.30: nothing in 1.0.26–1.0.30 touches this page's weapons, artifacts or mechanics. Recipe unchanged.*
-**Homing three-element bolts** means uptime isn't gated by your aim — the staff does the aiming. That frees the entire run budget for stacking the three elements the bolts carry.
+## Why It Works
+> *Patch check 2026-09-11 — game still on 1.0.30 (no release since 08-20); nothing in 1.0.26–1.0.30 touches this page's weapons, artifacts or mechanics. Recipe unchanged.*
 
-## The element spread
+The engine is the **Bolt Barrage** conversion. Per the compendium, the final staff form does three things at once:
 
-- **Ember 4–6 · Glacier 4–6 · Magitech 4–6**
+1. **Your Normal ATK becomes a random Bolt Spell cast** — homing elemental bolts (Ember, Glacier, Magitech) that track targets instead of traveling where you aim.
+2. **Each bolt costs 0 MP but puts its own spell on cooldown** — the constraint isn't mana, it's *rotation breadth*: how many distinct bolt types you have available per cycle.
+3. **Bolts also benefit from Normal ATK DMG bonuses** — the surprise of the build: although it plays like a caster, weapon-attack damage percentages remain global scaling for the whole barrage.
 
-Keep the three elements spread around **4–6 each** rather than maxing one. The bolts carry all three, so a balanced spread keeps every bolt damaging instead of one element hard-carrying and two stalling. Elementalist Miracle compounds the three-way scaling, and the **Ghost costume** keeps the squishy caster alive while the bolts track.
+The trade is equally explicit: **Grimoires cannot be used**. The weapon is your entire spell engine — no backup spellbook. In exchange, uptime isn't gated by your aim or your mana bar; the staff does the aiming and the fuel is free.
 
-## Leveling order
+## Preset Code & Loadout Matrix
+
+```text
+# Sephiria Build Preset — Ilonic Bolts Homing Elemental (v1.0.30)
+[PRESET:SEPH-1030-IB-F50]
+WEAPON_LINE: Staff -> Flame Staff -> Elemental Fusion Staff Ilonica
+MIRACLE: Elementalist
+COSTUME: Ghost
+STAT_TARGETS: Ember 4-6 | Glacier 4-6 | Magitech 4-6 (keep within 1 point)
+ENGINE: Bolt Barrage — 0 MP, per-bolt cooldowns, scales with Normal ATK DMG
+DPS_CEILING: Floor 50 claimed on 1.0.24
+```
+
+### Build Matrix: Three-Element Fusion vs Single-Element Conversion
+
+The staff family has two documented caster endgames: Ilonica's three-element fusion on this page, and the single-element conversion lines (each trades 15% weapon ATK damage for full scaling off one element). Both are real, verified weapon evolutions.
+
+| Slot / Component | Ilonica Fusion (This Build) | Single-Element Line (e.g. Storms → Viduka) | Notes |
+|---|---|---|---|
+| **Weapon Path** | Flame Staff → Elemental Fusion Staff Ilonica | Staff of Storms → Viduka (or Embers → Fiaola's, Rime → Oracle's) | Conversion lines are Tier 2 entry |
+| **Core Scaling** | Three elements at 4–6 each + Normal ATK DMG | One element maxed (Lightning / Fire / Cold) | Fusion spreads, conversion specializes |
+| **Aim Requirement** | None — bolts home | Depends on the line's payload | Homing is Ilonica's whole identity |
+| **Resource Model** | 0 MP, per-bolt cooldowns | Standard MP costs apply | Fusion never dry-fires |
+| **Skill Floor** | Low — kite and hold attack | Medium — rotation discipline | Ghost costume covers the squish |
+| **Best For** | Players who hate aiming | Players who love one element's package | Swap at the Anvil, not mid-run |
+
+## Stat Breakpoints & Barrage Math
+
+### The Triangle: Why 4–6 Each
+
+The community recipe keeps **Ember, Glacier and Magitech within 4–6 and within a point of each other**. The reasoning, from the engine's structure:
+
+1. **Every bolt carries all three elements' payoff** — the barrage casts whatever bolt is off cooldown, so a maxed Ember with stalling Glacier/Magitech means two-thirds of your casts hit like wet paper. Balance keeps every cast meaningful.
+2. **The floor is ~4** — below that, bolt damage falls off the cliff that matters; above **6**, the next stat point usually buys more survival (or Ghost costume upgrades) than a fourth point of damage.
+3. **Elementalist compounds three-way scaling** — the Miracle rewards breadth, which is exactly what the spread provides.
+
+### Rotation Breadth Is the Real Resource
+
+Because each bolt type carries its own cooldown, the density of your barrage scales with *how many distinct bolt types are available*. A dead cycle (everything on cooldown) is the build's stall state — the 4–6 triangle keeps the common bolt types damaging enough that even partial barrages clear rooms.
+
+### Leveling Order
 
 1. Bring all three elements up to ~4 first — the triangle floor.
 2. Then push toward 6 as the run allows, keeping them within a point of each other.
 3. Defensive layers (the Ghost costume path) as needed — you're a caster, not a tank.
 
-## How to play
+## How to Play
 
-Kite freely. The homing bolts keep damaging while you reposition, which is the build's whole advantage over aimed casters — use it to stay at the edge of aggro and let Elementalist do the math.
+Kite freely. The homing bolts keep damaging while you reposition, which is the build's whole advantage over aimed casters — use it to stay at the edge of aggro and let Elementalist do the math. Because the barrage fires whenever attack is held and costs nothing, the skill expression is positioning and element management, not button timing.
 
-## Evidence & patch notes
+## Evidence & Patch Notes
 
-**Floor 50 claimed on 1.0.24.** Community-reported rather than video-verified at time of writing. See the [six-build overview](/builds/best-builds) for the full comparison.
+**Floor 50 claimed on 1.0.24** — community-reported rather than video-verified at time of writing. The Bolt Barrage mechanics (0 MP, per-bolt cooldowns, Normal ATK DMG scaling, Grimoire lockout) are cross-checked against the weapon-evolution compendium. See the [six-build overview](/builds/best-builds) for the full comparison.

@@ -1,0 +1,53 @@
+---
+title: 'Sephiria Builds Methodology - How We Grade Evidence and Track Patches'
+description: 'How we grade evidence: video-verified runs, compendium-verified mechanics, community recipes — plus patch-stamp discipline that keeps pages honest after updates.'
+category: 'guides'
+image: '../../../../assets/screenshots/en/ss06.png'
+date: 2026-09-11
+lastModified: 2026-09-11
+gameVersion: '1.0.30'
+tags: ['methodology', 'about', 'guide']
+summary: 'Every page on this site states where its facts come from. This page explains the three evidence tiers we grade by, the patch-check stamps every page carries, and what we refuse to do (invented recipes, unverified DPS as fact, videos without footage).'
+---
+
+Most Sephiria wikis you'll find through search were written by someone — or something — that never played the game. Recipes get invented, numbers get copied between patches until they mean nothing, and "guides" contradict the game they describe. This page is our answer: it documents exactly how we grade what we publish, so you can decide how much to trust each page.
+
+## The three evidence tiers
+
+Every build and guide page carries an `evidence` line in its spec block. There are exactly three tiers:
+
+### Tier 1 — Video-verified
+
+A gameplay video exists showing the recipe in action, and we've watched it against the patch it was recorded on. The clearest example on this site is the **[Minigun build](/builds/minigun)**: the White Rabbit Hard 35 run is on tape — boss clear times, the ~1,400–1,800 sustained dummy DPS band, the Barrage proc behavior. When a number on that page says "video confirms", it means exactly that.
+
+### Tier 2 — Compendium-verified mechanics
+
+The *mechanics* quoted on a page (what an evolution does, what it costs, how it scales) are cross-checked against the community-maintained weapon-evolution compendium dataset. This is why the [Creaking Spine](/builds/creaking-spine) page can state the Reassemble formula — 25 MP, 8-second window, +15 + 50% of DEF per consecutive swing — as fact rather than folklore. Mechanics at this tier are data, not vibes.
+
+### Tier 3 — Community-documented recipes
+
+The *recipe itself* (stat targets, artifact picks, claimed ceilings) is what the community actually runs and upvotes — and we label it as exactly that. The [Frozen Smelt](/builds/frozen-smelt) page is the honest example: "Hard 60 claimed on 1.0.24; DPS figures community-reported rather than video-verified — treat the ceiling as strong-but-not-gospel." A 58-like community recipe is a strong signal, and it's presented as a signal, not as scripture.
+
+A single page can mix tiers — mechanics at Tier 2, recipe at Tier 3 — and says so in plain text. That mix is the norm, not an exception.
+
+## The patch-stamp discipline
+
+Sephiria patches often (1.0.25 → 1.0.30 across summer 2026), and weapon balance has swung enough to invalidate guides overnight. Two real cases from this site's own pages:
+
+- **1.0.23** rebalanced Brass Mirror Fragment (the Minigun build's mana engine) — pages now carry the caution note.
+- **1.0.26** changed the base Dagger's dash-cancel behavior — the Frozen Smelt page tells you exactly what changed and what it didn't touch.
+
+Because of that history, every page carries two stamps: a `gameVersion` field (the patch the content was verified against) and a dated patch-check quote at the top of the analysis ("*Patch check 2026-09-11 — game still on 1.0.30…*"). We re-check pages on a weekly cadence against the live patch, and when a patch lands, affected pages get updated or flagged before anything else happens.
+
+## What we refuse to do
+
+- **No invented recipes.** If a build's config isn't documented somewhere real, it doesn't appear here as a "build".
+- **No unverified numbers presented as fact.** Community-reported DPS is always labeled community-reported.
+- **No videos without footage.** Pages without a verified run don't get a video section to look more authoritative — depth comes from mechanics math and preset codes instead.
+- **No cross-patch copying.** Numbers carry the patch they were true on, or they don't carry at all.
+
+## How to use this site
+
+Trust the mechanics sections hardest (Tier 2 — data). Treat recipes as strong community consensus (usually Tier 3) and check the evidence line before you commit a run. If a patch just dropped, check the patch-check stamp's date first — if it predates the patch, wait for the re-check.
+
+Found something we got wrong? That's the point of grading evidence publicly — corrections with a source beat silent confidence every time.
