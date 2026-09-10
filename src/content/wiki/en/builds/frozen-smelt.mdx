@@ -1,20 +1,20 @@
 ---
 title: 'Sephiria Frozen Smelt Build - Freeze Control Dagger (1.0.30)'
-description: 'Frozen Smelt freeze-control build: Dagger → Sleeping Frost → Frozen Smelt, Hunter Miracle, Ice Snow / Ice Seagull / Frozen Egg — ≈10K DPS, ≈17K with Berut''s Sickle.'
+description: 'Frozen Smelt freeze-control build: Hunter Miracle, ice-trio artifacts, Frostbite ×2 per Special ATK — ≈10K DPS, ≈17K with Berut''s Sickle.'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss07.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-10
 gameVersion: '1.0.30'
 tags: ['builds', 'freeze', 'control', 'ranged']
-summary: 'The Frozen Smelt freeze-control build: Dagger → Sleeping Frost → Frozen Smelt, Hunter Miracle, Ice Snow / Ice Seagull / Frozen Egg artifacts. Glacier + Precision over a frozen screen, ≈10K late DPS (≈17K with Berut''s Sickle), Hard 60 claimed on 1.0.24.'
+summary: 'The Frozen Smelt freeze-control build: Dagger → Sleeping Frost → Frozen Smelt, Hunter Miracle, Ice Snow / Ice Seagull / Frozen Egg artifacts. Glacier + Precision over a frozen screen, ≈10K late DPS (≈17K with Berut''s Sickle), Hard 60 claimed on 1.0.24. Includes the cold-conversion math, preset code and the standard vs Sickle-burst matrix.'
 build:
   tier: 'A'
   type: 'RANGED / FREEZE'
   difficulty: 'medium'
   patch: '1.0.30'
   weaponPath:
-    - { name: 'Dagger' }
+    - { name: 'Dagger', href: '/weapons/dagger' }
     - { name: 'Sleeping Frost' }
     - { name: 'Frozen Smelt' }
   miracle: 'Hunter'
@@ -23,32 +23,72 @@ build:
     - { name: 'Wisdom', value: '~5' }
     - { name: 'Late DPS', value: '≈10K' }
     - { name: 'DPS + Berut''s Sickle', value: '≈17K' }
-  evidence: 'Hard 60 claimed on 1.0.24; DPS figures community-reported.'
+    - { name: 'Frostbite application', value: '×2 per Special ATK hit' }
+    - { name: 'Cold conversion', value: '-20% Weapon ATK DMG → scales off Cold DMG' }
+  evidence: 'Hard 60 claimed on 1.0.24; DPS figures community-reported. Frostbite-twice and cold-conversion mechanics cross-checked against the weapon-evolution compendium.'
 ---
 
 Frozen Smelt is the freeze-control route: it stops the screen from playing while your damage catches up. One of the few builds that keeps late-game pressure while enemies are effectively locked down.
 
-> *Patch check 2026-08-27 — reviewed against 1.0.30. 1.0.26 changed the base **Dagger** (Dash Attack can now chain into Special Attack: Parry/Fury) — a buff to the family's melee layer that does **not** alter the Sleeping Frost → Frozen Smelt freeze core, but re-verify your dash-cancel timing after the change (details on the [Dagger weapon page](/weapons/dagger)). 1.0.30's Frozen Bow arrow-pierce change is a different weapon and does not touch this line.*
+> *Patch check 2026-09-10 — game still on 1.0.30 (no release since 08-20). 1.0.26 changed the base **Dagger** (Dash Attack can now chain into Special Attack: Parry/Fury) — a buff to the family's melee layer that does **not** alter the Sleeping Frost → Frozen Smelt freeze core, but re-verify your dash-cancel timing after the change (details on the [Dagger weapon page](/weapons/dagger)). 1.0.30's Frozen Bow arrow-pierce change is a different weapon and does not touch this line.*
 
-## Why it works
+## Why It Works
 
 **Glacier + Precision** over a frozen screen. Freeze does double duty — it's survivability (frozen enemies don't attack) and damage (Glacier hits harder on frozen targets). The three ice artifacts feed the same loop: **Ice Snow + Ice Seagull + Frozen Egg** stack freeze uptime and cold damage.
 
-## Stat targets
+The weapon line makes one deliberate trade at the Sleeping Frost step: **your Weapon ATK loses 20% of its base damage, but all of it converts to scale off Cold DMG**. That trade is what turns every cold stat you pick up into global scaling — the dagger stops being a physical weapon and becomes a freeze applicator that happens to do damage. Frozen Smelt then completes the engine: **every Special ATK hit applies Frostbite twice**, doubling your stack cadence on the exact targets you're about to freeze solid.
 
-- **Wisdom:** ~5 — just enough for MP; the build runs on control, not raw casting.
-- **Late DPS:** ≈10K, rising to ≈17K with Berut's Sickle.
+## Preset Code & Loadout Matrix
 
-## Leveling order
+```text
+# Sephiria Build Preset — Frozen Smelt Freeze Control (v1.0.30)
+[PRESET:SEPH-1030-FS-HC60]
+WEAPON_LINE: Dagger -> Sleeping Frost -> Frozen Smelt
+MIRACLE: Hunter
+CORE_ARTIFACTS: Ice Snow | Ice Seagull | Frozen Egg
+STAT_TARGETS: Wisdom ~5 (MP floor) > Freeze uptime > Cold DMG
+FREEZE_ENGINE: Special ATK applies Frostbite x2 (Frozen Smelt capstone)
+DPS_CEILING: ~10K standard / ~17K with Berut's Sickle
+```
+
+### Build Matrix: Standard Freeze Loop vs Berut's Sickle Burst
+
+Both variants below are the documented community recipe — same weapon line and miracle, one artifact-slot decision apart.
+
+| Slot / Component | Standard Freeze Loop | Berut's Sickle Burst | Notes |
+|---|---|---|---|
+| **Weapon Path** | Dagger → Sleeping Frost → Frozen Smelt | Same | Never split the line mid-run |
+| **Miracle** | Hunter | Hunter | Pacing while kiting |
+| **Ice Trio** | Ice Snow + Ice Seagull + Frozen Egg | Keep all three if possible | Uptime is the build's life support |
+| **Key Extra Slot** | Flexible (MP or utility) | **Berut's Sickle** | The single biggest DPS jump on this route |
+| **Late DPS** | ≈10K | ≈17K | Community-reported on 1.0.24 |
+| **Play Pattern** | Hold the screen, re-freeze on cooldown | Same loop, bigger payoff per frozen window | Sickle variant punishes dropped uptime harder |
+| **Claimed Ceiling** | Hard 60 | Hard 60 (claimed on 1.0.24) | Treat as strong-but-not-gospel |
+
+## Stat Breakpoints & Freeze Loop Math
+
+### The Cold Conversion Trade
+
+At the Sleeping Frost step the compendium lists the exchange explicitly: **-20% Weapon ATK DMG, damage now scales off Cold DMG**. The practical reading:
+
+1. **The -20% is a one-time toll, not a scaling penalty** — it shaves the baseline, then every Cold DMG point you acquire raises the whole converted packet.
+2. **Frostbite cadence is the real control stat.** Frozen Smelt's capstone applies **two Frostbite applications per Special ATK hit**. Since freeze uptime is what keeps Glacier's bonus live (and keeps you alive), the Special ATK is your rotation's metronome — not a damage button you spam, but the double-stack you place deliberately.
+3. **Wisdom ~5 is the MP floor**, not a target — the build runs on control, so over-stacking casting stats dilutes the freeze loop.
+
+### The Re-Freeze Window
+
+The discipline that separates a working run from a stall: **re-freeze before the first freeze expires**. The ice trio's uptime is what bridges the gap between Frostbite applications. If the gap opens, frozen targets thaw, Glacier loses its bonus, and the -20% conversion toll is suddenly being paid without the control that justified it.
+
+### Leveling Order
 
 1. **Wisdom to ~5 first** — the MP floor that keeps the freeze loop sustainable.
 2. Freeze uptime artifacts (the ice trio) before raw damage.
-3. **Berut's Sickle** when it appears — the single biggest DPS jump on this route.
+3. **Berut's Sickle when it appears** — the single biggest DPS jump on this route.
 
-## How to play
+## How to Play
 
-Hold the screen. Keep Glacier ticking on frozen groups and re-freeze before the first freeze expires — the artifact set's uptime is what separates a working run from a stall. Hunter Miracle keeps the pace while you kite.
+Hold the screen. Keep Glacier ticking on frozen groups and re-freeze before the first freeze expires — the artifact set's uptime is what separates a working run from a stall. Hunter Miracle keeps the pace while you kite. One family note: the dagger tree's other frost capstone (Drífa) evolves the **Blizzard Hammer relic** into a targeted Blizzard Scythe instead of the weapon itself — a different build's engine, but a reminder that the frost toolkit is deep if this loop clicks for you.
 
-## Evidence & patch notes
+## Evidence & Patch Notes
 
-**Hard 60 claimed on 1.0.24.** The DPS figures (≈10K / ≈17K) are community-reported rather than video-verified — treat the ceiling as strong-but-not-gospel. See the [six-build overview](/builds/best-builds) for the full comparison.
+**Hard 60 claimed on 1.0.24.** The DPS figures (≈10K / ≈17K) are community-reported rather than video-verified — treat the ceiling as strong-but-not-gospel. The Frostbite-twice capstone and the cold-conversion numbers are cross-checked against the weapon-evolution compendium. See the [six-build overview](/builds/best-builds) for the full comparison.

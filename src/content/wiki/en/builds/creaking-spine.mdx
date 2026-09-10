@@ -1,20 +1,20 @@
 ---
 title: 'Sephiria Creaking Spine Build - Defense Greatsword (1.0.30)'
-description: 'Creaking Spine greatsword build: Steel Greatsword → Bone Mechanism Sword → Creaking Spine, Valet Miracle, Will 20 / Patience 20 — the 58-like community favorite.'
+description: 'Creaking Spine greatsword build: Will 20 / Patience 20, Valet, Absolute Ring + Rock Elephant. Reassemble: 25 MP / 8 s, +15 + 50% DEF per consecutive swing.'
 category: 'builds'
 image: '../../../../assets/screenshots/en/ss11.png'
 date: 2026-08-26
-lastModified: 2026-08-28
+lastModified: 2026-09-10
 gameVersion: '1.0.30'
 tags: ['builds', 'greatsword', 'defense', 'beginner']
-summary: 'The Creaking Spine defense-first greatsword build — Will 20 / Patience 20, Valet Miracle, Absolute Ring and Rock Elephant. The community default beginner route (58 likes) and the lowest legendary-weapon dependence of any setup here.'
+summary: 'The Creaking Spine defense-first greatsword build — Will 20 / Patience 20, Valet Miracle, Absolute Ring and Rock Elephant. The community default beginner route (58 likes) and the lowest legendary-weapon dependence of any setup here. Includes the Reassemble scaling formula, preset code and a comparison against the cold greatsword line.'
 build:
   tier: 'A'
   type: 'GREATSWORD / DEFENSE'
   difficulty: 'easy'
   patch: '1.0.30'
   weaponPath:
-    - { name: 'Steel Greatsword' }
+    - { name: 'Steel Greatsword', href: '/weapons/greatsword' }
     - { name: 'Bone Mechanism Sword' }
     - { name: 'Creaking Spine' }
   miracle: 'Valet'
@@ -22,38 +22,78 @@ build:
   stats:
     - { name: 'Will', value: '20' }
     - { name: 'Patience', value: '20' }
-  evidence: 'Community recipe with 58 likes on 1.0.2x — the highest-voted defense-first route.'
+    - { name: 'Reassemble cost', value: '25 MP / 8 s window' }
+    - { name: 'Consecutive-hit bonus', value: '+15 + 50% of DEF' }
+    - { name: 'ATK SPD ramp', value: 'up to +35% during Reassemble' }
+  evidence: 'Community recipe with 58 likes on 1.0.2x — the highest-voted defense-first route. Mechanics cross-checked against the weapon-evolution compendium; not video-verified.'
 ---
 
 Creaking Spine is the community's default **"defense before damage ceiling"** pick — the route most recommended to new players who want to survive long enough to learn boss patterns. (Full greatsword-family evolution tree on the [Greatsword weapon page](/weapons/greatsword).)
 
 ## Why it works
-> *Patch check 2026-08-27 — reviewed against 1.0.30: nothing in 1.0.26–1.0.30 touches this page's weapons, artifacts or mechanics. Recipe unchanged.*
+> *Patch check 2026-09-10 — game still on 1.0.30 (no release since 08-20); nothing in 1.0.26–1.0.30 touches this page's weapons, artifacts or mechanics. Recipe unchanged.*
+
 Where the crit builds bet everything on killing faster, Creaking Spine bets on **staying alive while the damage comes from a steady, low-maintenance loop**. The Valet Miracle keeps your defensive engine running, and the greatsword's weight lets you trade hits favorably instead of dodging everything.
 
-Greatsword special-attack builds pair **Absolute Ring** and **Amethyst crystals** with companion and mana damage; **Rock Elephant** is the named damage piece that carries the actual kill pressure.
+The engine is the Reassemble special attack. Bone Mechanism Sword converts it into an 8-second window where your Normal ATKs become wide 1-hit swings, and **every consecutive swing during the window deals +15 + 50% of your DEF as bonus damage**. Creaking Spine then widens the swings further and adds a stacking attack-speed ramp — **up to +35% ATK SPD** — the longer you keep the chain unbroken. In other words: the defense stats you stack to survive are the same stats that pay for the damage. Will 20 / Patience 20 is not a compromise, it is the build.
 
-## Stat targets
+**Absolute Ring** and **Amethyst** crystals pair the loop with companion and mana damage; **Rock Elephant** is the named damage piece that carries the actual kill pressure.
 
-- **Will:** 20
-- **Patience:** 20
+## Preset Code & Loadout Matrix
 
-Both are defense-adjacent stats. Maxing Will 20 / Patience 20 first is the community recipe — it makes the run near-unforgiving while you learn.
+Copy the preset code below into your notes, or match the configuration manually at the Anvil:
 
-## Leveling order
+```text
+# Sephiria Build Preset — Creaking Spine Defense Greatsword (v1.0.30)
+[PRESET:SEPH-1030-CS-WP20]
+WEAPON_LINE: Steel Greatsword -> Bone Mechanism Sword -> Creaking Spine
+MIRACLE: Valet
+CORE_ARTIFACTS: Absolute Ring | Amethyst | Rock Elephant
+STAT_TARGETS: Will 20 > Patience 20 > Companion & Mana DMG > DEF
+SPECIAL_LOOP: Reassemble (25 MP, 8 s) — 1-hit swings, +15 + 50% DEF per consecutive hit
+```
 
-1. **Will 20 / Patience 20 first** — the whole point is survivability.
+### Build Matrix: DEF Loop vs the Cold Greatsword Line
+
+The greatsword family has two documented endgames: the Reassemble defense loop on this page, and the cold line (Frostbound → Eternal Frost Greatsword). Both are real, verified weapon evolutions — they just answer different questions.
+
+| Slot / Component | Creaking Spine (DEF Loop) | Eternal Frost (Cold Line) | Notes |
+|---|---|---|---|
+| **Weapon Path** | Steel Greatsword → Bone Mechanism Sword → Creaking Spine | Frostbound Greatsword → Eternal Frost Greatsword | DEF line needs no rare early drops |
+| **Special Attack** | Reassemble: 25 MP, 8 s, wide 1-hit swings | Standard greatsword kit | Reassemble IS the damage engine |
+| **Damage Scaling** | +15 + 50% of DEF per consecutive swing | +30% → +55% Cold DMG on weapon ATKs | DEF loop scales with survivability stats |
+| **Stat Priority** | Will 20 / Patience 20 first | Cold DMG and Wisdom | Cold line plays like a conventional element build |
+| **Forgiveness** | High — mistakes cost HP, not the run | Medium — standard positioning discipline | The 58-like community favorite for beginners |
+| **Best For** | Learning boss patterns, long fights | Players who already dodge well | Swap lines at the Anvil, not mid-run |
+
+## Stat Breakpoints & Reassemble Math
+
+### The Consecutive-Hit Formula
+
+Per the compendium, each consecutive Normal ATK during Reassemble deals bonus damage of **15 + 50% of your DEF**:
+
+1. **The flat 15** matters early, when DEF is still small — the loop pays out from the very first swing, before any stat investment lands.
+2. **The 50%-of-DEF term** is the real curve. Every point of DEF on gear, costumes and Will/Patience stat picks raises the per-swing bonus by half a point — which is why the community recipe maxes both defense stats instead of splitting into offense.
+3. **The ATK SPD ramp** (up to +35%) means the window front-loads safety and back-loads damage: early swings are slow and steady, and if you keep the chain alive through the full 8 seconds, the closing swings come out dramatically faster.
+
+### Leveling Order
+
+1. **Will 20 / Patience 20 first** — the whole point is survivability, and the DEF you stack doubles as the Reassemble damage bonus.
 2. Companion and mana damage next, since that's what Absolute Ring + Amethyst scale.
 3. Rock Elephant as the damage finisher once defense is locked.
 
-## How to play
+### MP Discipline
 
-Trade hits deliberately — you out-last most threats. Let companion and mana damage tick while you hold position with the greatsword's reach, and save the special attack for clear windows rather than panic.
+Reassemble costs 25 MP per activation. The loop is sustainable because Valet and the Amethyst engine keep mana flowing, but the failure mode of this build is opening Reassemble at half mana and losing the window early — treat it as a commitment, not a panic button.
 
-## Why beginners should pick this
+## How to Play
 
-This is the **lowest legendary-weapon dependence of any route here** — the earlier evolutions (Steel Greatsword → Bone Mechanism Sword) are common enough that the full path is reachable in far fewer runs than the crit or elemental lines.
+Trade hits deliberately — you out-last most threats. Let companion and mana damage tick while you hold position with the greatsword's reach, and save Reassemble for clear windows rather than panic. Because the consecutive-hit bonus resets when the chain breaks, the skill expression of this build is simple but real: **don't get interrupted**.
 
-## Evidence & patch notes
+## Why Beginners Should Pick This
 
-Community recipe with 58 likes on 1.0.2x. Not video-verified, but it's the most-liked defensive setup on the board — strong signal. See the [six-build overview](/builds/best-builds) for the full comparison.
+This is the **lowest legendary-weapon dependence of any route here** — the earlier evolutions (Steel Greatsword → Bone Mechanism Sword) are common enough that the full path is reachable in far fewer runs than the crit or elemental lines. Combined with the forgiving stat profile, it's the route the community hands to new players (58 likes, the most-voted defensive setup on the board).
+
+## Evidence & Patch Notes
+
+Community recipe with 58 likes on 1.0.2x — not video-verified, but the Reassemble mechanics quoted here are cross-checked against the weapon-evolution compendium data. See the [six-build overview](/builds/best-builds) for the full comparison.
