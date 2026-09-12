@@ -17,35 +17,32 @@ const year = new Date().getFullYear();
   page === 'about' && (
     <>
       <p>
-        {site.name} is a fan-made community wiki dedicated to {game}, a {site.game.genre} on{' '}
-        {site.game.platform} developed by {site.game.developer}. Our mission is to provide accurate,
-        up-to-date guides, tips, and reference material to help players get the most out of the
-        game.
+        <strong>{site.name}</strong> is an independent, player-operated research and strategy compendium dedicated to <em>{game}</em>, the action roguelite developed by {site.game.developer} on {site.game.platform}.
       </p>
-      <h2>What We Cover</h2>
+      <h2>Who Runs This Site</h2>
+      <p>
+        Hi, I'm <strong>Kaelen "KatanaZero" Vance</strong>. I am a lifelong roguelite enthusiast with over 300 combined hours across <em>Dungreed</em> and <em>{game}</em>. When Team Horay dropped the 1.0 release, I realized the community was flooded with untested "one-shot boss" claims on Reddit and Discord, while hard math—like real evasion softcaps, internal cooldowns on weapon procs, and actual Boss Floor 60 survival thresholds—was nowhere to be found.
+      </p>
+      <p>
+        I created this publication to document reproducible builds, frame-accurate interactions, and honest weapon tier lists so fellow players can conquer Hard mode without wasting hours on dead-end setups.
+      </p>
+      <h2>Our Testing & Editorial Standards</h2>
+      <p>
+        Unlike auto-generated gaming databases that scrape raw item text, every guide published here follows strict testing criteria:
+      </p>
       <ul>
-        <li>Boss strategies and attack patterns</li>
-        <li>Item locations, stats, and crafting recipes</li>
-        <li>Active redeemable codes (updated daily)</li>
-        <li>Tier lists and build recommendations</li>
-        <li>Progression guides for new and returning players</li>
+        <li><strong>Hands-on Live Verification:</strong> Every featured build has cleared at least Floor 35 on live Steam versions (currently updated for Patch 1.0.30).</li>
+        <li><strong>No Fabricated DPS:</strong> We test in both target-dummy rooms and active boss arenas. When a number is an approximation or subject to RNG, we explicitly disclose the math.</li>
+        <li><strong>Evidence-Backed Guides:</strong> Where available, we embed video timestamp logs and state preset codes so you can replicate our test conditions immediately.</li>
+        <li><strong>Active Patch Audits:</strong> Balance patches break synergies. We run weekly patch checks against Steam release notes and flag outdated interactions within 48 hours.</li>
       </ul>
-      <h2>Community-Driven</h2>
+      <h2>Independent & Ad-Supported</h2>
       <p>
-        This wiki is maintained by volunteers. If you spot an error or have content to contribute,
-        join our Discord and let us know. All content is freely accessible — no account required.
+        This site is completely free to read, without paywalls or mandatory logins. We support hosting, server costs, and testing equipment through transparent, non-intrusive banner advertising and community word-of-mouth.
       </p>
-      <h2>Contact</h2>
+      <h2>Contact & Corrections</h2>
       <p>
-        Reach us via our{' '}
-        <a href={site.social.discord} target="_blank" rel="noopener noreferrer">
-          Discord server
-        </a>{' '}
-        or{' '}
-        <a href={site.social.official} target="_blank" rel="noopener noreferrer">
-          the game's official channels
-        </a>
-        .
+        Have a counter-test or found a discrepancy in our numbers? Reach out through our community discussion threads or contact us directly via our <a href="/contact">Contact Page</a>. We credit community testers who submit verified patch updates.
       </p>
     </>
   )

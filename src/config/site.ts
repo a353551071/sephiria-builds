@@ -80,6 +80,7 @@ export const site: SiteConfig = {
   // hero.webp is 1200x630 (the recommended OG share aspect ratio).
   ogImageWidth: 1200,
   ogImageHeight: 630,
+  defaultAuthor: 'Kaelen "KatanaZero" Vance',
 };
 export const siteUrl: string = (process.env.SITE_URL || `https://${site.domain}`).replace(
   /\/$/,

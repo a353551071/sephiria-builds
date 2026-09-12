@@ -16,7 +16,8 @@
     "search": "Search",
     "language": "Language",
     "builds": "Builds",
-    "weapons": "Weapons"
+    "weapons": "Weapons",
+    "blog": "Blog"
   },
   "search": {
     "placeholder": "Search the wiki...",
@@ -139,6 +140,10 @@
     "guides": {
       "overviewTitle": "All Guides",
       "overviewDescription": "Beginner walkthroughs, weapon rankings and practical strategies for Sephiria."
+    },
+    "blog": {
+      "overviewTitle": "Run Logs & Theorycrafting",
+      "overviewDescription": "Hands-on playtests, build experiments, patch impressions, and lessons from climbing to Hard mode in Sephiria."
     }
   },
   "home": {

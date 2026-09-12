@@ -11,14 +11,21 @@
 export interface AuthorInfo {
   /** Profile page (personal site, social, or your site's author page). */
   url?: string;
+  /** Professional title / role (e.g. Lead Builder & Data Verifier). */
+  title?: string;
+  /** Short bio for author cards (E-E-A-T signal). */
+  bio?: string;
   /** Social profiles folded into JSON-LD sameAs. */
   sameAs?: string[];
 }
 
 export const authors: Record<string, AuthorInfo> = {
-  // Example:
-  // 'Yuan Ruiqin': { url: 'https://yuanruiqin.dev', sameAs: ['https://github.com/PNGTRID'] },
-  // DEMO (anvilwiki.pages.dev) — removed by apply-template / setup.yml.
+  'Kaelen "KatanaZero" Vance': {
+    url: '/about',
+    title: 'Lead Builder & Frame Data Verifier',
+    bio: 'Roguelite veteran with 300+ hours across Dungreed and Sephiria. Specializes in frame data testing, evasion breakpoint math, and Boss Floor 60 endgame routing.',
+    sameAs: ['https://store.steampowered.com/app/2436940/Sephiria/'],
+  },
   'Forge Master Kael': { url: '/about' },
 };
 

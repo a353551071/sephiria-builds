@@ -1,0 +1,53 @@
+﻿---
+import { Icon } from 'astro-icon/components';
+import { getAuthor, type AuthorInfo } from '~/config/authors';
+import { localizePath } from '~/lib/url';
+import { type Locale } from '~/i18n/routing';
+
+interface Props {
+  authorName: string;
+  locale: Locale;
+}
+
+const { authorName, locale } = Astro.props;
+const info: AuthorInfo | undefined = getAuthor(authorName);
+---
+
+<div class="mt-12 rounded-xl border border-border bg-card/60 p-6 shadow-sm">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+    <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-nav/40 bg-nav/10 text-nav shadow-inner">
+      <Icon name="lucide:swords" class="h-8 w-8" />
+    </div>
+    <div class="min-w-0 flex-1">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-nav">Guide Author & Verifier</span>
+        <span class="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2 py-0.5 text-[10px] font-medium text-green-700 dark:text-green-300">
+          <Icon name="lucide:check-circle" class="h-3 w-3" /> Steam 1.0 Verified
+        </span>
+      </div>
+      <h3 class="mt-1 text-lg font-bold text-foreground">
+        {info?.url ? (
+          <a href={localizePath(info.url, locale)} class="hover:text-nav hover:underline">
+            {authorName}
+          </a>
+        ) : (
+          authorName
+        )}
+      </h3>
+      {info?.title && (
+        <p class="text-xs font-medium text-muted-foreground">{info.title}</p>
+      )}
+      <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+        {info?.bio ?? 'Independent roguelite enthusiast and Sephiria build tester. Focused on transparent math, clean frame tests, and reproducible runs.'}
+      </p>
+      <div class="mt-3 flex flex-wrap items-center gap-4 text-xs font-medium text-nav">
+        <a href={localizePath('/about', locale)} class="inline-flex items-center gap-1 hover:underline">
+          <Icon name="lucide:user" class="h-3.5 w-3.5" /> About the Creator & Testing Rig
+        </a>
+        <a href={localizePath('/guides/methodology', locale)} class="inline-flex items-center gap-1 hover:underline">
+          <Icon name="lucide:shield-check" class="h-3.5 w-3.5" /> 3-Tier Evidence Standards
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

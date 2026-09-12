@@ -16,7 +16,8 @@
     "search": "搜尋",
     "language": "語言",
     "builds": "流派",
-    "weapons": "武器"
+    "weapons": "武器",
+    "blog": "日誌"
   },
   "search": {
     "placeholder": "搜尋維基……",
@@ -139,6 +140,10 @@
     "guides": {
       "overviewTitle": "全部攻略",
       "overviewDescription": "Sephiria(賽菲莉婭)新手攻略、武器強度排行與實戰策略。"
+    },
+    "blog": {
+      "overviewTitle": "通關日誌與機制心得",
+      "overviewDescription": "實機爬塔測試、配裝翻車記錄、版本手感實測與進階攻略心得。"
     }
   },
   "home": {

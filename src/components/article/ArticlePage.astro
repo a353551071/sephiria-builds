@@ -37,6 +37,7 @@ import { articleJsonLd, breadcrumbJsonLd, pageTitle, videoObjectJsonLd, imageObj
 import { listPath, detailPath, tagPath, homeUrl } from '~/lib/url';
 import { site } from '~/config/site';
 import { getAuthor } from '~/config/authors';
+import AuthorBox from '~/components/article/AuthorBox.astro';
 
 interface Props {
   locale: Locale;
@@ -378,6 +379,9 @@ const jsonLd = [
 
     {/* In-content ad before related articles */}
     <InContentAd />
+
+    {/* Human author / E-E-A-T profile box */}
+    {author && <AuthorBox authorName={author} locale={locale} />}
 
     {/* Related */}
     {
